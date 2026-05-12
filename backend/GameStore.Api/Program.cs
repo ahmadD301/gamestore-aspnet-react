@@ -5,6 +5,10 @@ using GameStore.Data.Entities;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using GameStore.Data.Seed;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.IdentityModel.Tokens;
+using System.Text;
+using GameStore.Api.Services.Auth;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -17,12 +21,46 @@ var connectionString =
     ?? throw new InvalidOperationException(
         "Database connection string is missing.");
 
+var jwtSettings = builder.Configuration
+                    .GetSection(JwtSettings.SectionName)
+                    .Get<JwtSettings>()
+                    ?? throw new InvalidOperationException(
+                        "JWT settings are missing.");
+
 // Database
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
 {
     options.UseSqlServer(connectionString);
 });
 
+
+builder.Services
+    .AddAuthentication(options =>
+    {
+        options.DefaultAuthenticateScheme =
+            JwtBearerDefaults.AuthenticationScheme;
+
+        options.DefaultChallengeScheme =
+            JwtBearerDefaults.AuthenticationScheme;
+    })
+    .AddJwtBearer(options =>
+    {
+        options.TokenValidationParameters =
+            new TokenValidationParameters
+            {
+                ValidateIssuer = true,
+                ValidateAudience = true,
+                ValidateLifetime = true,
+                ValidateIssuerSigningKey = true,
+
+                ValidIssuer = jwtSettings.Issuer,
+                ValidAudience = jwtSettings.Audience,
+
+                IssuerSigningKey =
+                    new SymmetricSecurityKey(
+                        Encoding.UTF8.GetBytes(jwtSettings.Key))
+            };
+    });
 // Identity
 builder.Services
     .AddIdentity<ApplicationUser, IdentityRole>(options =>
@@ -48,6 +86,8 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 
 builder.Services.AddSwaggerDocumentation();
+
+builder.Services.AddScoped<IJwtTokenService, JwtTokenService>();
 
 var app = builder.Build();
 
