@@ -4,6 +4,7 @@ using GameStore.Data.Contexts;
 using GameStore.Data.Entities;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using GameStore.Data.Seed;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -72,5 +73,17 @@ app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();
+
+using (var scope = app.Services.CreateAsyncScope())
+{
+    var services = scope.ServiceProvider;
+
+    var context =
+        services.GetRequiredService<ApplicationDbContext>();
+
+    await context.Database.MigrateAsync();
+
+    await ApplicationDbContextSeed.SeedAsync(context);
+}
 
 app.Run();
