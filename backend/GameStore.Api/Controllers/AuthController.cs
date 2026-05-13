@@ -4,7 +4,7 @@ using GameStore.Data.Constants;
 using GameStore.Data.Entities;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-
+using GameStore.Api.Exceptions;
 namespace GameStore.Api.Controllers;
 
 [ApiController]
@@ -42,10 +42,8 @@ public sealed class AuthController : ControllerBase
         var existingUser = await _userManager.FindByEmailAsync(request.Email);
         if (existingUser is not null)
         {
-            return Conflict(new
-            {
-                message = "Email already exists."
-            });
+            throw new ConflictException(
+                "Email already exists.");
         }
         var user = new ApplicationUser
         {
@@ -56,9 +54,13 @@ public sealed class AuthController : ControllerBase
         var result = await _userManager.CreateAsync(user, request.Password);
         if (!result.Succeeded)
         {
-            return BadRequest(new
+            return BadRequest(new ProblemDetails
             {
-                message = "Failed to create user."
+                Title = "Registration Failed",
+                Detail = string.Join(
+                    ", ",
+                    result.Errors.Select(e => e.Description)),
+                Status = StatusCodes.Status400BadRequest
             });
         }
         await _userManager.AddToRoleAsync(
