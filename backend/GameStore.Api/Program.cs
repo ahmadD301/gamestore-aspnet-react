@@ -28,6 +28,12 @@ var jwtSettings = builder.Configuration
                     ?? throw new InvalidOperationException(
                         "JWT settings are missing.");
 
+var devCorsOrigins = new[]
+{
+    "http://localhost:5173",
+    "https://localhost:5173"
+};
+
 // Database
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
 {
@@ -163,6 +169,16 @@ builder.Services
 
 builder.Services.AddAuthorization();
 
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("DevCors", policy =>
+    {
+        policy.WithOrigins(devCorsOrigins)
+            .AllowAnyHeader()
+            .AllowAnyMethod();
+    });
+});
+
 // Services
 builder.Services.AddControllers();
 
@@ -190,6 +206,8 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+
+app.UseCors("DevCors");
 
 app.UseAuthentication();
 
