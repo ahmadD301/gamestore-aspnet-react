@@ -51,6 +51,7 @@ builder.Services
                 ValidateIssuer = true,
                 ValidateAudience = true,
                 ValidateLifetime = true,
+                ClockSkew = TimeSpan.Zero,
                 ValidateIssuerSigningKey = true,
 
                 ValidIssuer = jwtSettings.Issuer,

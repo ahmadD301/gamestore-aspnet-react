@@ -11,7 +11,7 @@ namespace GameStore.Api.Controllers;
 public sealed class AuthController : ControllerBase
 {
     private readonly UserManager<ApplicationUser> _userManager;
-
+ 
     private readonly SignInManager<ApplicationUser> _signInManager;
 
     private readonly IJwtTokenService _jwtTokenService;
@@ -110,8 +110,38 @@ public sealed class AuthController : ControllerBase
     // </summary>
     [HttpPost("logout")]
     [ProducesResponseType(StatusCodes.Status204NoContent)]
-    public IActionResult Logout()
+    public async Task<IActionResult> Logout(
+        RefreshTokenRequestDto request
+    )
     {
+        await _jwtTokenService
+        .RevokeRefreshTokenAsync(
+            request.RefreshToken);
+
         return NoContent();
+    }
+
+    // <summary>
+    // Refresh expired JWT access token
+    // </summary>
+    [HttpPost("refresh")]
+    [ProducesResponseType(typeof(AuthResponseDto),
+        StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status401Unauthorized)]
+    public async Task<IActionResult> Refresh(
+        RefreshTokenRequestDto request)
+    {
+        var tokens =
+            await _jwtTokenService.RefreshTokenAsync(request.RefreshToken);
+
+        if (tokens is null)
+        {
+            return Unauthorized(new
+            {
+                message = "Invalid refresh token."
+            });
+        }
+
+        return Ok(tokens);
     }
 }

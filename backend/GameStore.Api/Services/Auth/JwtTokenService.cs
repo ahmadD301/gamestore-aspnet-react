@@ -7,6 +7,7 @@ using GameStore.Api.DTOs.Auth;
 using GameStore.Data.Contexts;
 using GameStore.Data.Entities;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 
@@ -87,6 +88,60 @@ public sealed class JwtTokenService : IJwtTokenService
             Email = user.Email!,
             UserName = user.UserName!
         };
+    }
+
+
+    public async Task<AuthResponseDto?> RefreshTokenAsync(
+        string refreshToken)
+    {
+        var existingToken =
+            await _context.RefreshTokens
+                .Include(r => r.User)
+                .FirstOrDefaultAsync(r =>
+                    r.Token == refreshToken);
+
+        if (existingToken is null)
+        {
+            return null;
+        }
+
+        if (existingToken.IsRevoked)
+        {
+            return null;
+        }
+
+        if (existingToken.ExpiresAtUtc < DateTime.UtcNow)
+        {
+            return null;
+        }
+
+        existingToken.IsRevoked = true;
+
+        existingToken.RevokedAtUtc = DateTime.UtcNow;
+
+        await _context.SaveChangesAsync();
+
+        return await CreateTokensAsync(existingToken.User);
+    }
+
+    public async Task RevokeRefreshTokenAsync(
+        string refreshToken)
+    {
+        var existingToken =
+            await _context.RefreshTokens
+                .FirstOrDefaultAsync(r =>
+                    r.Token == refreshToken);
+
+        if (existingToken is null)
+        {
+            return;
+        }
+
+        existingToken.IsRevoked = true;
+
+        existingToken.RevokedAtUtc = DateTime.UtcNow;
+
+        await _context.SaveChangesAsync();
     }
 
     private static string GenerateRefreshToken()

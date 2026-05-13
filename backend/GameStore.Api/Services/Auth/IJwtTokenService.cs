@@ -7,4 +7,10 @@ public interface IJwtTokenService
 {
     Task<AuthResponseDto> CreateTokensAsync(
         ApplicationUser user);
+
+    Task<AuthResponseDto?> RefreshTokenAsync(
+        string refreshToken);
+
+    Task RevokeRefreshTokenAsync(
+        string refreshToken);
 }

@@ -8,7 +8,11 @@ public sealed class RefreshToken : BaseEntity
 
     public bool IsRevoked { get; set; }
 
+    public DateTime? RevokedAtUtc { get; set; }
+
     public string UserId { get; set; } = string.Empty;
 
     public ApplicationUser User { get; set; } = null!;
+
+
 }
