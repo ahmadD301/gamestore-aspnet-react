@@ -1,5 +1,6 @@
 using GameStore.Api.DTOs.Auth;
 using GameStore.Api.Services.Auth;
+using GameStore.Data.Constants;
 using GameStore.Data.Entities;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -60,6 +61,9 @@ public sealed class AuthController : ControllerBase
                 message = "Failed to create user."
             });
         }
+        await _userManager.AddToRoleAsync(
+            user,
+            Roles.User);
 
         return CreatedAtAction(nameof(Register), new { email = user.Email }, user);
     }
@@ -90,6 +94,16 @@ public sealed class AuthController : ControllerBase
                 user,
                 request.Password,
                 lockoutOnFailure: true);
+
+        if (result.IsLockedOut)
+        {
+            return Unauthorized(new
+            {
+                message =
+                    "Account locked due to multiple failed attempts."
+            });
+        }
+
 
         if (!result.Succeeded)
         {

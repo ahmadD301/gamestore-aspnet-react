@@ -124,6 +124,18 @@ using (var scope = app.Services.CreateAsyncScope())
 
     await context.Database.MigrateAsync();
 
+    var roleManager =
+    services.GetRequiredService<
+        RoleManager<IdentityRole>>();
+
+    var userManager =
+        services.GetRequiredService<
+            UserManager<ApplicationUser>>();
+
+    await IdentitySeed.SeedRolesAsync(roleManager);
+
+    await IdentitySeed.SeedAdminAsync(userManager);
+
     await ApplicationDbContextSeed.SeedAsync(context);
 }
 
