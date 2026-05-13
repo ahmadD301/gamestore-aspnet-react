@@ -21,6 +21,8 @@ public sealed class ApplicationDbContext
 
     public DbSet<WishlistItem> WishlistItems => Set<WishlistItem>();
 
+    public DbSet<RefreshToken> RefreshTokens => Set<RefreshToken>();
+
     protected override void OnModelCreating(ModelBuilder builder)
     {
         base.OnModelCreating(builder);
@@ -34,6 +36,8 @@ public sealed class ApplicationDbContext
         ApplyReviewConfiguration(builder);
 
         ApplyWishlistConfiguration(builder);
+
+        ApplyRefreshTokenConfiguration(builder);
     }
 
     private static void ApplyGameConfiguration(ModelBuilder builder)
@@ -119,6 +123,24 @@ public sealed class ApplicationDbContext
             entity.HasOne(w => w.User)
                 .WithMany(u => u.WishlistItems)
                 .HasForeignKey(w => w.UserId)
+                .OnDelete(DeleteBehavior.Cascade);
+        });
+    }
+    private static void ApplyRefreshTokenConfiguration(
+    ModelBuilder builder)
+    {
+        builder.Entity<RefreshToken>(entity =>
+        {
+            entity.Property(r => r.Token)
+                .HasMaxLength(500)
+                .IsRequired();
+
+            entity.HasIndex(r => r.Token)
+                .IsUnique();
+
+            entity.HasOne(r => r.User)
+                .WithMany(u => u.RefreshTokens)
+                .HasForeignKey(r => r.UserId)
                 .OnDelete(DeleteBehavior.Cascade);
         });
     }

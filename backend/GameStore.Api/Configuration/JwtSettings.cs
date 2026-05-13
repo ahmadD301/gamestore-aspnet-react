@@ -2,7 +2,7 @@ namespace GameStore.Api.Configuration;
 
 public sealed class JwtSettings
 {
-    public const string SectionName = "Jwt";
+    public const string SectionName = "JwtSettings";
 
     public string Key { get; init; } = string.Empty;
 

@@ -12,4 +12,7 @@ public sealed class ApplicationUser : IdentityUser
 
     public ICollection<WishlistItem> WishlistItems { get; set; }
         = new List<WishlistItem>();
+
+    public ICollection<RefreshToken> RefreshTokens { get; set; }
+        = new List<RefreshToken>();
 }
