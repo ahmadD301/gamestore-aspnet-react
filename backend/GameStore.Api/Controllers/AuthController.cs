@@ -17,15 +17,19 @@ public sealed class AuthController : ControllerBase
 
     private readonly IJwtTokenService _jwtTokenService;
 
+    private readonly ILogger<AuthController> _logger;
+
     public AuthController(
         UserManager<ApplicationUser> userManager,
         SignInManager<ApplicationUser> signInManager,
-        IJwtTokenService jwtTokenService
+        IJwtTokenService jwtTokenService,
+        ILogger<AuthController> logger
     )
     {
         _userManager = userManager;
         _signInManager = signInManager;
         _jwtTokenService = jwtTokenService;
+        _logger = logger;
     }
     // <summary>
     // Register a new user account.
@@ -51,9 +55,17 @@ public sealed class AuthController : ControllerBase
             Email = request.Email
         };
 
+        _logger.LogInformation(
+            "Attempting to register user: {Email}",
+            request.Email);
+
         var result = await _userManager.CreateAsync(user, request.Password);
         if (!result.Succeeded)
         {
+            _logger.LogWarning(
+                "Failed to register user: {Email}",
+                request.Email);
+
             return BadRequest(new ProblemDetails
             {
                 Title = "Registration Failed",
@@ -66,6 +78,10 @@ public sealed class AuthController : ControllerBase
         await _userManager.AddToRoleAsync(
             user,
             Roles.User);
+
+        _logger.LogInformation(
+            "User registered successfully: {Email}",
+            user.Email);
 
         return CreatedAtAction(nameof(Register), new { email = user.Email }, user);
     }
@@ -90,6 +106,9 @@ public sealed class AuthController : ControllerBase
                 message = "Invalid credentials."
             });
         }
+        _logger.LogInformation(
+            "Attempting to login user: {Email}",
+            request.Email);
 
         var result =
             await _signInManager.CheckPasswordSignInAsync(
@@ -98,7 +117,10 @@ public sealed class AuthController : ControllerBase
                 lockoutOnFailure: true);
 
         if (result.IsLockedOut)
-        {
+        {   
+            _logger.LogWarning(
+                "User account locked out: {Email}",
+                request.Email);
             return Unauthorized(new
             {
                 message =
@@ -108,13 +130,19 @@ public sealed class AuthController : ControllerBase
 
 
         if (!result.Succeeded)
-        {
+        {   
+            _logger.LogWarning(
+                "Invalid login attempt for user: {Email}",
+                request.Email);
             return Unauthorized(new
             {
                 message = "Invalid credentials."
             });
         }
 
+        _logger.LogInformation(
+            "User logged in successfully: {Email}",
+            request.Email);
         var tokens =
             await _jwtTokenService.CreateTokensAsync(user);
 
@@ -133,7 +161,8 @@ public sealed class AuthController : ControllerBase
         await _jwtTokenService
         .RevokeRefreshTokenAsync(
             request.RefreshToken);
-
+        _logger.LogInformation(
+            "User logged out and refresh token revoked.");
         return NoContent();
     }
 
@@ -157,7 +186,6 @@ public sealed class AuthController : ControllerBase
                 message = "Invalid refresh token."
             });
         }
-
         return Ok(tokens);
     }
 }
