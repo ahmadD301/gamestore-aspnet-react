@@ -10,6 +10,11 @@ using Microsoft.IdentityModel.Tokens;
 using System.Text;
 using GameStore.Api.Services.Auth;
 using System.Security.Claims;
+using FluentValidation;
+using FluentValidation.AspNetCore;
+using GameStore.Api.Exceptions;
+using Hellang.Middleware.ProblemDetails;
+using Microsoft.AspNetCore.Mvc;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -57,6 +62,13 @@ builder.Services
     })
     .AddEntityFrameworkStores<ApplicationDbContext>()
     .AddDefaultTokenProviders();
+
+builder.Services
+    .AddFluentValidationAutoValidation();
+
+builder.Services
+    .AddValidatorsFromAssemblyContaining<Program>();
+
 
 // Authentication (JWT Bearer)
 // NOTE: AddIdentity registers cookie auth schemes and can override default
@@ -180,6 +192,53 @@ builder.Services.AddCors(options =>
 });
 
 // Services
+builder.Services.Configure<ApiBehaviorOptions>(
+    options =>
+    {
+        options.InvalidModelStateResponseFactory =
+            context =>
+            {
+                var problemDetails =
+                    new ValidationProblemDetails(
+                        context.ModelState)
+                    {
+                        Title = "Validation Failed",
+                        Status =
+                            StatusCodes
+                                .Status400BadRequest
+                    };
+
+                return new BadRequestObjectResult(
+                    problemDetails);
+            };
+    });
+builder.Services.AddProblemDetails(options =>
+{
+    options.IncludeExceptionDetails = (
+        context,
+        exception) =>
+    {
+        return builder.Environment.IsDevelopment();
+    };
+
+    options.Map<NotFoundException>(exception =>
+        new StatusCodeProblemDetails(StatusCodes.Status404NotFound)
+        {
+            Title = "Resource Not Found",
+            Detail = exception.Message
+        });
+
+    options.Map<ConflictException>(exception =>
+        new StatusCodeProblemDetails(StatusCodes.Status409Conflict)
+        {
+            Title = "Conflict",
+            Detail = exception.Message
+        });
+
+    options.MapToStatusCode<Exception>(
+        StatusCodes.Status500InternalServerError);
+});
+
 builder.Services.AddControllers();
 
 builder.Services.AddEndpointsApiExplorer();
@@ -204,6 +263,8 @@ if (app.Environment.IsDevelopment())
             "GameStore API v1");
     });
 }
+
+app.UseProblemDetails();
 
 app.UseHttpsRedirection();
 
