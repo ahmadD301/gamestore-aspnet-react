@@ -15,8 +15,22 @@ using FluentValidation.AspNetCore;
 using GameStore.Api.Exceptions;
 using Hellang.Middleware.ProblemDetails;
 using Microsoft.AspNetCore.Mvc;
+using Serilog;
+using GameStore.Api.Middleware;
 
-var builder = WebApplication.CreateBuilder(args);
+
+Log.Logger = new LoggerConfiguration()
+    .Enrich.FromLogContext()
+    .WriteTo.Console()
+    .WriteTo.File(
+        "logs/gamestore-.txt",
+        rollingInterval: RollingInterval.Day)
+    .CreateLogger();
+
+var builder =
+    WebApplication.CreateBuilder(args);
+
+builder.Host.UseSerilog();
 
 // Configuration
 builder.Services.Configure<JwtSettings>(
@@ -235,8 +249,22 @@ builder.Services.AddProblemDetails(options =>
             Detail = exception.Message
         });
 
-    options.MapToStatusCode<Exception>(
-        StatusCodes.Status500InternalServerError);
+    options.Map<Exception>(exception =>
+    {
+        Log.Error(
+            exception,
+            "Unhandled exception occurred");
+
+        return new StatusCodeProblemDetails(
+            StatusCodes.Status500InternalServerError)
+        {
+            Title = "Server Error",
+            Detail =
+                builder.Environment.IsDevelopment()
+                    ? exception.Message
+                    : "An unexpected error occurred."
+        };
+    });
 });
 
 builder.Services.AddControllers();
@@ -265,6 +293,28 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseProblemDetails();
+
+app.UseMiddleware<CorrelationIdMiddleware>();
+
+app.UseSerilogRequestLogging(options =>
+{
+    options.EnrichDiagnosticContext =
+        (diagnosticContext, httpContext) =>
+        {
+            diagnosticContext.Set(
+                "RequestHost",
+                httpContext.Request.Host.Value);
+
+            diagnosticContext.Set(
+                "RequestScheme",
+                httpContext.Request.Scheme);
+
+            diagnosticContext.Set(
+                "CorrelationId",
+                httpContext.Items[
+                    "X-Correlation-Id"]);
+        };
+});
 
 app.UseHttpsRedirection();
 
