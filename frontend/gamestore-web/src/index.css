@@ -144,3 +144,51 @@ button {
     width: 100%;
   }
 }
+.admin-header {
+  display: flex;
+
+  justify-content: space-between;
+
+  align-items: center;
+
+  margin-bottom: 20px;
+}
+
+.admin-table {
+  width: 100%;
+
+  border-collapse: collapse;
+
+  background: white;
+}
+
+.admin-table th,
+.admin-table td {
+  border: 1px solid #ddd;
+
+  padding: 12px;
+}
+
+.game-form {
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 16px;
+
+  max-width: 500px;
+}
+
+.game-form input,
+.game-form textarea,
+.game-form select {
+  width: 100%;
+
+  padding: 10px;
+}
+
+.game-form span {
+  color: red;
+
+  font-size: 14px;
+}

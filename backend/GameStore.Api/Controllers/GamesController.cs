@@ -133,9 +133,11 @@ public class GamesController : ControllerBase
             Price = request.Price,
             ReleaseDateUtc = request.ReleaseDateUtc,
             GenreId = request.GenreId,
-            CreatedAtUtc = DateTime.UtcNow
+            CreatedAtUtc = DateTime.UtcNow,
+            CreatedBy = User.Identity?.Name
+            
         };
-
+        
         _context.Games.Add(game);
 
         await _context.SaveChangesAsync();
@@ -188,6 +190,7 @@ public class GamesController : ControllerBase
         game.ReleaseDateUtc = request.ReleaseDateUtc;
         game.GenreId = request.GenreId;
         game.UpdatedAtUtc = DateTime.UtcNow;
+        game.UpdatedBy = User.Identity?.Name;
 
         await _context.SaveChangesAsync();
 

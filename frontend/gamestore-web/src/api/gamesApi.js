@@ -24,6 +24,32 @@ export async function getGameById(id) {
     await apiClient.get(
       `/api/games/${id}`
     );
+  return response.data;
+}
+
+export async function createGame(payload) {
+  const response =
+    await apiClient.post(
+      "/api/games",
+      payload
+    );
 
   return response.data;
 }
+
+export async function updateGame(
+  id,
+  payload
+) {
+  await apiClient.put(
+    `/api/games/${id}`,
+    payload
+  );
+}
+
+export async function deleteGame(id) {
+  await apiClient.delete(
+    `/api/games/${id}`
+  );
+}
+    
