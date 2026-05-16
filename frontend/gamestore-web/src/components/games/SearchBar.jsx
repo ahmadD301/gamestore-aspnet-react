@@ -4,14 +4,22 @@ export default function SearchBar({
 }) {
   return (
     <div className="search-bar">
+      <label
+        htmlFor="game-search"
+        className="sr-only"
+      >
+        Search games
+      </label>
+
       <input
+        id="game-search"
         type="text"
         placeholder="Search games..."
         value={value}
         onChange={(event) =>
           onChange(event.target.value)
         }
-        aria-label="Search games"
+        autoComplete="off"
       />
     </div>
   );

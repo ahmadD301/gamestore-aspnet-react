@@ -65,15 +65,18 @@ export default function AdminGamesPage() {
         </Link>
       </div>
 
-      <table className="admin-table">
+        <table
+          className="admin-table"
+          aria-label="Games management table"
+        >
         <thead>
           <tr>
-            <th>Title</th>
-            <th>Genre</th>
-            <th>Price</th>
-            <th>Created By</th>
-            <th>Updated By</th>
-            <th>Actions</th>
+            <th scope="col">Title</th>
+            <th scope="col">Genre</th>
+            <th scope="col">Price</th>
+            <th scope="col">Created By</th>
+            <th scope="col">Updated By</th>
+            <th scope="col">Actions</th>
           </tr>
         </thead>
 

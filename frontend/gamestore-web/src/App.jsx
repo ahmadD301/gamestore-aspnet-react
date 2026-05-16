@@ -21,6 +21,8 @@ import ProtectedRoute from "./routes/ProtectedRoute";
 export default function App() {
   return (
     <BrowserRouter>
+
+
       <Routes>
         <Route
           path="/"

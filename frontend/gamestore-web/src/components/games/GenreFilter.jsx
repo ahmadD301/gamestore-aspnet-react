@@ -5,12 +5,19 @@ export default function GenreFilter({
 }) {
   return (
     <div className="genre-filter">
+      <label
+        htmlFor="genre-select"
+        className="sr-only"
+      >
+        Filter by genre
+      </label>
+
       <select
+        id="genre-select"
         value={value}
         onChange={(event) =>
           onChange(event.target.value)
         }
-        aria-label="Filter by genre"
       >
         <option value="">
           All Genres

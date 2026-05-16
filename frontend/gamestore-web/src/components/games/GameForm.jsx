@@ -84,21 +84,35 @@ export default function GameForm({
       className="game-form"
     >
       <div>
-        <label>Title</label>
+        <label htmlFor="title">
+          Title
+        </label>
 
-        <input
-          type="text"
-          value={formData.title}
-          onChange={(e) =>
-            updateField(
-              "title",
-              e.target.value
-            )
-          }
-        />
+      <input
+        id="title"
+        type="text"
+        value={formData.title}
+        onChange={(e) =>
+          updateField(
+            "title",
+            e.target.value
+          )
+        }
+        aria-invalid={!!errors.title}
+        aria-describedby={
+          errors.title
+            ? "title-error"
+            : undefined
+        }
+      />
 
         {errors.title && (
-          <span>{errors.title}</span>
+          <span
+            id="title-error"
+            role="alert"
+          >
+            {errors.title}
+          </span>
         )}
       </div>
 
