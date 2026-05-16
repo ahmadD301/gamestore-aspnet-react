@@ -6,7 +6,6 @@ import {
 
 import HomePage from "./pages/HomePage";
 import LoginPage from "./pages/LoginPage";
-import AdminPage from "./pages/AdminPage";
 import GamesPage from "./pages/GamesPage";
 import GameDetailsPage from "./pages/GameDetailsPage";
 import AdminDashboardPage from "./pages/AdminDashboardPage";
@@ -17,7 +16,7 @@ import CreateGamePage from "./pages/CreateGamePage";
 
 import EditGamePage from "./pages/EditGamePage";
 
-import { ProtectedRoute } from "./routes/ProtectedRoute";
+import ProtectedRoute from "./routes/ProtectedRoute";
 
 export default function App() {
   return (
@@ -39,7 +38,7 @@ export default function App() {
             <ProtectedRoute
               roles={["Admin"]}
             >
-              <AdminPage />
+              <AdminDashboardPage />
             </ProtectedRoute>
           }
         />
@@ -53,17 +52,6 @@ export default function App() {
           path="/games/:id"
           element={<GameDetailsPage />}
         />
-        <Route
-          path="/admin"
-          element={
-            <ProtectedRoute
-              roles={["Admin"]}
-            >
-              <AdminDashboardPage />
-            </ProtectedRoute>
-          }
-        />
-
         <Route
           path="/admin/games"
           element={

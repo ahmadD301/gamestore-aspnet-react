@@ -1,24 +1,62 @@
-import { Navigate } from "react-router-dom";
-import { useAuth } from "../auth/AuthContext";
+import {
+  Navigate,
+  Outlet,
+  useLocation,
+} from "react-router-dom";
 
-export function ProtectedRoute({
+import { useAuth }
+  from "../auth/AuthContext";
+
+export default function ProtectedRoute({
+  roles,
   children,
-  roles = [],
 }) {
-  const { accessToken, user } = useAuth();
+  const {
+    accessToken,
+    user,
+    isLoading,
+  } = useAuth();
+
+  const location =
+    useLocation();
+
+  if (isLoading) {
+    return (
+      <div className="flex items-center justify-center min-h-screen">
+        Loading...
+      </div>
+    );
+  }
 
   if (!accessToken) {
-    return <Navigate to="/login" replace />;
+    return (
+      <Navigate
+        to="/login"
+        replace
+        state={{
+          from: location,
+        }}
+      />
+    );
   }
 
   if (
-    roles.length > 0 &&
+    roles &&
     !roles.some((role) =>
       user?.roles?.includes(role)
     )
   ) {
-    return <Navigate to="/" replace />;
+    return (
+      <Navigate
+        to="/"
+        replace
+      />
+    );
   }
 
-  return children;
+  if (children) {
+    return children;
+  }
+
+  return <Outlet />;
 }

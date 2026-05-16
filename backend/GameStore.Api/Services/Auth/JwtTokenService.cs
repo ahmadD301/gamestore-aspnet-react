@@ -29,7 +29,7 @@ public sealed class JwtTokenService : IJwtTokenService
         _context = context;
     }
 
-    public async Task<AuthResponseDto> CreateTokensAsync(
+    public async Task<TokenResult> CreateTokensAsync(
         ApplicationUser user)
     {
         var roles = await _userManager.GetRolesAsync(user);
@@ -54,6 +54,9 @@ public sealed class JwtTokenService : IJwtTokenService
 
         var expires =
             DateTime.UtcNow.AddMinutes(_jwtSettings.ExpiryMinutes);
+
+        var expiresAtUtc =
+    DateTime.UtcNow.AddMinutes(15);
 
         var token = new JwtSecurityToken(
             issuer: _jwtSettings.Issuer,
@@ -80,18 +83,17 @@ public sealed class JwtTokenService : IJwtTokenService
 
         await _context.SaveChangesAsync();
 
-        return new AuthResponseDto
+        return new TokenResult
         {
             AccessToken = accessToken,
             RefreshToken = refreshToken,
-            ExpiresAtUtc = expires,
-            Email = user.Email!,
-            UserName = user.UserName!
+            ExpiresAtUtc = expiresAtUtc,
+            User = user
         };
     }
 
 
-    public async Task<AuthResponseDto?> RefreshTokenAsync(
+    public async Task<TokenResult?> RefreshTokenAsync(
         string refreshToken)
     {
         var existingToken =

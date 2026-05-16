@@ -197,14 +197,17 @@ builder.Services.AddAuthorization();
 
 builder.Services.AddCors(options =>
 {
-    options.AddPolicy("DevCors", policy =>
-    {
-        policy.WithOrigins(devCorsOrigins)
-            .AllowAnyHeader()
-            .AllowAnyMethod();
-    });
+    options.AddPolicy("Frontend",
+        policy =>
+        {
+            policy
+                .WithOrigins(
+                    "http://localhost:5173")
+                .AllowAnyHeader()
+                .AllowAnyMethod()
+                .AllowCredentials();
+        });
 });
-
 // Services
 builder.Services.Configure<ApiBehaviorOptions>(
     options =>
@@ -318,7 +321,7 @@ app.UseSerilogRequestLogging(options =>
 
 app.UseHttpsRedirection();
 
-app.UseCors("DevCors");
+app.UseCors("Frontend");
 
 app.UseAuthentication();
 

@@ -1,10 +1,13 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
-import { loginRequest } from "../api/authApi";
+import {
+  useNavigate,
+  useLocation,
+} from "react-router-dom";
 import { useAuth } from "../auth/AuthContext";
 
 export default function LoginPage() {
   const navigate = useNavigate();
+  const location = useLocation();
 
   const { login } = useAuth();
 
@@ -25,12 +28,26 @@ export default function LoginPage() {
     try {
       setIsLoading(true);
 
-      const response =
-        await loginRequest(formData);
+      const response = await login(
+        formData.email,
+        formData.password
+      );
 
-      login(response);
+      const isAdmin =
+        response?.roles?.includes(
+          "Admin"
+        );
 
-      navigate("/");
+      const defaultRedirect =
+        isAdmin ? "/admin" : "/";
+
+      const redirectTo =
+        location.state?.from?.pathname
+        || defaultRedirect;
+
+      navigate(redirectTo, {
+        replace: true,
+      });
     } catch (error) {
       setError(
         error?.response?.data?.message ??
