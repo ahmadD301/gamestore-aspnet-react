@@ -272,3 +272,53 @@ WHERE [a].[NormalizedEmail] = @normalizedEmail
 2026-05-17 11:16:31.554 +03:00 [INF] Executing ObjectResult, writing value of type 'Microsoft.AspNetCore.Mvc.ProblemDetails'.
 2026-05-17 11:16:31.556 +03:00 [INF] Request finished HTTP/1.1 POST http://localhost:5062/api/Auth/login - 503 null application/problem+json; charset=utf-8 7.9697ms
 2026-05-17 11:17:33.104 +03:00 [INF] Application is shutting down...
+2026-05-17 16:35:24.207 +03:00 [INF] Executed DbCommand (20ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1
+2026-05-17 16:35:24.292 +03:00 [INF] Executed DbCommand (23ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT OBJECT_ID(N'[__EFMigrationsHistory]');
+2026-05-17 16:35:24.327 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1
+2026-05-17 16:35:24.330 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT OBJECT_ID(N'[__EFMigrationsHistory]');
+2026-05-17 16:35:24.368 +03:00 [INF] Executed DbCommand (26ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [MigrationId], [ProductVersion]
+FROM [__EFMigrationsHistory]
+ORDER BY [MigrationId];
+2026-05-17 16:35:24.383 +03:00 [INF] No migrations were applied. The database is already up to date.
+2026-05-17 16:35:24.395 +03:00 [INF] User profile is available. Using 'C:\Users\alaae\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2026-05-17 16:35:24.666 +03:00 [INF] Executed DbCommand (86ms) [Parameters=[@__normalizedName_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[ConcurrencyStamp], [a].[Name], [a].[NormalizedName]
+FROM [dbo].[AspNetRoles] AS [a]
+WHERE [a].[NormalizedName] = @__normalizedName_0
+2026-05-17 16:35:24.704 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[@__normalizedName_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[ConcurrencyStamp], [a].[Name], [a].[NormalizedName]
+FROM [dbo].[AspNetRoles] AS [a]
+WHERE [a].[NormalizedName] = @__normalizedName_0
+2026-05-17 16:35:24.723 +03:00 [INF] Executed DbCommand (7ms) [Parameters=[@__normalizedEmail_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(2) [a].[Id], [a].[AccessFailedCount], [a].[ConcurrencyStamp], [a].[CreatedAtUtc], [a].[Email], [a].[EmailConfirmed], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [dbo].[AspNetUsers] AS [a]
+WHERE [a].[NormalizedEmail] = @__normalizedEmail_0
+2026-05-17 16:35:24.780 +03:00 [INF] Executed DbCommand (5ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [dbo].[Genres] AS [g]) THEN CAST(1 AS bit)
+    ELSE CAST(0 AS bit)
+END
+2026-05-17 16:35:24.935 +03:00 [INF] Now listening on: http://localhost:5062
+2026-05-17 16:35:24.938 +03:00 [INF] Application started. Press Ctrl+C to shut down.
+2026-05-17 16:35:24.939 +03:00 [INF] Hosting environment: Development
+2026-05-17 16:35:24.940 +03:00 [INF] Content root path: D:\New folder\GameStore\backend\GameStore.Api
+2026-05-17 16:35:32.310 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5062/ - null null
+2026-05-17 16:35:32.405 +03:00 [WRN] Failed to determine the https port for redirect.
+2026-05-17 16:35:34.042 +03:00 [INF] HTTP GET / responded 404 in 1637.1332 ms
+2026-05-17 16:35:34.103 +03:00 [INF] Executing ObjectResult, writing value of type 'Microsoft.AspNetCore.Mvc.ProblemDetails'.
+2026-05-17 16:35:34.167 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5062/ - 404 null application/problem+json; charset=utf-8 1859.1862ms
+2026-05-17 16:35:34.172 +03:00 [INF] Request reached the end of the middleware pipeline without being handled by application code. Request path: GET http://localhost:5062/, Response status code: 404
+2026-05-17 16:35:36.358 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5062/swagger/index.html - null null
+2026-05-17 16:35:36.408 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5062/swagger/index.html - 200 null text/html;charset=utf-8 50.5305ms
+2026-05-17 16:35:36.418 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5062/swagger/index.js - null null
+2026-05-17 16:35:36.439 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5062/swagger/index.js - 200 null application/javascript;charset=utf-8 20.4656ms
+2026-05-17 16:35:36.518 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5062/swagger/v1/swagger.json - null null
+2026-05-17 16:35:36.608 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5062/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 90.6711ms
+2026-05-17 16:39:08.270 +03:00 [INF] Application is shutting down...

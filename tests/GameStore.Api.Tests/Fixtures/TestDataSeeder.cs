@@ -36,6 +36,14 @@ public static class TestDataSeeder
                     "Admin"));
         }
 
+        if (!await roleManager.RoleExistsAsync(
+            "User"))
+        {
+            await roleManager.CreateAsync(
+                new IdentityRole(
+                    "User"));
+        }
+
         var admin =
             await userManager
                 .FindByEmailAsync(
