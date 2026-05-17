@@ -11,8 +11,7 @@ import ErrorBanner
   from "../components/common/ErrorBanner";
 
 export default function GameDetailsPage() {
-  const { id } = useParams();
-
+  
   const {
     data,
     isLoading,
