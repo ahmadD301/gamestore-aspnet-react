@@ -319,15 +319,30 @@ builder.Services.AddProblemDetails(options =>
     });
 });
 
-builder.Services.AddRateLimiter(options =>
+var rateLimiterEnabled =
+    builder.Configuration
+        .GetValue("RateLimiter:Enabled", true);
+
+if (rateLimiterEnabled)
 {
-    options.AddFixedWindowLimiter("AuthPolicy", limiterOptions =>
+    var permitLimit =
+        builder.Configuration
+            .GetValue("RateLimiter:PermitLimit", 5);
+
+    var windowSeconds =
+        builder.Configuration
+            .GetValue("RateLimiter:WindowSeconds", 60);
+
+    builder.Services.AddRateLimiter(options =>
     {
-        limiterOptions.Window = TimeSpan.FromMinutes(1);
-        limiterOptions.PermitLimit = 5;
-        limiterOptions.QueueLimit = 0;
+        options.AddFixedWindowLimiter("AuthPolicy", limiterOptions =>
+        {
+            limiterOptions.Window = TimeSpan.FromSeconds(windowSeconds);
+            limiterOptions.PermitLimit = permitLimit;
+            limiterOptions.QueueLimit = 0;
+        });
     });
-});
+}
 
 builder.Services.AddControllers();
 
@@ -425,8 +440,15 @@ app.UseAuthentication();
 
 app.UseAuthorization();
 
-// Rate limiter BEFORE MapControllers so it sits ahead of endpoint dispatch.
-app.UseRateLimiter();
+var useRateLimiter =
+    rateLimiterEnabled &&
+    !app.Environment.IsEnvironment("Testing");
+
+if (useRateLimiter)
+{
+    // Rate limiter BEFORE MapControllers so it sits ahead of endpoint dispatch.
+    app.UseRateLimiter();
+}
 
 app.MapControllers();
 

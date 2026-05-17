@@ -29,4 +29,8 @@
     <ProjectReference Include="..\..\backend\GameStore.Api\GameStore.Api.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <FrameworkReference Include="Microsoft.AspNetCore.App" />
+  </ItemGroup>
+
 </Project>

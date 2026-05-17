@@ -35,7 +35,10 @@ public class TestWebApplicationFactory
 
                 // Dummy value so the non-Testing connection-string guard
                 // in Program.cs never throws if the isTesting guard is missed.
-                ["ConnectionStrings:DefaultConnection"] = "Testing"
+                ["ConnectionStrings:DefaultConnection"] = "Testing",
+                ["RateLimiter:Enabled"] = "true",
+                ["RateLimiter:PermitLimit"] = "1000",
+                ["RateLimiter:WindowSeconds"] = "60"
             });
         });
 
@@ -85,6 +88,7 @@ public class TestWebApplicationFactory
                 .SeedAsync(rootProvider)
                 .GetAwaiter()
                 .GetResult();
+
         });
     }
 }

@@ -77,6 +77,129 @@ public class GameAuthorizationTests
     [Fact]
     public async Task CreateGame_AsNonAdmin_Returns403()
     {
+        var token =
+            await GetNonAdminTokenAsync();
+
+        Client.DefaultRequestHeaders.Authorization =
+            new AuthenticationHeaderValue(
+                "Bearer",
+                token);
+
+        var request = new
+        {
+            Title = "Non-admin game",
+            Description =
+                "Long enough description",
+            Price = 19.99,
+            ReleaseDateUtc =
+                DateTime.UtcNow,
+            GenreId =
+                await GetGenreId()
+        };
+
+        var response =
+            await Client.PostAsJsonAsync(
+                "/api/games",
+                request);
+
+        response.StatusCode
+            .Should()
+            .Be(HttpStatusCode.Forbidden);
+    }
+
+    [Fact]
+    public async Task UpdateGame_WithoutAuth_Returns401()
+    {
+        var response =
+            await Client.PutAsJsonAsync(
+                $"/api/games/{Guid.NewGuid()}",
+                new
+                {
+                    Title = "Update",
+                    Description = "Updated description",
+                    Price = 25.99,
+                    ReleaseDateUtc = DateTime.UtcNow,
+                    GenreId = Guid.NewGuid()
+                });
+
+        response.StatusCode
+            .Should()
+            .Be(HttpStatusCode.Unauthorized);
+    }
+
+    [Fact]
+    public async Task DeleteGame_WithoutAuth_Returns401()
+    {
+        var response =
+            await Client.DeleteAsync(
+                $"/api/games/{Guid.NewGuid()}");
+
+        response.StatusCode
+            .Should()
+            .Be(HttpStatusCode.Unauthorized);
+    }
+
+    [Fact]
+    public async Task UpdateGame_AsNonAdmin_Returns403()
+    {
+        var token =
+            await GetNonAdminTokenAsync();
+
+        Client.DefaultRequestHeaders.Authorization =
+            new AuthenticationHeaderValue(
+                "Bearer",
+                token);
+
+        var response =
+            await Client.PutAsJsonAsync(
+                $"/api/games/{Guid.NewGuid()}",
+                new
+                {
+                    Title = "Update",
+                    Description = "Updated description",
+                    Price = 25.99,
+                    ReleaseDateUtc = DateTime.UtcNow,
+                    GenreId = Guid.NewGuid()
+                });
+
+        response.StatusCode
+            .Should()
+            .Be(HttpStatusCode.Forbidden);
+    }
+
+    [Fact]
+    public async Task DeleteGame_AsNonAdmin_Returns403()
+    {
+        var token =
+            await GetNonAdminTokenAsync();
+
+        Client.DefaultRequestHeaders.Authorization =
+            new AuthenticationHeaderValue(
+                "Bearer",
+                token);
+
+        var response =
+            await Client.DeleteAsync(
+                $"/api/games/{Guid.NewGuid()}");
+
+        response.StatusCode
+            .Should()
+            .Be(HttpStatusCode.Forbidden);
+    }
+
+    private async Task<Guid>
+    GetGenreId()
+    {
+        var genres =
+            await Client.GetFromJsonAsync<
+                List<GenreResponse>>(
+                "/api/genres");
+
+        return genres!.First().Id;
+    }
+
+    private async Task<string> GetNonAdminTokenAsync()
+    {
         var userEmail =
             $"user-{Guid.NewGuid():N}@gamestore.com";
 
@@ -113,42 +236,7 @@ public class GameAuthorizationTests
             await loginResponse.Content
                 .ReadFromJsonAsync<AuthResponseDto>();
 
-        Client.DefaultRequestHeaders.Authorization =
-            new AuthenticationHeaderValue(
-                "Bearer",
-                payload!.AccessToken);
-
-        var request = new
-        {
-            Title = "Non-admin game",
-            Description =
-                "Long enough description",
-            Price = 19.99,
-            ReleaseDateUtc =
-                DateTime.UtcNow,
-            GenreId =
-                await GetGenreId()
-        };
-
-        var response =
-            await Client.PostAsJsonAsync(
-                "/api/games",
-                request);
-
-        response.StatusCode
-            .Should()
-            .Be(HttpStatusCode.Forbidden);
-    }
-
-    private async Task<Guid>
-    GetGenreId()
-    {
-        var genres =
-            await Client.GetFromJsonAsync<
-                List<GenreResponse>>(
-                "/api/genres");
-
-        return genres!.First().Id;
+        return payload!.AccessToken;
     }
 
     private class GenreResponse
