@@ -10,6 +10,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
 namespace GameStore.Api.Controllers;
+
 [ApiController]
 [Route("api/games")]
 public class GamesController : ControllerBase
@@ -48,7 +49,7 @@ public class GamesController : ControllerBase
                 gamesQuery.Where(g =>
                     g.GenreId == query.GenreId.Value);
         }
-        
+
         var totalCount =
             await gamesQuery.CountAsync();
 
@@ -135,9 +136,9 @@ public class GamesController : ControllerBase
             GenreId = request.GenreId,
             CreatedAtUtc = DateTime.UtcNow,
             CreatedBy = User.Identity?.Name
-            
+
         };
-        
+
         _context.Games.Add(game);
 
         await _context.SaveChangesAsync();
@@ -196,7 +197,7 @@ public class GamesController : ControllerBase
 
         return NoContent();
     }
-    
+
     [Authorize(Roles = Roles.Admin)]
     [HttpDelete("{id:guid}")]
     [ProducesResponseType(

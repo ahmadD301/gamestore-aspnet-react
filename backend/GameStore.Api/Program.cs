@@ -17,6 +17,7 @@ using Hellang.Middleware.ProblemDetails;
 using Microsoft.AspNetCore.Mvc;
 using Serilog;
 using GameStore.Api.Middleware;
+using Microsoft.AspNetCore.RateLimiting;
 
 
 Log.Logger = new LoggerConfiguration()
@@ -77,11 +78,31 @@ builder.Services
     .AddEntityFrameworkStores<ApplicationDbContext>()
     .AddDefaultTokenProviders();
 
+builder.Services.Configure<IdentityOptions>(options =>
+{
+    options.Password.RequireDigit = true;
+    options.Password.RequireUppercase = true;
+    options.Password.RequireLowercase = true;
+    options.Password.RequireNonAlphanumeric = true;
+    options.Password.RequiredLength = 8;
+
+    options.Lockout.MaxFailedAccessAttempts = 5;
+    options.Lockout.DefaultLockoutTimeSpan =
+        TimeSpan.FromMinutes(15);
+});
+
 builder.Services
     .AddFluentValidationAutoValidation();
 
 builder.Services
     .AddValidatorsFromAssemblyContaining<Program>();
+
+builder.Services.Configure<
+    Microsoft.AspNetCore.Http.Features.FormOptions>(options =>
+{
+    options.MultipartBodyLengthLimit =
+        10 * 1024 * 1024;
+});
 
 
 // Authentication (JWT Bearer)
@@ -99,6 +120,10 @@ builder.Services
     })
     .AddJwtBearer(options =>
     {
+        options.RequireHttpsMetadata = true;
+
+        options.SaveToken = false;
+
         options.TokenValidationParameters =
             new TokenValidationParameters
             {
@@ -202,7 +227,9 @@ builder.Services.AddCors(options =>
         {
             policy
                 .WithOrigins(
-                    "http://localhost:5173")
+                    "http://localhost:5173",
+                    "https://localhost:5173"
+                    )
                 .AllowAnyHeader()
                 .AllowAnyMethod()
                 .AllowCredentials();
@@ -269,6 +296,20 @@ builder.Services.AddProblemDetails(options =>
         };
     });
 });
+builder.Services.AddRateLimiter(options =>
+{
+    options.AddFixedWindowLimiter(
+        "AuthPolicy",
+        limiterOptions =>
+        {
+            limiterOptions.Window =
+                TimeSpan.FromMinutes(1);
+
+            limiterOptions.PermitLimit = 5;
+
+            limiterOptions.QueueLimit = 0;
+        });
+});
 
 builder.Services.AddControllers();
 
@@ -277,6 +318,12 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerDocumentation();
 
 builder.Services.AddScoped<IJwtTokenService, JwtTokenService>();
+
+builder.WebHost.ConfigureKestrel(
+    options =>
+    {
+        options.AddServerHeader = false;
+    });
 
 var app = builder.Build();
 
@@ -294,6 +341,16 @@ if (app.Environment.IsDevelopment())
             "GameStore API v1");
     });
 }
+
+app.UseExceptionHandler(errorApp =>
+{
+    errorApp.Run(context =>
+    {
+        context.Response.StatusCode = 500;
+
+        return Task.CompletedTask;
+    });
+});
 
 app.UseProblemDetails();
 
@@ -318,7 +375,13 @@ app.UseSerilogRequestLogging(options =>
                     "X-Correlation-Id"]);
         };
 });
-
+app.UseMiddleware<
+    SecurityHeadersMiddleware>();
+    
+if (!app.Environment.IsDevelopment())
+{
+    app.UseHsts();
+}
 app.UseHttpsRedirection();
 
 app.UseCors("Frontend");
@@ -328,6 +391,8 @@ app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();
+
+app.UseRateLimiter();
 
 using (var scope = app.Services.CreateAsyncScope())
 {

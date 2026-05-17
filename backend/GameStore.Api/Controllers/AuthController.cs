@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using GameStore.Api.Exceptions;
 using Microsoft.Extensions.Hosting;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.RateLimiting;
 namespace GameStore.Api.Controllers;
 
 [ApiController]
@@ -42,6 +43,7 @@ public sealed class AuthController : ControllerBase
     // </summary>
 
     [HttpPost("register")]
+    [EnableRateLimiting("AuthPolicy")]
     [ProducesResponseType(StatusCodes.Status201Created)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     [ProducesResponseType(StatusCodes.Status409Conflict)]
@@ -101,6 +103,7 @@ public sealed class AuthController : ControllerBase
         StatusCodes.Status200OK)]
     [ProducesResponseType(
         StatusCodes.Status401Unauthorized)]
+    [EnableRateLimiting("AuthPolicy")]
     public async Task<IActionResult> Login(
         LoginRequestDto request)
     {
@@ -166,8 +169,14 @@ public sealed class AuthController : ControllerBase
         Response.Cookies.Append(
             "refreshToken",
             tokens.RefreshToken,
-            GetRefreshCookieOptions(
-                includeExpiry: true));
+            new CookieOptions
+            {
+                HttpOnly = true,
+                Secure = true,
+                SameSite = SameSiteMode.Strict,
+                Expires =
+                    tokens.ExpiresAtUtc
+            });
 
         _logger.LogInformation(
             "User logged in successfully: {Email}",
@@ -200,6 +209,7 @@ public sealed class AuthController : ControllerBase
     [Authorize]
     [ProducesResponseType(
         StatusCodes.Status204NoContent)]
+    [EnableRateLimiting("AuthPolicy")]
     public async Task<IActionResult> Logout()
     {
         var refreshToken =
@@ -215,8 +225,13 @@ public sealed class AuthController : ControllerBase
 
         Response.Cookies.Delete(
             "refreshToken",
-            GetRefreshCookieOptions(
-                includeExpiry: false));
+            new CookieOptions
+            {
+                HttpOnly = true,
+                Secure = true,
+                SameSite = SameSiteMode.Strict,
+                Path = "/api/auth"
+            });
 
         _logger.LogInformation(
             "User logged out successfully.");
@@ -234,6 +249,7 @@ public sealed class AuthController : ControllerBase
         StatusCodes.Status200OK)]
     [ProducesResponseType(
         StatusCodes.Status401Unauthorized)]
+    [EnableRateLimiting("AuthPolicy")]  
     public async Task<IActionResult> Refresh()
     {
         var refreshToken =
@@ -264,7 +280,7 @@ public sealed class AuthController : ControllerBase
         }
 
         var user = tokens.User;
-        
+
         var roles =
             await _userManager
                 .GetRolesAsync(user);
@@ -272,8 +288,14 @@ public sealed class AuthController : ControllerBase
         Response.Cookies.Append(
             "refreshToken",
             tokens.RefreshToken,
-            GetRefreshCookieOptions(
-                includeExpiry: true));
+            new CookieOptions
+            {
+                HttpOnly = true,
+                Secure = true,
+                SameSite = SameSiteMode.Strict,
+                Expires =
+                    tokens.ExpiresAtUtc
+            });
 
         return Ok(
             new AuthResponseDto
