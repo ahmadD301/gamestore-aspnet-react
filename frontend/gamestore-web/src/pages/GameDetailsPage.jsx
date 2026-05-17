@@ -1,4 +1,4 @@
-import { Link, useParams }
+import { Link }
   from "react-router-dom";
 
 import { useGames }
