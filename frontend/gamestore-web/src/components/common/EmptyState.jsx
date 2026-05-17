@@ -3,10 +3,15 @@ export default function EmptyState({
   description,
 }) {
   return (
-    <div className="empty-state">
-      <h2>{title}</h2>
+    <section
+      className="empty-state"
+      aria-labelledby="empty-title"
+    >
+      <h2 id="empty-title">
+        {title}
+      </h2>
 
       <p>{description}</p>
-    </div>
+    </section>
   );
 }

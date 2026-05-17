@@ -16,7 +16,11 @@ public static class GameMappings
             Price = game.Price,
             ReleaseDateUtc = game.ReleaseDateUtc,
             Genre = game.Genre.Name,
-            CreatedAtUtc = game.CreatedAtUtc
+            CreatedAtUtc = game.CreatedAtUtc,
+            UpdatedAtUtc = game.UpdatedAtUtc,
+            CreatedBy = game.CreatedBy,
+            UpdatedBy = game.UpdatedBy,
+            GenreId = game.GenreId
         };
     }
 }

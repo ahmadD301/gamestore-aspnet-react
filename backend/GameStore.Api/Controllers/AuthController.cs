@@ -5,6 +5,9 @@ using GameStore.Data.Entities;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using GameStore.Api.Exceptions;
+using Microsoft.Extensions.Hosting;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.RateLimiting;
 namespace GameStore.Api.Controllers;
 
 [ApiController]
@@ -12,30 +15,35 @@ namespace GameStore.Api.Controllers;
 public sealed class AuthController : ControllerBase
 {
     private readonly UserManager<ApplicationUser> _userManager;
- 
+
     private readonly SignInManager<ApplicationUser> _signInManager;
 
     private readonly IJwtTokenService _jwtTokenService;
 
     private readonly ILogger<AuthController> _logger;
 
+    private readonly IHostEnvironment _hostEnvironment;
+
     public AuthController(
         UserManager<ApplicationUser> userManager,
         SignInManager<ApplicationUser> signInManager,
         IJwtTokenService jwtTokenService,
-        ILogger<AuthController> logger
+        ILogger<AuthController> logger,
+        IHostEnvironment hostEnvironment
     )
     {
         _userManager = userManager;
         _signInManager = signInManager;
         _jwtTokenService = jwtTokenService;
         _logger = logger;
+        _hostEnvironment = hostEnvironment;
     }
     // <summary>
     // Register a new user account.
     // </summary>
 
     [HttpPost("register")]
+    [EnableRateLimiting("AuthPolicy")]
     [ProducesResponseType(StatusCodes.Status201Created)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     [ProducesResponseType(StatusCodes.Status409Conflict)]
@@ -90,37 +98,46 @@ public sealed class AuthController : ControllerBase
     // Login user and return JWT tokens.
     // </summary>
     [HttpPost("login")]
-    [ProducesResponseType(typeof(AuthResponseDto),
+    [ProducesResponseType(
+        typeof(AuthResponseDto),
         StatusCodes.Status200OK)]
-    [ProducesResponseType(StatusCodes.Status401Unauthorized)]
-     public async Task<IActionResult> Login(
+    [ProducesResponseType(
+        StatusCodes.Status401Unauthorized)]
+    [EnableRateLimiting("AuthPolicy")]
+    public async Task<IActionResult> Login(
         LoginRequestDto request)
     {
         var user =
-            await _userManager.FindByEmailAsync(request.Email);
+            await _userManager
+                .FindByEmailAsync(
+                    request.Email);
 
         if (user is null)
         {
             return Unauthorized(new
             {
-                message = "Invalid credentials."
+                message =
+                    "Invalid credentials."
             });
         }
+
         _logger.LogInformation(
             "Attempting to login user: {Email}",
             request.Email);
 
         var result =
-            await _signInManager.CheckPasswordSignInAsync(
-                user,
-                request.Password,
-                lockoutOnFailure: true);
+            await _signInManager
+                .CheckPasswordSignInAsync(
+                    user,
+                    request.Password,
+                    lockoutOnFailure: true);
 
         if (result.IsLockedOut)
-        {   
+        {
             _logger.LogWarning(
                 "User account locked out: {Email}",
                 request.Email);
+
             return Unauthorized(new
             {
                 message =
@@ -128,41 +145,97 @@ public sealed class AuthController : ControllerBase
             });
         }
 
-
         if (!result.Succeeded)
-        {   
+        {
             _logger.LogWarning(
                 "Invalid login attempt for user: {Email}",
                 request.Email);
+
             return Unauthorized(new
             {
-                message = "Invalid credentials."
+                message =
+                    "Invalid credentials."
             });
         }
+
+        var tokens =
+            await _jwtTokenService
+                .CreateTokensAsync(user);
+
+        var roles =
+            await _userManager
+                .GetRolesAsync(user);
+
+        Response.Cookies.Append(
+            "refreshToken",
+            tokens.RefreshToken,
+            new CookieOptions
+            {
+                HttpOnly = true,
+                Secure = true,
+                SameSite = SameSiteMode.Strict,
+                Expires =
+                    tokens.ExpiresAtUtc
+            });
 
         _logger.LogInformation(
             "User logged in successfully: {Email}",
             request.Email);
-        var tokens =
-            await _jwtTokenService.CreateTokensAsync(user);
 
-        return Ok(tokens);
+        return Ok(
+            new AuthResponseDto
+            {
+                AccessToken =
+                    tokens.AccessToken,
+
+                ExpiresAtUtc =
+                    tokens.ExpiresAtUtc,
+
+                Email =
+                    user.Email!,
+
+                UserName =
+                    user.UserName!,
+
+                Roles =
+                    roles.ToList()
+            });
     }
 
     // <summary>
     // Logout endpoint placeholder.
     // </summary>
     [HttpPost("logout")]
-    [ProducesResponseType(StatusCodes.Status204NoContent)]
-    public async Task<IActionResult> Logout(
-        RefreshTokenRequestDto request
-    )
+    [Authorize]
+    [ProducesResponseType(
+        StatusCodes.Status204NoContent)]
+    [EnableRateLimiting("AuthPolicy")]
+    public async Task<IActionResult> Logout()
     {
-        await _jwtTokenService
-        .RevokeRefreshTokenAsync(
-            request.RefreshToken);
+        var refreshToken =
+            Request.Cookies["refreshToken"];
+
+        if (!string.IsNullOrWhiteSpace(
+            refreshToken))
+        {
+            await _jwtTokenService
+                .RevokeRefreshTokenAsync(
+                    refreshToken);
+        }
+
+        Response.Cookies.Delete(
+            "refreshToken",
+            new CookieOptions
+            {
+                HttpOnly = true,
+                Secure = true,
+                SameSite = SameSiteMode.Strict,
+                Path = "/api/auth"
+            });
+
         _logger.LogInformation(
-            "User logged out and refresh token revoked.");
+            "User logged out successfully.");
+
         return NoContent();
     }
 
@@ -170,22 +243,97 @@ public sealed class AuthController : ControllerBase
     // Refresh expired JWT access token
     // </summary>
     [HttpPost("refresh")]
-    [ProducesResponseType(typeof(AuthResponseDto),
+    [AllowAnonymous]
+    [ProducesResponseType(
+        typeof(AuthResponseDto),
         StatusCodes.Status200OK)]
-    [ProducesResponseType(StatusCodes.Status401Unauthorized)]
-    public async Task<IActionResult> Refresh(
-        RefreshTokenRequestDto request)
+    [ProducesResponseType(
+        StatusCodes.Status401Unauthorized)]
+    [EnableRateLimiting("AuthPolicy")]  
+    public async Task<IActionResult> Refresh()
     {
+        var refreshToken =
+            Request.Cookies["refreshToken"];
+
+        if (string.IsNullOrWhiteSpace(
+            refreshToken))
+        {
+            return Unauthorized(new
+            {
+                message =
+                    "Missing refresh token."
+            });
+        }
+
         var tokens =
-            await _jwtTokenService.RefreshTokenAsync(request.RefreshToken);
+            await _jwtTokenService
+                .RefreshTokenAsync(
+                    refreshToken);
 
         if (tokens is null)
         {
             return Unauthorized(new
             {
-                message = "Invalid refresh token."
+                message =
+                    "Invalid refresh token."
             });
         }
-        return Ok(tokens);
+
+        var user = tokens.User;
+
+        var roles =
+            await _userManager
+                .GetRolesAsync(user);
+
+        Response.Cookies.Append(
+            "refreshToken",
+            tokens.RefreshToken,
+            new CookieOptions
+            {
+                HttpOnly = true,
+                Secure = true,
+                SameSite = SameSiteMode.Strict,
+                Expires =
+                    tokens.ExpiresAtUtc
+            });
+
+        return Ok(
+            new AuthResponseDto
+            {
+                AccessToken =
+                    tokens.AccessToken,
+
+                ExpiresAtUtc =
+                    tokens.ExpiresAtUtc,
+
+                Email =
+                    user.Email!,
+
+                UserName =
+                    user.UserName!,
+
+                Roles =
+                    roles.ToList()
+            });
+    }
+
+    private CookieOptions GetRefreshCookieOptions(
+        bool includeExpiry)
+    {
+        var options = new CookieOptions
+        {
+            HttpOnly = true,
+            Secure = Request.IsHttps,
+            SameSite = SameSiteMode.Strict,
+            Path = "/api/auth"
+        };
+
+        if (includeExpiry)
+        {
+            options.Expires = DateTime.UtcNow
+                .AddDays(7);
+        }
+
+        return options;
     }
 }

@@ -3,8 +3,9 @@ export default function ErrorBanner({
 }) {
   return (
     <div
-      role="alert"
       className="error-banner"
+      role="alert"
+      aria-live="assertive"
     >
       {message}
     </div>

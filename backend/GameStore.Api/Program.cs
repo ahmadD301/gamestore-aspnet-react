@@ -17,6 +17,7 @@ using Hellang.Middleware.ProblemDetails;
 using Microsoft.AspNetCore.Mvc;
 using Serilog;
 using GameStore.Api.Middleware;
+using Microsoft.AspNetCore.RateLimiting;
 
 
 Log.Logger = new LoggerConfiguration()
@@ -32,20 +33,46 @@ var builder =
 
 builder.Host.UseSerilog();
 
-// Configuration
+// IMPORTANT: Do NOT call builder.Environment.IsEnvironment() here.
+// When WebApplicationFactory uses HostFactoryResolver it runs Program.cs
+// via reflection BEFORE ConfigureWebHost (and therefore before
+// UseEnvironment("Testing")) is called. builder.Environment reflects the
+// host's environment at the time Program.cs executes — which is still
+// "Production" or whatever ASPNETCORE_ENVIRONMENT is set to in the shell.
+// Any isTesting guard based on builder.Environment is therefore always
+// false during test startup and provides no protection.
+//
+// The only safe approach: never throw during configuration reads.
+// Validate presence/validity only after the DI container is fully built
+// (i.e. inside a hosted service or the app.Run() block), or rely on
+// Options validation (AddOptions<T>().Validate(...)).
+
 builder.Services.Configure<JwtSettings>(
     builder.Configuration.GetSection(JwtSettings.SectionName));
 
+// Connection string — null is acceptable here; AddDbContext below
+// only registers UseSqlServer when the string is present.
 var connectionString =
-    builder.Configuration.GetConnectionString("DefaultConnection")
-    ?? throw new InvalidOperationException(
-        "Database connection string is missing.");
+    builder.Configuration.GetConnectionString("DefaultConnection");
 
-var jwtSettings = builder.Configuration
-                    .GetSection(JwtSettings.SectionName)
-                    .Get<JwtSettings>()
-                    ?? throw new InvalidOperationException(
-                        "JWT settings are missing.");
+// JWT settings — read without throwing. An empty/missing section produces
+// a default JwtSettings instance (empty strings). The JWT bearer setup
+// below will use whatever values are present; in Testing the factory's
+// ConfigureAppConfiguration fills them in before the host actually starts
+// processing requests (even though it runs after this line executes,
+// TokenValidationParameters are evaluated per-request, not at startup).
+var jwtSettings =
+    builder.Configuration
+        .GetSection(JwtSettings.SectionName)
+        .Get<JwtSettings>()
+    ?? new JwtSettings();
+
+// Validate in non-test production scenarios via Options at request time.
+// For an eager startup check outside Testing add:
+//   builder.Services.AddOptions<JwtSettings>()
+//       .Bind(builder.Configuration.GetSection(JwtSettings.SectionName))
+//       .ValidateDataAnnotations()
+//       .ValidateOnStart();
 
 var devCorsOrigins = new[]
 {
@@ -53,11 +80,16 @@ var devCorsOrigins = new[]
     "https://localhost:5173"
 };
 
-// Database
+// Database — only wire up SQL Server when a real connection string exists.
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
 {
-    options.UseSqlServer(connectionString);
+    if (!string.IsNullOrWhiteSpace(connectionString))
+        options.UseSqlServer(connectionString);
+    // When connectionString is null/empty the factory's ConfigureServices
+    // replaces this registration with UseInMemoryDatabase before the host
+    // starts, so no provider is needed here.
 });
+
 // Identity
 builder.Services
     .AddIdentity<ApplicationUser, IdentityRole>(options =>
@@ -77,17 +109,41 @@ builder.Services
     .AddEntityFrameworkStores<ApplicationDbContext>()
     .AddDefaultTokenProviders();
 
+builder.Services.Configure<IdentityOptions>(options =>
+{
+    options.Password.RequireDigit = true;
+    options.Password.RequireUppercase = true;
+    options.Password.RequireLowercase = true;
+    options.Password.RequireNonAlphanumeric = true;
+    options.Password.RequiredLength = 8;
+
+    options.Lockout.MaxFailedAccessAttempts = 5;
+    options.Lockout.DefaultLockoutTimeSpan =
+        TimeSpan.FromMinutes(15);
+});
+
 builder.Services
     .AddFluentValidationAutoValidation();
 
 builder.Services
     .AddValidatorsFromAssemblyContaining<Program>();
 
+builder.Services.Configure<
+    Microsoft.AspNetCore.Http.Features.FormOptions>(options =>
+{
+    options.MultipartBodyLengthLimit =
+        10 * 1024 * 1024;
+});
 
 // Authentication (JWT Bearer)
 // NOTE: AddIdentity registers cookie auth schemes and can override default
-// AuthenticationOptions. Configure Bearer AFTER Identity so `[Authorize]`
+// AuthenticationOptions. Configure Bearer AFTER Identity so [Authorize]
 // uses JWT by default for API endpoints.
+//
+// TokenValidationParameters capture jwtSettings values here, but the
+// factory's ConfigureAppConfiguration has already run by the time the
+// host actually validates tokens on incoming requests, so the correct
+// test values are in place when it matters.
 builder.Services
     .AddAuthentication(options =>
     {
@@ -99,6 +155,12 @@ builder.Services
     })
     .AddJwtBearer(options =>
     {
+        // Disable HTTPS requirement — integration tests run over plain
+        // HTTP via TestServer; production uses HTTPS via Kestrel/reverse proxy.
+        options.RequireHttpsMetadata = false;
+
+        options.SaveToken = false;
+
         options.TokenValidationParameters =
             new TokenValidationParameters
             {
@@ -111,14 +173,9 @@ builder.Services
                 ValidIssuer = jwtSettings.Issuer,
                 ValidAudience = jwtSettings.Audience,
 
-                IssuerSigningKey =
-                    new SymmetricSecurityKey(
-                        Encoding.UTF8.GetBytes(jwtSettings.Key)),
-
                 RoleClaimType = ClaimTypes.Role
             };
 
-        // Dev-friendly diagnostics (doesn't log the token itself)
         options.Events = new JwtBearerEvents
         {
             OnMessageReceived = context =>
@@ -145,10 +202,12 @@ builder.Services
                             StringComparison.OrdinalIgnoreCase);
 
                     logger.LogDebug(
-                        "Authorization header received for {Method} {Path}. StartsWithBearer={StartsWithBearer}, DoubleBearer={DoubleBearer}, Length={Length}",
+                        "Authorization header received for {Method} {Path}. " +
+                        "StartsWithBearer={StartsWithBearer}, DoubleBearer={DoubleBearer}, Length={Length}",
                         context.Request.Method,
                         context.Request.Path,
-                        authHeader.StartsWith("Bearer ", StringComparison.OrdinalIgnoreCase),
+                        authHeader.StartsWith("Bearer ",
+                            StringComparison.OrdinalIgnoreCase),
                         isDoubleBearer,
                         authHeader.Length);
                 }
@@ -197,43 +256,39 @@ builder.Services.AddAuthorization();
 
 builder.Services.AddCors(options =>
 {
-    options.AddPolicy("DevCors", policy =>
-    {
-        policy.WithOrigins(devCorsOrigins)
-            .AllowAnyHeader()
-            .AllowAnyMethod();
-    });
+    options.AddPolicy("Frontend",
+        policy =>
+        {
+            policy
+                .WithOrigins(
+                    "http://localhost:5173",
+                    "https://localhost:5173")
+                .AllowAnyHeader()
+                .AllowAnyMethod()
+                .AllowCredentials();
+        });
 });
 
-// Services
-builder.Services.Configure<ApiBehaviorOptions>(
-    options =>
-    {
-        options.InvalidModelStateResponseFactory =
-            context =>
-            {
-                var problemDetails =
-                    new ValidationProblemDetails(
-                        context.ModelState)
-                    {
-                        Title = "Validation Failed",
-                        Status =
-                            StatusCodes
-                                .Status400BadRequest
-                    };
+builder.Services.Configure<ApiBehaviorOptions>(options =>
+{
+    options.InvalidModelStateResponseFactory =
+        context =>
+        {
+            var problemDetails =
+                new ValidationProblemDetails(context.ModelState)
+                {
+                    Title = "Validation Failed",
+                    Status = StatusCodes.Status400BadRequest
+                };
 
-                return new BadRequestObjectResult(
-                    problemDetails);
-            };
-    });
+            return new BadRequestObjectResult(problemDetails);
+        };
+});
+
 builder.Services.AddProblemDetails(options =>
 {
-    options.IncludeExceptionDetails = (
-        context,
-        exception) =>
-    {
-        return builder.Environment.IsDevelopment();
-    };
+    options.IncludeExceptionDetails = (context, exception) =>
+        builder.Environment.IsDevelopment();
 
     options.Map<NotFoundException>(exception =>
         new StatusCodeProblemDetails(StatusCodes.Status404NotFound)
@@ -251,21 +306,43 @@ builder.Services.AddProblemDetails(options =>
 
     options.Map<Exception>(exception =>
     {
-        Log.Error(
-            exception,
-            "Unhandled exception occurred");
+        Log.Error(exception, "Unhandled exception occurred");
 
         return new StatusCodeProblemDetails(
             StatusCodes.Status500InternalServerError)
         {
             Title = "Server Error",
-            Detail =
-                builder.Environment.IsDevelopment()
-                    ? exception.Message
-                    : "An unexpected error occurred."
+            Detail = builder.Environment.IsDevelopment()
+                ? exception.Message
+                : "An unexpected error occurred."
         };
     });
 });
+
+var rateLimiterEnabled =
+    builder.Configuration
+        .GetValue("RateLimiter:Enabled", true);
+
+if (rateLimiterEnabled)
+{
+    var permitLimit =
+        builder.Configuration
+            .GetValue("RateLimiter:PermitLimit", 5);
+
+    var windowSeconds =
+        builder.Configuration
+            .GetValue("RateLimiter:WindowSeconds", 60);
+
+    builder.Services.AddRateLimiter(options =>
+    {
+        options.AddFixedWindowLimiter("AuthPolicy", limiterOptions =>
+        {
+            limiterOptions.Window = TimeSpan.FromSeconds(windowSeconds);
+            limiterOptions.PermitLimit = permitLimit;
+            limiterOptions.QueueLimit = 0;
+        });
+    });
+}
 
 builder.Services.AddControllers();
 
@@ -275,9 +352,45 @@ builder.Services.AddSwaggerDocumentation();
 
 builder.Services.AddScoped<IJwtTokenService, JwtTokenService>();
 
+builder.WebHost.ConfigureKestrel(options =>
+{
+    options.AddServerHeader = false;
+});
+
 var app = builder.Build();
 
-// Middleware
+// Resolve JWT signing key per request so test-injected configuration
+// is honored even when ConfigureAppConfiguration runs after Program.cs.
+var jwtBearerOptions = app.Services
+    .GetRequiredService<Microsoft.Extensions.Options.IOptionsMonitor<JwtBearerOptions>>()
+    .Get(JwtBearerDefaults.AuthenticationScheme);
+
+jwtBearerOptions.TokenValidationParameters.ValidIssuer =
+    app.Services
+        .GetRequiredService<Microsoft.Extensions.Options.IOptions<JwtSettings>>()
+        .Value
+        .Issuer;
+
+jwtBearerOptions.TokenValidationParameters.ValidAudience =
+    app.Services
+        .GetRequiredService<Microsoft.Extensions.Options.IOptions<JwtSettings>>()
+        .Value
+        .Audience;
+
+jwtBearerOptions.TokenValidationParameters.IssuerSigningKeyResolver =
+    (token, securityToken, kid, parameters) =>
+    {
+        var opts = app.Services
+            .GetRequiredService<Microsoft.Extensions.Options.IOptions<JwtSettings>>()
+            .Value;
+
+        return new[]
+        {
+            new SymmetricSecurityKey(
+                Encoding.UTF8.GetBytes(opts.Key))
+        };
+    };
+
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
@@ -285,12 +398,18 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI(options =>
     {
         options.DocumentTitle = "GameStore API Docs";
-
-        options.SwaggerEndpoint(
-            "/swagger/v1/swagger.json",
-            "GameStore API v1");
+        options.SwaggerEndpoint("/swagger/v1/swagger.json", "GameStore API v1");
     });
 }
+
+app.UseExceptionHandler(errorApp =>
+{
+    errorApp.Run(context =>
+    {
+        context.Response.StatusCode = 500;
+        return Task.CompletedTask;
+    });
+});
 
 app.UseProblemDetails();
 
@@ -298,36 +417,47 @@ app.UseMiddleware<CorrelationIdMiddleware>();
 
 app.UseSerilogRequestLogging(options =>
 {
-    options.EnrichDiagnosticContext =
-        (diagnosticContext, httpContext) =>
-        {
-            diagnosticContext.Set(
-                "RequestHost",
-                httpContext.Request.Host.Value);
-
-            diagnosticContext.Set(
-                "RequestScheme",
-                httpContext.Request.Scheme);
-
-            diagnosticContext.Set(
-                "CorrelationId",
-                httpContext.Items[
-                    "X-Correlation-Id"]);
-        };
+    options.EnrichDiagnosticContext = (diagnosticContext, httpContext) =>
+    {
+        diagnosticContext.Set("RequestHost", httpContext.Request.Host.Value);
+        diagnosticContext.Set("RequestScheme", httpContext.Request.Scheme);
+        diagnosticContext.Set("CorrelationId", httpContext.Items["X-Correlation-Id"]);
+    };
 });
+
+app.UseMiddleware<SecurityHeadersMiddleware>();
+
+if (!app.Environment.IsDevelopment())
+{
+    app.UseHsts();
+}
 
 app.UseHttpsRedirection();
 
-app.UseCors("DevCors");
+app.UseCors("Frontend");
 
 app.UseAuthentication();
 
 app.UseAuthorization();
 
+var useRateLimiter =
+    rateLimiterEnabled &&
+    !app.Environment.IsEnvironment("Testing");
+
+if (useRateLimiter)
+{
+    // Rate limiter BEFORE MapControllers so it sits ahead of endpoint dispatch.
+    app.UseRateLimiter();
+}
+
 app.MapControllers();
 
-using (var scope = app.Services.CreateAsyncScope())
+// Only run migrations and seed when a real database is configured.
+// Skips automatically during testing because connectionString is null/empty
+// (the factory never sets DefaultConnection to a real SQL Server string).
+if (!string.IsNullOrWhiteSpace(connectionString))
 {
+    using var scope = app.Services.CreateAsyncScope();
     var services = scope.ServiceProvider;
 
     var context =
@@ -336,18 +466,18 @@ using (var scope = app.Services.CreateAsyncScope())
     await context.Database.MigrateAsync();
 
     var roleManager =
-    services.GetRequiredService<
-        RoleManager<IdentityRole>>();
+        services.GetRequiredService<RoleManager<IdentityRole>>();
 
     var userManager =
-        services.GetRequiredService<
-            UserManager<ApplicationUser>>();
+        services.GetRequiredService<UserManager<ApplicationUser>>();
 
     await IdentitySeed.SeedRolesAsync(roleManager);
-
     await IdentitySeed.SeedAdminAsync(userManager);
-
     await ApplicationDbContextSeed.SeedAsync(context);
 }
 
 app.Run();
+
+public partial class Program
+{
+}

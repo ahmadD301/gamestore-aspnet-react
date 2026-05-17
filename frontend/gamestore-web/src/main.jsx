@@ -1,3 +1,10 @@
+
+
+import {
+  HelmetProvider
+}
+from "react-helmet-async";
+
 import React from "react";
 import ReactDOM from "react-dom/client";
 
@@ -19,7 +26,9 @@ ReactDOM.createRoot(
       client={queryClient}
     >
       <AuthProvider>
+        <HelmetProvider>
         <App />
+        </HelmetProvider>
         <ReactQueryDevtools initialIsOpen={false} />
       </AuthProvider>
     </QueryClientProvider>

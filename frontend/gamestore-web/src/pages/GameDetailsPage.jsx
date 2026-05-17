@@ -1,4 +1,4 @@
-import { useParams }
+import { Link }
   from "react-router-dom";
 
 import { useGames }
@@ -11,14 +11,13 @@ import ErrorBanner
   from "../components/common/ErrorBanner";
 
 export default function GameDetailsPage() {
-  const { id } = useParams();
-
+  
   const {
     data,
     isLoading,
     isError,
     error,
-  } = useGames({ id });
+  } = useGames();
 
   if (isLoading) {
     return <LoadingSpinner />;
@@ -37,14 +36,26 @@ export default function GameDetailsPage() {
   }
 
   return (
-    <div>
+    <div className="game-details">
+      <Link to="/games">
+        ← Back to catalog
+      </Link>
+
       <h1>{data.title}</h1>
+
+      <span className="genre-badge">
+        {data.genre}
+      </span>
 
       <p>{data.description}</p>
 
-      <p>Genre: {data.genre}</p>
+      <h2>${data.price}</h2>
 
-      <p>${data.price}</p>
+      <p>
+        Released:
+        {" "}
+        {data.releaseDate}
+      </p>
     </div>
   );
 }

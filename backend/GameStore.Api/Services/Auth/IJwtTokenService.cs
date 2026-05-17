@@ -5,10 +5,10 @@ namespace GameStore.Api.Services.Auth;
 
 public interface IJwtTokenService
 {
-    Task<AuthResponseDto> CreateTokensAsync(
+    Task<TokenResult> CreateTokensAsync(
         ApplicationUser user);
 
-    Task<AuthResponseDto?> RefreshTokenAsync(
+    Task<TokenResult?> RefreshTokenAsync(
         string refreshToken);
 
     Task RevokeRefreshTokenAsync(

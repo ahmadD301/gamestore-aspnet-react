@@ -16,7 +16,7 @@ public sealed class RegisterRequestValidator
         RuleFor(x => x.UserName)
             .NotEmpty()
             .MinimumLength(3)
-            .MaximumLength(50);
+            .MaximumLength(256);
 
         RuleFor(x => x.Password)
             .NotEmpty()

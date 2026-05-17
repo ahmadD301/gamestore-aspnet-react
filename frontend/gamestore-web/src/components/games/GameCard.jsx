@@ -3,17 +3,27 @@ export default function GameCard({
 }) {
   return (
     <article className="game-card">
-      <h2>{game.title}</h2>
+      <div className="game-card-header">
+        <h2>{game.title}</h2>
 
-      <p>{game.genre}</p>
+        <span className="genre-badge">
+          {game.genre}
+        </span>
+      </div>
 
-      <p>${game.price}</p>
-
-      <p>
-        Released:
-        {" "}
-        {game.releaseDate}
+      <p className="game-description">
+        {game.description}
       </p>
+
+      <div className="game-card-footer">
+        <strong>
+          ${game.price}
+        </strong>
+
+        <span>
+          {game.releaseDate}
+        </span>
+      </div>
     </article>
   );
 }

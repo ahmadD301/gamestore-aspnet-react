@@ -1,11 +1,19 @@
 export default function LoadingSpinner() {
   return (
     <div
+      className="loading-spinner"
       role="status"
       aria-live="polite"
-      className="loading-spinner"
+      aria-label="Loading content"
     >
-      Loading...
+      <span className="sr-only">
+        Loading...
+      </span>
+
+      <div
+        className="spinner"
+        aria-hidden="true"
+      />
     </div>
   );
 }

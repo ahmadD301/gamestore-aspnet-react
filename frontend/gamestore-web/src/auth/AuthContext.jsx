@@ -1,63 +1,184 @@
-/* eslint-disable react-refresh/only-export-components */
-import { createContext, useContext, useMemo, useState } from "react";
+import {
+  createContext,
+  useContext,
+  useEffect,
+  useCallback,
+  useRef,
+  useMemo,
+  useState,
+} from "react";
+
+import { apiClient } from "../api/client";
 import { setupInterceptors } from "../api/setupInterceptors";
-import { parseJwt } from "../utils/jwt";
 const AuthContext = createContext(null);
 
 export function AuthProvider({ children }) {
-  const [accessToken, setAccessToken] = useState(null);
+  const [accessToken, setAccessToken] =
+    useState(null);
 
-  const [refreshToken, setRefreshToken] = useState(null);
+  const [user, setUser] =
+    useState(null);
 
-  const [user, setUser] = useState(null);
+  const [isLoading, setIsLoading] =
+    useState(true);
 
-  const login = (authResponse) => {
-    setAccessToken(authResponse.accessToken);
+  const didRestoreRef = useRef(false);
 
-    setRefreshToken(authResponse.refreshToken);
+  useEffect(() => {
+    if (didRestoreRef.current) {
+      return;
+    }
 
-    const jwtPayload = parseJwt(authResponse.accessToken);
+    didRestoreRef.current = true;
 
-    const roles =
-      jwtPayload[
-        "http://schemas.microsoft.com/ws/2008/06/identity/claims/role"
-      ];
+    const restoreSession = async () => {
+      try {
+        const response =
+          await apiClient.post(
+            "/api/auth/refresh"
+          );
+
+        setAccessToken(
+          response.data.accessToken
+        );
+
+        setUser({
+          email: response.data.email,
+          userName:
+            response.data.userName,
+          roles:
+            response.data.roles,
+        });
+      } catch {
+        setAccessToken(null);
+        setUser(null);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    restoreSession();
+  }, []);
+
+  const refreshAccessToken = useCallback(
+    async () => {
+      try {
+        const response =
+          await apiClient.post(
+            "/api/auth/refresh"
+          );
+
+        setAccessToken(
+          response.data.accessToken
+        );
+
+        setUser({
+          email: response.data.email,
+          userName:
+            response.data.userName,
+          roles:
+            response.data.roles,
+        });
+
+        return response.data.accessToken;
+      } catch (error) {
+        setAccessToken(null);
+        setUser(null);
+        throw error;
+      }
+    },
+    []
+  );
+
+  const login = async (email, password) => {
+    const response =
+      await apiClient.post(
+        "/api/auth/login",
+        {
+          email,
+          password,
+        }
+      );
+
+    setAccessToken(
+      response.data.accessToken
+    );
 
     setUser({
-      email: authResponse.email,
-      userName: authResponse.userName,
-      roles: Array.isArray(roles) ? roles : roles ? [roles] : [],
+      email: response.data.email,
+      userName:
+        response.data.userName,
+      roles:
+        response.data.roles,
     });
+
+    return response.data;
   };
 
-  const logout = () => {
-    setAccessToken(null);
+  const logout = useCallback(
+    async ({ skipRequest } = {}) => {
+      if (!skipRequest) {
+        try {
+          await apiClient.post(
+            "/api/auth/logout"
+          );
+        } catch {
+          // ignore logout errors
+        }
+      }
 
-    setRefreshToken(null);
+      setAccessToken(null);
+      setUser(null);
+    },
+    []
+  );
 
-    setUser(null);
-  };
+  useEffect(() => {
+    const eject =
+      setupInterceptors(
+        () => accessToken,
+        refreshAccessToken,
+        logout
+      );
+
+    return () => eject();
+  }, [accessToken, refreshAccessToken, logout]);
 
   const value = useMemo(
     () => ({
       accessToken,
-      refreshToken,
       user,
+      isLoading,
       login,
       logout,
+      setAccessToken,
     }),
-    [accessToken, refreshToken, user],
+    [
+      accessToken,
+      user,
+      isLoading,
+    ]
   );
-    setupInterceptors(() => accessToken);
-  return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
+
+  return (
+    <AuthContext.Provider
+      value={value}
+    >
+      {children}
+    </AuthContext.Provider>
+  );
 }
 
+// eslint-disable-next-line react-refresh/only-export-components
 export function useAuth() {
-  const context = useContext(AuthContext);
+  const context =
+    useContext(AuthContext);
 
   if (!context) {
-    throw new Error("useAuth must be used inside AuthProvider");
+    throw new Error(
+      "useAuth must be used within AuthProvider"
+    );
   }
-   
+
   return context;
 }
