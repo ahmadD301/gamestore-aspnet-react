@@ -6,14 +6,19 @@ export default function GameForm({
   onSubmit,
   isLoading,
 }) {
+  const defaultValues = {
+    title: "",
+    description: "",
+    price: "",
+    releaseDate: "",
+    genreId: "",
+  };
+
   const [formData, setFormData] =
     useState(
-      initialValues ?? {
-        title: "",
-        description: "",
-        price: "",
-        releaseDate: "",
-        genreId: "",
+      {
+        ...defaultValues,
+        ...(initialValues ?? {}),
       }
     );
 
@@ -23,13 +28,14 @@ export default function GameForm({
   function validate() {
     const newErrors = {};
 
-    if (!formData.title.trim()) {
+    if (!formData.title?.trim()) {
       newErrors.title =
         "Title is required.";
     }
 
     if (
-      formData.description.length < 10
+      (formData.description ?? "")
+        .length < 10
     ) {
       newErrors.description =
         "Description too short.";
@@ -62,9 +68,14 @@ export default function GameForm({
     }
 
     onSubmit({
-      ...formData,
+      title: formData.title,
+      description:
+        formData.description,
       price:
         Number(formData.price),
+      releaseDateUtc:
+        formData.releaseDate || null,
+      genreId: formData.genreId,
     });
   }
 

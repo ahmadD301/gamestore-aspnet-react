@@ -1,8 +1,8 @@
-import { Link }
+import { Link, useParams }
   from "react-router-dom";
 
-import { useGames }
-  from "../hooks/games/useGames";
+import { useGameById }
+  from "../hooks/games/useGameById";
 
 import LoadingSpinner
   from "../components/common/LoadingSpinner";
@@ -11,13 +11,14 @@ import ErrorBanner
   from "../components/common/ErrorBanner";
 
 export default function GameDetailsPage() {
-  
+  const { id } = useParams();
+
   const {
     data,
     isLoading,
     isError,
     error,
-  } = useGames();
+  } = useGameById(id);
 
   if (isLoading) {
     return <LoadingSpinner />;
@@ -54,7 +55,11 @@ export default function GameDetailsPage() {
       <p>
         Released:
         {" "}
-        {data.releaseDate}
+        {data.releaseDateUtc
+          ? new Date(
+              data.releaseDateUtc
+            ).toLocaleDateString()
+          : "-"}
       </p>
     </div>
   );

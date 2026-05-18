@@ -11,8 +11,8 @@ from "../components/common/ErrorBanner";
 import GameForm
 from "../components/games/GameForm";
 
-import { useGames }
-from "../hooks/games/useGames";
+import { useGameById }
+from "../hooks/games/useGameById";
 
 import { useGenres }
 from "../hooks/games/useGenres";
@@ -31,7 +31,7 @@ export default function EditGamePage() {
     isLoading,
     isError,
     error,
-  } = useGames(id);
+  } = useGameById(id);
 
   const {
     data: genres = [],
@@ -81,9 +81,14 @@ export default function EditGamePage() {
           description:
             game.description,
           price: game.price,
-          releaseDate:  
-            game.releaseDate,
-        genreId: game.genreId
+          releaseDate: game.releaseDateUtc
+            ? new Date(
+                game.releaseDateUtc
+              )
+                .toISOString()
+                .slice(0, 10)
+            : "",
+          genreId: game.genreId,
         }}
         genres={genres}
         onSubmit={handleSubmit}

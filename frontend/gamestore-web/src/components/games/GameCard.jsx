@@ -21,7 +21,11 @@ export default function GameCard({
         </strong>
 
         <span>
-          {game.releaseDate}
+          {game.releaseDateUtc
+            ? new Date(
+                game.releaseDateUtc
+              ).toLocaleDateString()
+            : "-"}
         </span>
       </div>
     </article>
