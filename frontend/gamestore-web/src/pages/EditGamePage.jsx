@@ -55,7 +55,7 @@ export default function EditGamePage() {
     );
   }
 
-  function handleSubmit(payload) {
+  function handleSubmit(payload, action) {
     updateMutation.mutate(
       {
         id,
@@ -63,39 +63,51 @@ export default function EditGamePage() {
       },
       {
         onSuccess: () => {
-          navigate(
-            "/admin/games"
-          );
+          if (action !== "continue") {
+            navigate(
+              "/admin/games"
+            );
+          }
         },
       }
     );
   }
 
   return (
-    <div>
-      <h1>Edit Game</h1>
+    <div className="page admin-form-page">
+      <div className="container">
+        <div className="admin-header">
+          <div>
+            <p className="breadcrumb">Admin / Games</p>
+            <h1>Edit Game</h1>
+          </div>
+        </div>
 
-      <GameForm
-        initialValues={{
-          title: game.title,
-          description:
-            game.description,
-          price: game.price,
-          releaseDate: game.releaseDateUtc
-            ? new Date(
-                game.releaseDateUtc
-              )
-                .toISOString()
-                .slice(0, 10)
-            : "",
-          genreId: game.genreId,
-        }}
-        genres={genres}
-        onSubmit={handleSubmit}
-        isLoading={
-          updateMutation.isPending
-        }
-      />
+        <div className="card form-card">
+          <GameForm
+            initialValues={{
+              title: game.title,
+              description:
+                game.description,
+              price: game.price,
+              releaseDate: game.releaseDateUtc
+                ? new Date(
+                    game.releaseDateUtc
+                  )
+                    .toISOString()
+                    .slice(0, 10)
+                : "",
+              genreId: game.genreId,
+            }}
+            genres={genres}
+            onSubmit={handleSubmit}
+            onCancel={() => navigate("/admin/games")}
+            isLoading={
+              updateMutation.isPending
+            }
+          />
+        </div>
+      </div>
     </div>
   );
 }

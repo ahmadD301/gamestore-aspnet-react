@@ -1,7 +1,7 @@
-export default function LoadingSpinner() {
+export default function LoadingSpinner({ overlay }) {
   return (
     <div
-      className="loading-spinner"
+      className={`loading-spinner ${overlay ? "overlay" : ""}`}
       role="status"
       aria-live="polite"
       aria-label="Loading content"

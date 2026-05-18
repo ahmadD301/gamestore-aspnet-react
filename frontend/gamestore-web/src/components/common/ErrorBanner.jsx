@@ -1,5 +1,6 @@
 export default function ErrorBanner({
   message,
+  onDismiss,
 }) {
   return (
     <div
@@ -7,7 +8,18 @@ export default function ErrorBanner({
       role="alert"
       aria-live="assertive"
     >
-      {message}
+      <span className="error-icon" aria-hidden="true" />
+      <span>{message}</span>
+      {onDismiss && (
+        <button
+          type="button"
+          className="icon-button"
+          aria-label="Dismiss error"
+          onClick={onDismiss}
+        >
+          <span aria-hidden="true">x</span>
+        </button>
+      )}
     </div>
   );
 }

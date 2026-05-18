@@ -21,25 +21,37 @@ export default function CreateGamePage() {
   const createMutation =
     useCreateGame();
 
-  function handleSubmit(payload) {
+  function handleSubmit(payload, action) {
     createMutation.mutate(payload, {
       onSuccess: () => {
-        navigate("/admin/games");
+        if (action !== "continue") {
+          navigate("/admin/games");
+        }
       },
     });
   }
 
   return (
-    <div>
-      <h1>Create Game</h1>
+    <div className="page admin-form-page">
+      <div className="container">
+        <div className="admin-header">
+          <div>
+            <p className="breadcrumb">Admin / Games</p>
+            <h1>Create Game</h1>
+          </div>
+        </div>
 
-      <GameForm
-        genres={genres}
-        onSubmit={handleSubmit}
-        isLoading={
-          createMutation.isPending
-        }
-      />
+        <div className="card form-card">
+          <GameForm
+            genres={genres}
+            onSubmit={handleSubmit}
+            onCancel={() => navigate("/admin/games")}
+            isLoading={
+              createMutation.isPending
+            }
+          />
+        </div>
+      </div>
     </div>
   );
 }

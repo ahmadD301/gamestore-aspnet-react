@@ -59,63 +59,100 @@ export default function LoginPage() {
   }
 
   return (
-    <div>
-      <h1>Login</h1>
+    <div className="page auth-page">
+      <div className="container auth-container">
+        <div className="auth-card">
+          <div className="auth-header">
+            <div className="brand-mark" aria-hidden="true" />
+            <h1>Welcome back</h1>
+            <p>Sign in to manage your catalog.</p>
+          </div>
 
-      <form onSubmit={handleSubmit}>
-        <div>
-          <label htmlFor="login-email">
-            Email
-          </label>
+          <form onSubmit={handleSubmit} className="auth-form">
+            <div className="form-field">
+              <label htmlFor="login-email">Email</label>
+              <div className="input-with-icon">
+                <span className="input-icon email-icon" aria-hidden="true" />
+                <input
+                  id="login-email"
+                  name="email"
+                  type="email"
+                  placeholder="you@example.com"
+                  value={formData.email}
+                  onChange={(event) =>
+                    setFormData({
+                      ...formData,
+                      email: event.target.value,
+                    })
+                  }
+                />
+              </div>
+            </div>
 
-          <input
-            id="login-email"
-            name="email"
-            type="email"
-            value={formData.email}
-            onChange={(event) =>
-              setFormData({
-                ...formData,
-                email: event.target.value,
-              })
-            }
-          />
+            <div className="form-field">
+              <label htmlFor="login-password">Password</label>
+              <div className="input-with-icon">
+                <span className="input-icon lock-icon" aria-hidden="true" />
+                <input
+                  id="login-password"
+                  name="password"
+                  type="password"
+                  placeholder="Enter your password"
+                  value={formData.password}
+                  onChange={(event) =>
+                    setFormData({
+                      ...formData,
+                      password: event.target.value,
+                    })
+                  }
+                />
+              </div>
+            </div>
+
+            <div className="auth-options">
+              <label className="checkbox">
+                <input type="checkbox" />
+                <span>Remember me</span>
+              </label>
+              <a
+                className="text-button"
+                href="mailto:support@gamestore.com"
+              >
+                Forgot password?
+              </a>
+            </div>
+
+            {error && (
+              <p className="form-error" role="alert">
+                {error}
+              </p>
+            )}
+
+            <button
+              type="submit"
+              className="button primary full"
+              disabled={isLoading}
+            >
+              {isLoading
+                ? "Signing in..."
+                : "Login"}
+            </button>
+          </form>
+
+          <div className="auth-divider">
+            <span>or continue with</span>
+          </div>
+
+          <div className="social-buttons">
+            <button type="button" className="button secondary full">
+              Google
+            </button>
+            <button type="button" className="button secondary full">
+              Xbox Live
+            </button>
+          </div>
         </div>
-
-        <div>
-          <label htmlFor="login-password">
-            Password
-          </label>
-
-          <input
-            id="login-password"
-            name="password"
-            type="password"
-            value={formData.password}
-            onChange={(event) =>
-              setFormData({
-                ...formData,
-                password: event.target.value,
-              })
-            }
-          />
-        </div>
-
-        {error && (
-          <p>
-            {error}
-          </p>
-        )}
-
-        <button
-          type="submit"
-          disabled={isLoading}
-        >
-          {isLoading
-            ? "Signing in..."
-            : "Login"}
-        </button>
-      </form>
+      </div>
     </div>
   );
 }
