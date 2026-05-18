@@ -64,9 +64,13 @@ export default function LoginPage() {
 
       <form onSubmit={handleSubmit}>
         <div>
-          <label>Email</label>
+          <label htmlFor="login-email">
+            Email
+          </label>
 
           <input
+            id="login-email"
+            name="email"
             type="email"
             value={formData.email}
             onChange={(event) =>
@@ -79,9 +83,13 @@ export default function LoginPage() {
         </div>
 
         <div>
-          <label>Password</label>
+          <label htmlFor="login-password">
+            Password
+          </label>
 
           <input
+            id="login-password"
+            name="password"
             type="password"
             value={formData.password}
             onChange={(event) =>

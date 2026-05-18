@@ -322,3 +322,225 @@ END
 2026-05-17 16:35:36.518 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5062/swagger/v1/swagger.json - null null
 2026-05-17 16:35:36.608 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5062/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 90.6711ms
 2026-05-17 16:39:08.270 +03:00 [INF] Application is shutting down...
+2026-05-17 20:23:23.832 +03:00 [INF] Executed DbCommand (38ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1
+2026-05-17 20:23:23.952 +03:00 [INF] Executed DbCommand (33ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT OBJECT_ID(N'[__EFMigrationsHistory]');
+2026-05-17 20:23:23.959 +03:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1
+2026-05-17 20:23:23.963 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT OBJECT_ID(N'[__EFMigrationsHistory]');
+2026-05-17 20:23:23.991 +03:00 [INF] Executed DbCommand (8ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [MigrationId], [ProductVersion]
+FROM [__EFMigrationsHistory]
+ORDER BY [MigrationId];
+2026-05-17 20:23:24.026 +03:00 [INF] No migrations were applied. The database is already up to date.
+2026-05-17 20:23:24.047 +03:00 [INF] User profile is available. Using 'C:\Users\alaae\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2026-05-17 20:23:24.427 +03:00 [INF] Executed DbCommand (32ms) [Parameters=[@__normalizedName_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[ConcurrencyStamp], [a].[Name], [a].[NormalizedName]
+FROM [dbo].[AspNetRoles] AS [a]
+WHERE [a].[NormalizedName] = @__normalizedName_0
+2026-05-17 20:23:24.499 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[@__normalizedName_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[ConcurrencyStamp], [a].[Name], [a].[NormalizedName]
+FROM [dbo].[AspNetRoles] AS [a]
+WHERE [a].[NormalizedName] = @__normalizedName_0
+2026-05-17 20:23:24.523 +03:00 [INF] Executed DbCommand (7ms) [Parameters=[@__normalizedEmail_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(2) [a].[Id], [a].[AccessFailedCount], [a].[ConcurrencyStamp], [a].[CreatedAtUtc], [a].[Email], [a].[EmailConfirmed], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [dbo].[AspNetUsers] AS [a]
+WHERE [a].[NormalizedEmail] = @__normalizedEmail_0
+2026-05-17 20:23:24.606 +03:00 [INF] Executed DbCommand (4ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [dbo].[Genres] AS [g]) THEN CAST(1 AS bit)
+    ELSE CAST(0 AS bit)
+END
+2026-05-17 20:23:24.734 +03:00 [INF] Now listening on: http://localhost:5062
+2026-05-17 20:23:24.743 +03:00 [INF] Application started. Press Ctrl+C to shut down.
+2026-05-17 20:23:24.744 +03:00 [INF] Hosting environment: Development
+2026-05-17 20:23:24.747 +03:00 [INF] Content root path: D:\New folder\GameStore\backend\GameStore.Api
+2026-05-17 20:30:19.362 +03:00 [INF] Request starting HTTP/1.1 POST http://localhost:5062/api/auth/refresh - null 0
+2026-05-17 20:30:19.424 +03:00 [WRN] Failed to determine the https port for redirect.
+2026-05-17 20:30:19.428 +03:00 [INF] CORS policy execution successful.
+2026-05-17 20:30:19.451 +03:00 [INF] Executing endpoint 'GameStore.Api.Controllers.AuthController.Refresh (GameStore.Api)'
+2026-05-17 20:30:19.497 +03:00 [INF] Route matched with {action = "Refresh", controller = "Auth"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Refresh() on controller GameStore.Api.Controllers.AuthController (GameStore.Api).
+2026-05-17 20:30:19.515 +03:00 [INF] Executing UnauthorizedObjectResult, writing value of type '<>f__AnonymousType1`1[[System.String, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2026-05-17 20:30:19.675 +03:00 [INF] Executed action GameStore.Api.Controllers.AuthController.Refresh (GameStore.Api) in 167.0265ms
+2026-05-17 20:30:19.700 +03:00 [INF] Executed endpoint 'GameStore.Api.Controllers.AuthController.Refresh (GameStore.Api)'
+2026-05-17 20:30:19.767 +03:00 [INF] HTTP POST /api/auth/refresh responded 401 in 341.6021 ms
+2026-05-17 20:30:19.781 +03:00 [INF] Request finished HTTP/1.1 POST http://localhost:5062/api/auth/refresh - 401 null application/json; charset=utf-8 429.023ms
+2026-05-17 20:30:28.013 +03:00 [INF] Request starting HTTP/1.1 POST http://localhost:5062/api/auth/refresh - null 0
+2026-05-17 20:30:28.046 +03:00 [INF] CORS policy execution successful.
+2026-05-17 20:30:28.049 +03:00 [INF] Executing endpoint 'GameStore.Api.Controllers.AuthController.Refresh (GameStore.Api)'
+2026-05-17 20:30:28.050 +03:00 [INF] Route matched with {action = "Refresh", controller = "Auth"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Refresh() on controller GameStore.Api.Controllers.AuthController (GameStore.Api).
+2026-05-17 20:30:28.185 +03:00 [INF] Executed DbCommand (21ms) [Parameters=[@__refreshToken_0='?' (Size = 500)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [r].[Id], [r].[CreatedAtUtc], [r].[CreatedBy], [r].[ExpiresAtUtc], [r].[IsRevoked], [r].[RevokedAtUtc], [r].[Token], [r].[UpdatedAtUtc], [r].[UpdatedBy], [r].[UserId], [a].[Id], [a].[AccessFailedCount], [a].[ConcurrencyStamp], [a].[CreatedAtUtc], [a].[Email], [a].[EmailConfirmed], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [dbo].[RefreshTokens] AS [r]
+INNER JOIN [dbo].[AspNetUsers] AS [a] ON [r].[UserId] = [a].[Id]
+WHERE [r].[Token] = @__refreshToken_0
+2026-05-17 20:30:28.344 +03:00 [INF] Executed DbCommand (21ms) [Parameters=[@p2='?' (DbType = Guid), @p0='?' (DbType = Boolean), @p1='?' (DbType = DateTime2)], CommandType='"Text"', CommandTimeout='30']
+SET IMPLICIT_TRANSACTIONS OFF;
+SET NOCOUNT ON;
+UPDATE [dbo].[RefreshTokens] SET [IsRevoked] = @p0, [RevokedAtUtc] = @p1
+OUTPUT 1
+WHERE [Id] = @p2;
+2026-05-17 20:30:28.387 +03:00 [INF] Executed DbCommand (7ms) [Parameters=[@__userId_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT [a0].[Name]
+FROM [dbo].[AspNetUserRoles] AS [a]
+INNER JOIN [dbo].[AspNetRoles] AS [a0] ON [a].[RoleId] = [a0].[Id]
+WHERE [a].[UserId] = @__userId_0
+2026-05-17 20:30:28.551 +03:00 [INF] Executed DbCommand (12ms) [Parameters=[@p0='?' (DbType = Guid), @p1='?' (DbType = DateTime2), @p2='?' (Size = 4000), @p3='?' (DbType = DateTime2), @p4='?' (DbType = Boolean), @p5='?' (DbType = DateTime2), @p6='?' (Size = 500), @p7='?' (DbType = DateTime2), @p8='?' (Size = 4000), @p9='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SET IMPLICIT_TRANSACTIONS OFF;
+SET NOCOUNT ON;
+INSERT INTO [dbo].[RefreshTokens] ([Id], [CreatedAtUtc], [CreatedBy], [ExpiresAtUtc], [IsRevoked], [RevokedAtUtc], [Token], [UpdatedAtUtc], [UpdatedBy], [UserId])
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6, @p7, @p8, @p9);
+2026-05-17 20:30:28.559 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[@__userId_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT [a0].[Name]
+FROM [dbo].[AspNetUserRoles] AS [a]
+INNER JOIN [dbo].[AspNetRoles] AS [a0] ON [a].[RoleId] = [a0].[Id]
+WHERE [a].[UserId] = @__userId_0
+2026-05-17 20:30:28.567 +03:00 [INF] Executing OkObjectResult, writing value of type 'GameStore.Api.DTOs.Auth.AuthResponseDto'.
+2026-05-17 20:30:28.598 +03:00 [INF] Executed action GameStore.Api.Controllers.AuthController.Refresh (GameStore.Api) in 542.9734ms
+2026-05-17 20:30:28.600 +03:00 [INF] Executed endpoint 'GameStore.Api.Controllers.AuthController.Refresh (GameStore.Api)'
+2026-05-17 20:30:28.603 +03:00 [INF] HTTP POST /api/auth/refresh responded 200 in 557.4356 ms
+2026-05-17 20:30:28.612 +03:00 [INF] Request finished HTTP/1.1 POST http://localhost:5062/api/auth/refresh - 200 null application/json; charset=utf-8 599.3722ms
+2026-05-17 20:30:32.301 +03:00 [INF] Request starting HTTP/1.1 POST http://localhost:5062/api/auth/refresh - null 0
+2026-05-17 20:30:32.306 +03:00 [INF] CORS policy execution successful.
+2026-05-17 20:30:32.310 +03:00 [INF] Executing endpoint 'GameStore.Api.Controllers.AuthController.Refresh (GameStore.Api)'
+2026-05-17 20:30:32.311 +03:00 [INF] Route matched with {action = "Refresh", controller = "Auth"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Refresh() on controller GameStore.Api.Controllers.AuthController (GameStore.Api).
+2026-05-17 20:30:32.415 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[@__refreshToken_0='?' (Size = 500)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [r].[Id], [r].[CreatedAtUtc], [r].[CreatedBy], [r].[ExpiresAtUtc], [r].[IsRevoked], [r].[RevokedAtUtc], [r].[Token], [r].[UpdatedAtUtc], [r].[UpdatedBy], [r].[UserId], [a].[Id], [a].[AccessFailedCount], [a].[ConcurrencyStamp], [a].[CreatedAtUtc], [a].[Email], [a].[EmailConfirmed], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [dbo].[RefreshTokens] AS [r]
+INNER JOIN [dbo].[AspNetUsers] AS [a] ON [r].[UserId] = [a].[Id]
+WHERE [r].[Token] = @__refreshToken_0
+2026-05-17 20:30:32.422 +03:00 [INF] Executed DbCommand (2ms) [Parameters=[@p2='?' (DbType = Guid), @p0='?' (DbType = Boolean), @p1='?' (DbType = DateTime2)], CommandType='"Text"', CommandTimeout='30']
+SET IMPLICIT_TRANSACTIONS OFF;
+SET NOCOUNT ON;
+UPDATE [dbo].[RefreshTokens] SET [IsRevoked] = @p0, [RevokedAtUtc] = @p1
+OUTPUT 1
+WHERE [Id] = @p2;
+2026-05-17 20:30:32.427 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[@__userId_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT [a0].[Name]
+FROM [dbo].[AspNetUserRoles] AS [a]
+INNER JOIN [dbo].[AspNetRoles] AS [a0] ON [a].[RoleId] = [a0].[Id]
+WHERE [a].[UserId] = @__userId_0
+2026-05-17 20:30:32.433 +03:00 [INF] Executed DbCommand (2ms) [Parameters=[@p0='?' (DbType = Guid), @p1='?' (DbType = DateTime2), @p2='?' (Size = 4000), @p3='?' (DbType = DateTime2), @p4='?' (DbType = Boolean), @p5='?' (DbType = DateTime2), @p6='?' (Size = 500), @p7='?' (DbType = DateTime2), @p8='?' (Size = 4000), @p9='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SET IMPLICIT_TRANSACTIONS OFF;
+SET NOCOUNT ON;
+INSERT INTO [dbo].[RefreshTokens] ([Id], [CreatedAtUtc], [CreatedBy], [ExpiresAtUtc], [IsRevoked], [RevokedAtUtc], [Token], [UpdatedAtUtc], [UpdatedBy], [UserId])
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6, @p7, @p8, @p9);
+2026-05-17 20:30:32.437 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[@__userId_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT [a0].[Name]
+FROM [dbo].[AspNetUserRoles] AS [a]
+INNER JOIN [dbo].[AspNetRoles] AS [a0] ON [a].[RoleId] = [a0].[Id]
+WHERE [a].[UserId] = @__userId_0
+2026-05-17 20:30:32.440 +03:00 [INF] Executing OkObjectResult, writing value of type 'GameStore.Api.DTOs.Auth.AuthResponseDto'.
+2026-05-17 20:30:32.442 +03:00 [INF] Executed action GameStore.Api.Controllers.AuthController.Refresh (GameStore.Api) in 128.3565ms
+2026-05-17 20:30:32.444 +03:00 [INF] Executed endpoint 'GameStore.Api.Controllers.AuthController.Refresh (GameStore.Api)'
+2026-05-17 20:30:32.445 +03:00 [INF] HTTP POST /api/auth/refresh responded 200 in 139.2791 ms
+2026-05-17 20:30:32.447 +03:00 [INF] Request finished HTTP/1.1 POST http://localhost:5062/api/auth/refresh - 200 null application/json; charset=utf-8 145.6274ms
+2026-05-17 20:30:58.919 +03:00 [INF] Request starting HTTP/1.1 POST http://localhost:5062/api/auth/refresh - null 0
+2026-05-17 20:30:58.929 +03:00 [INF] CORS policy execution successful.
+2026-05-17 20:30:58.930 +03:00 [INF] Executing endpoint 'GameStore.Api.Controllers.AuthController.Refresh (GameStore.Api)'
+2026-05-17 20:30:58.932 +03:00 [INF] Route matched with {action = "Refresh", controller = "Auth"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Refresh() on controller GameStore.Api.Controllers.AuthController (GameStore.Api).
+2026-05-17 20:30:58.937 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[@__refreshToken_0='?' (Size = 500)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [r].[Id], [r].[CreatedAtUtc], [r].[CreatedBy], [r].[ExpiresAtUtc], [r].[IsRevoked], [r].[RevokedAtUtc], [r].[Token], [r].[UpdatedAtUtc], [r].[UpdatedBy], [r].[UserId], [a].[Id], [a].[AccessFailedCount], [a].[ConcurrencyStamp], [a].[CreatedAtUtc], [a].[Email], [a].[EmailConfirmed], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [dbo].[RefreshTokens] AS [r]
+INNER JOIN [dbo].[AspNetUsers] AS [a] ON [r].[UserId] = [a].[Id]
+WHERE [r].[Token] = @__refreshToken_0
+2026-05-17 20:30:58.942 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[@p2='?' (DbType = Guid), @p0='?' (DbType = Boolean), @p1='?' (DbType = DateTime2)], CommandType='"Text"', CommandTimeout='30']
+SET IMPLICIT_TRANSACTIONS OFF;
+SET NOCOUNT ON;
+UPDATE [dbo].[RefreshTokens] SET [IsRevoked] = @p0, [RevokedAtUtc] = @p1
+OUTPUT 1
+WHERE [Id] = @p2;
+2026-05-17 20:30:58.946 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[@__userId_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT [a0].[Name]
+FROM [dbo].[AspNetUserRoles] AS [a]
+INNER JOIN [dbo].[AspNetRoles] AS [a0] ON [a].[RoleId] = [a0].[Id]
+WHERE [a].[UserId] = @__userId_0
+2026-05-17 20:30:58.950 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[@p0='?' (DbType = Guid), @p1='?' (DbType = DateTime2), @p2='?' (Size = 4000), @p3='?' (DbType = DateTime2), @p4='?' (DbType = Boolean), @p5='?' (DbType = DateTime2), @p6='?' (Size = 500), @p7='?' (DbType = DateTime2), @p8='?' (Size = 4000), @p9='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SET IMPLICIT_TRANSACTIONS OFF;
+SET NOCOUNT ON;
+INSERT INTO [dbo].[RefreshTokens] ([Id], [CreatedAtUtc], [CreatedBy], [ExpiresAtUtc], [IsRevoked], [RevokedAtUtc], [Token], [UpdatedAtUtc], [UpdatedBy], [UserId])
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6, @p7, @p8, @p9);
+2026-05-17 20:30:58.958 +03:00 [INF] Executed DbCommand (2ms) [Parameters=[@__userId_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT [a0].[Name]
+FROM [dbo].[AspNetUserRoles] AS [a]
+INNER JOIN [dbo].[AspNetRoles] AS [a0] ON [a].[RoleId] = [a0].[Id]
+WHERE [a].[UserId] = @__userId_0
+2026-05-17 20:30:58.962 +03:00 [INF] Executing OkObjectResult, writing value of type 'GameStore.Api.DTOs.Auth.AuthResponseDto'.
+2026-05-17 20:30:58.964 +03:00 [INF] Executed action GameStore.Api.Controllers.AuthController.Refresh (GameStore.Api) in 30.0067ms
+2026-05-17 20:30:58.966 +03:00 [INF] Executed endpoint 'GameStore.Api.Controllers.AuthController.Refresh (GameStore.Api)'
+2026-05-17 20:30:58.968 +03:00 [INF] HTTP POST /api/auth/refresh responded 200 in 39.3315 ms
+2026-05-17 20:30:58.972 +03:00 [INF] Request finished HTTP/1.1 POST http://localhost:5062/api/auth/refresh - 200 null application/json; charset=utf-8 53.1323ms
+2026-05-17 20:30:58.983 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5062/api/games?page=1&pageSize=100&search=&genreId= - null null
+2026-05-17 20:30:58.994 +03:00 [INF] CORS policy execution successful.
+2026-05-17 20:30:58.996 +03:00 [INF] Executing endpoint 'GameStore.Api.Controllers.GamesController.GetAll (GameStore.Api)'
+2026-05-17 20:30:59.010 +03:00 [INF] Route matched with {action = "GetAll", controller = "Games"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[GameStore.Api.DTOs.Common.PagedResultDto`1[GameStore.Api.DTOs.Games.GameResponseDto]]] GetAll(GameStore.Api.DTOs.Games.GameQueryParametersDto) on controller GameStore.Api.Controllers.GamesController (GameStore.Api).
+2026-05-17 20:30:59.109 +03:00 [INF] Executed DbCommand (6ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [dbo].[Games] AS [g]
+2026-05-17 20:30:59.147 +03:00 [INF] Executed DbCommand (10ms) [Parameters=[@__p_0='?' (DbType = Int32), @__p_1='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [t].[Id], [t].[CoverImageUrl], [t].[CreatedAtUtc], [t].[CreatedBy], [t].[Description], [t].[GenreId], [t].[Price], [t].[ReleaseDateUtc], [t].[Title], [t].[UpdatedAtUtc], [t].[UpdatedBy], [g0].[Id], [g0].[CreatedAtUtc], [g0].[CreatedBy], [g0].[Name], [g0].[UpdatedAtUtc], [g0].[UpdatedBy]
+FROM (
+    SELECT [g].[Id], [g].[CoverImageUrl], [g].[CreatedAtUtc], [g].[CreatedBy], [g].[Description], [g].[GenreId], [g].[Price], [g].[ReleaseDateUtc], [g].[Title], [g].[UpdatedAtUtc], [g].[UpdatedBy]
+    FROM [dbo].[Games] AS [g]
+    ORDER BY [g].[Title]
+    OFFSET @__p_0 ROWS FETCH NEXT @__p_1 ROWS ONLY
+) AS [t]
+INNER JOIN [dbo].[Genres] AS [g0] ON [t].[GenreId] = [g0].[Id]
+ORDER BY [t].[Title]
+2026-05-17 20:30:59.161 +03:00 [INF] Executing OkObjectResult, writing value of type 'GameStore.Api.DTOs.Common.PagedResultDto`1[[GameStore.Api.DTOs.Games.GameResponseDto, GameStore.Api, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-05-17 20:30:59.200 +03:00 [INF] Executed action GameStore.Api.Controllers.GamesController.GetAll (GameStore.Api) in 187.3719ms
+2026-05-17 20:30:59.202 +03:00 [INF] Executed endpoint 'GameStore.Api.Controllers.GamesController.GetAll (GameStore.Api)'
+2026-05-17 20:30:59.203 +03:00 [INF] HTTP GET /api/games responded 200 in 209.2660 ms
+2026-05-17 20:30:59.206 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5062/api/games?page=1&pageSize=100&search=&genreId= - 200 null application/json; charset=utf-8 222.4155ms
+2026-05-17 20:31:03.513 +03:00 [INF] Request starting HTTP/1.1 POST http://localhost:5062/api/auth/refresh - null 0
+2026-05-17 20:31:03.522 +03:00 [INF] CORS policy execution successful.
+2026-05-17 20:31:03.527 +03:00 [INF] Executing endpoint 'GameStore.Api.Controllers.AuthController.Refresh (GameStore.Api)'
+2026-05-17 20:31:03.529 +03:00 [INF] Route matched with {action = "Refresh", controller = "Auth"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Refresh() on controller GameStore.Api.Controllers.AuthController (GameStore.Api).
+2026-05-17 20:31:03.536 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[@__refreshToken_0='?' (Size = 500)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [r].[Id], [r].[CreatedAtUtc], [r].[CreatedBy], [r].[ExpiresAtUtc], [r].[IsRevoked], [r].[RevokedAtUtc], [r].[Token], [r].[UpdatedAtUtc], [r].[UpdatedBy], [r].[UserId], [a].[Id], [a].[AccessFailedCount], [a].[ConcurrencyStamp], [a].[CreatedAtUtc], [a].[Email], [a].[EmailConfirmed], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [dbo].[RefreshTokens] AS [r]
+INNER JOIN [dbo].[AspNetUsers] AS [a] ON [r].[UserId] = [a].[Id]
+WHERE [r].[Token] = @__refreshToken_0
+2026-05-17 20:31:03.542 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[@p2='?' (DbType = Guid), @p0='?' (DbType = Boolean), @p1='?' (DbType = DateTime2)], CommandType='"Text"', CommandTimeout='30']
+SET IMPLICIT_TRANSACTIONS OFF;
+SET NOCOUNT ON;
+UPDATE [dbo].[RefreshTokens] SET [IsRevoked] = @p0, [RevokedAtUtc] = @p1
+OUTPUT 1
+WHERE [Id] = @p2;
+2026-05-17 20:31:03.547 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[@__userId_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT [a0].[Name]
+FROM [dbo].[AspNetUserRoles] AS [a]
+INNER JOIN [dbo].[AspNetRoles] AS [a0] ON [a].[RoleId] = [a0].[Id]
+WHERE [a].[UserId] = @__userId_0
+2026-05-17 20:31:03.554 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[@p0='?' (DbType = Guid), @p1='?' (DbType = DateTime2), @p2='?' (Size = 4000), @p3='?' (DbType = DateTime2), @p4='?' (DbType = Boolean), @p5='?' (DbType = DateTime2), @p6='?' (Size = 500), @p7='?' (DbType = DateTime2), @p8='?' (Size = 4000), @p9='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SET IMPLICIT_TRANSACTIONS OFF;
+SET NOCOUNT ON;
+INSERT INTO [dbo].[RefreshTokens] ([Id], [CreatedAtUtc], [CreatedBy], [ExpiresAtUtc], [IsRevoked], [RevokedAtUtc], [Token], [UpdatedAtUtc], [UpdatedBy], [UserId])
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6, @p7, @p8, @p9);
+2026-05-17 20:31:03.559 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[@__userId_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT [a0].[Name]
+FROM [dbo].[AspNetUserRoles] AS [a]
+INNER JOIN [dbo].[AspNetRoles] AS [a0] ON [a].[RoleId] = [a0].[Id]
+WHERE [a].[UserId] = @__userId_0
+2026-05-17 20:31:03.562 +03:00 [INF] Executing OkObjectResult, writing value of type 'GameStore.Api.DTOs.Auth.AuthResponseDto'.
+2026-05-17 20:31:03.563 +03:00 [INF] Executed action GameStore.Api.Controllers.AuthController.Refresh (GameStore.Api) in 31.5697ms
+2026-05-17 20:31:03.565 +03:00 [INF] Executed endpoint 'GameStore.Api.Controllers.AuthController.Refresh (GameStore.Api)'
+2026-05-17 20:31:03.566 +03:00 [INF] HTTP POST /api/auth/refresh responded 200 in 44.7702 ms
+2026-05-17 20:31:03.569 +03:00 [INF] Request finished HTTP/1.1 POST http://localhost:5062/api/auth/refresh - 200 null application/json; charset=utf-8 55.998ms
+2026-05-17 20:31:03.593 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5062/api/genres - null null
+2026-05-17 20:31:03.597 +03:00 [INF] CORS policy execution successful.
+2026-05-17 20:31:03.612 +03:00 [INF] Executing endpoint 'GameStore.Api.Controllers.GenresController.GetAll (GameStore.Api)'
+2026-05-17 20:31:03.628 +03:00 [INF] Route matched with {action = "GetAll", controller = "Genres"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[System.Collections.Generic.List`1[GameStore.Api.DTOs.Genres.GenreResponseDto]]] GetAll() on controller GameStore.Api.Controllers.GenresController (GameStore.Api).
+2026-05-17 20:31:03.643 +03:00 [INF] Executed DbCommand (3ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [g].[Id], [g].[Name]
+FROM [dbo].[Genres] AS [g]
+ORDER BY [g].[Name]
+2026-05-17 20:31:03.646 +03:00 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[GameStore.Api.DTOs.Genres.GenreResponseDto, GameStore.Api, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-05-17 20:31:03.648 +03:00 [INF] Executed action GameStore.Api.Controllers.GenresController.GetAll (GameStore.Api) in 18.8263ms
+2026-05-17 20:31:03.650 +03:00 [INF] Executed endpoint 'GameStore.Api.Controllers.GenresController.GetAll (GameStore.Api)'
+2026-05-17 20:31:03.652 +03:00 [INF] HTTP GET /api/genres responded 200 in 54.4560 ms
+2026-05-17 20:31:03.654 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5062/api/genres - 200 null application/json; charset=utf-8 60.9067ms

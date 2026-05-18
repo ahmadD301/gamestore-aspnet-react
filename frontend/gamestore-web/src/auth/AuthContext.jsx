@@ -10,7 +10,8 @@ import {
 
 import { apiClient } from "../api/client";
 import { setupInterceptors } from "../api/setupInterceptors";
-const AuthContext = createContext(null);
+
+export const AuthContext = createContext(null);
 
 export function AuthProvider({ children }) {
   const [accessToken, setAccessToken] =
