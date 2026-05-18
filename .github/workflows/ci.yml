@@ -4,10 +4,11 @@ on:
   push:
     branches:
       - main
-
+      - develop
   pull_request:
     branches:
       - main
+      - develop
 
 jobs:
   backend:
@@ -24,6 +25,13 @@ jobs:
         uses: actions/setup-dotnet@v4
         with:
           dotnet-version: 8.0.x
+
+      - name: Cache NuGet packages
+        uses: actions/cache@v4
+        with:
+          path: ~/.nuget/packages
+          key: ${{ runner.os }}-nuget-${{ hashFiles('**/packages.lock.json') }}
+          restore-keys: ${{ runner.os }}-nuget-
 
       - name: Restore
         run: dotnet restore
@@ -50,6 +58,20 @@ jobs:
         with:
           dotnet-version: 8.0.x
 
+      - name: Cache NuGet packages
+        uses: actions/cache@v4
+        with:
+          path: ~/.nuget/packages
+          key: ${{ runner.os }}-nuget-${{ hashFiles('**/packages.lock.json') }}
+          restore-keys: ${{ runner.os }}-nuget-
+
+      - name: Cache npm dependencies
+        uses: actions/cache@v4
+        with:
+          path: frontend/gamestore-web/node_modules
+          key: ${{ runner.os }}-npm-${{ hashFiles('frontend/gamestore-web/package-lock.json') }}
+          restore-keys: ${{ runner.os }}-npm-
+
       - name: Install Frontend Dependencies
         working-directory: frontend/gamestore-web
         run: npm ci
@@ -59,6 +81,10 @@ jobs:
 
       - name: Build Backend
         run: dotnet build backend/GameStore.sln --no-restore
+
+      - name: Install Playwright Browsers
+        working-directory: frontend/gamestore-web
+        run: npx playwright install --with-deps
 
       - name: Start Backend API
         run: |
@@ -71,17 +97,16 @@ jobs:
 
       - name: Wait for Backend
         run: |
+          echo "Waiting for backend to be ready..."
           for i in $(seq 1 30); do
-            if curl -sf http://localhost:5062/swagger; then
-              echo "Backend ready!"
+            if curl -sf http://localhost:5062/games; then
+              echo "Backend is up!"
               exit 0
             fi
-
-            echo "Waiting..."
+            echo "Attempt $i/30 — retrying in 2s..."
             sleep 2
           done
-
-          echo "Backend failed to start."
+          echo "Backend did not start in time."
           exit 1
 
       - name: Run Vitest
@@ -89,10 +114,6 @@ jobs:
         run: npm run test -- --run
         env:
           VITE_API_URL: http://localhost:5062
-
-      - name: Install Playwright Browsers
-        working-directory: frontend/gamestore-web
-        run: npx playwright install --with-deps
 
       - name: Run Playwright Tests
         working-directory: frontend/gamestore-web
