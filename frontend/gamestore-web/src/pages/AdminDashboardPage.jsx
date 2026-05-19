@@ -22,7 +22,7 @@ export default function AdminDashboardPage() {
         <div className="admin-header">
           <div>
             <p className="breadcrumb">Admin</p>
-            <h1>Dashboard</h1>
+            <h1>Admin Dashboard</h1>
           </div>
         </div>
 

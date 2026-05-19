@@ -2576,3 +2576,472 @@ ORDER BY [t].[Title]
 2026-05-19 09:09:56.740 +03:00 [INF] Executed endpoint 'GameStore.Api.Controllers.GamesController.GetAll (GameStore.Api)'
 2026-05-19 09:09:56.741 +03:00 [INF] HTTP GET /api/games responded 200 in 2069.8910 ms
 2026-05-19 09:09:56.743 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5062/api/games?page=1&pageSize=6&search=&genreId= - 200 null application/json; charset=utf-8 2083.2431ms
+2026-05-19 09:36:14.357 +03:00 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5062/api/games/91479d3e-94a9-4655-9529-b5e4e5e424a6 - null null
+2026-05-19 09:36:14.450 +03:00 [INF] CORS policy execution successful.
+2026-05-19 09:36:14.451 +03:00 [INF] HTTP OPTIONS /api/games/91479d3e-94a9-4655-9529-b5e4e5e424a6 responded 204 in 0.8691 ms
+2026-05-19 09:36:14.453 +03:00 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5062/api/games/91479d3e-94a9-4655-9529-b5e4e5e424a6 - 204 null null 96.1063ms
+2026-05-19 09:36:14.457 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5062/api/games/91479d3e-94a9-4655-9529-b5e4e5e424a6 - null null
+2026-05-19 09:36:14.459 +03:00 [INF] CORS policy execution successful.
+2026-05-19 09:36:14.465 +03:00 [INF] Failed to validate the token.
+Microsoft.IdentityModel.Tokens.SecurityTokenExpiredException: IDX10223: Lifetime validation failed. The token is expired. ValidTo (UTC): '19/05/2026 06:24:50 ص', Current time (UTC): '19/05/2026 06:36:14 ص'.
+   at Microsoft.IdentityModel.Tokens.Validators.ValidateLifetime(Nullable`1 notBefore, Nullable`1 expires, SecurityToken securityToken, TokenValidationParameters validationParameters)
+   at Microsoft.IdentityModel.JsonWebTokens.JsonWebTokenHandler.ValidateTokenPayloadAsync(JsonWebToken jsonWebToken, TokenValidationParameters validationParameters, BaseConfiguration configuration)
+   at Microsoft.IdentityModel.JsonWebTokens.JsonWebTokenHandler.ValidateJWSAsync(JsonWebToken jsonWebToken, TokenValidationParameters validationParameters, BaseConfiguration configuration)
+2026-05-19 09:36:14.484 +03:00 [WRN] JWT authentication failed for GET /api/games/91479d3e-94a9-4655-9529-b5e4e5e424a6
+Microsoft.IdentityModel.Tokens.SecurityTokenExpiredException: IDX10223: Lifetime validation failed. The token is expired. ValidTo (UTC): '19/05/2026 06:24:50 ص', Current time (UTC): '19/05/2026 06:36:14 ص'.
+   at Microsoft.IdentityModel.Tokens.Validators.ValidateLifetime(Nullable`1 notBefore, Nullable`1 expires, SecurityToken securityToken, TokenValidationParameters validationParameters)
+   at Microsoft.IdentityModel.JsonWebTokens.JsonWebTokenHandler.ValidateTokenPayloadAsync(JsonWebToken jsonWebToken, TokenValidationParameters validationParameters, BaseConfiguration configuration)
+   at Microsoft.IdentityModel.JsonWebTokens.JsonWebTokenHandler.ValidateJWSAsync(JsonWebToken jsonWebToken, TokenValidationParameters validationParameters, BaseConfiguration configuration)
+2026-05-19 09:36:14.486 +03:00 [INF] Bearer was not authenticated. Failure message: IDX10223: Lifetime validation failed. The token is expired. ValidTo (UTC): '19/05/2026 06:24:50 ص', Current time (UTC): '19/05/2026 06:36:14 ص'.
+2026-05-19 09:36:14.487 +03:00 [INF] Executing endpoint 'GameStore.Api.Controllers.GamesController.GetById (GameStore.Api)'
+2026-05-19 09:36:14.488 +03:00 [INF] Route matched with {action = "GetById", controller = "Games"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[GameStore.Api.DTOs.Games.GameResponseDto]] GetById(System.Guid) on controller GameStore.Api.Controllers.GamesController (GameStore.Api).
+2026-05-19 09:36:14.504 +03:00 [INF] Executed DbCommand (8ms) [Parameters=[@__id_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [g].[Id], [g].[CoverImageUrl], [g].[CreatedAtUtc], [g].[CreatedBy], [g].[Description], [g].[GenreId], [g].[Price], [g].[ReleaseDateUtc], [g].[Title], [g].[UpdatedAtUtc], [g].[UpdatedBy], [g0].[Id], [g0].[CreatedAtUtc], [g0].[CreatedBy], [g0].[Name], [g0].[UpdatedAtUtc], [g0].[UpdatedBy]
+FROM [dbo].[Games] AS [g]
+INNER JOIN [dbo].[Genres] AS [g0] ON [g].[GenreId] = [g0].[Id]
+WHERE [g].[Id] = @__id_0
+2026-05-19 09:36:14.527 +03:00 [INF] Executing OkObjectResult, writing value of type 'GameStore.Api.DTOs.Games.GameResponseDto'.
+2026-05-19 09:36:14.529 +03:00 [INF] Executed action GameStore.Api.Controllers.GamesController.GetById (GameStore.Api) in 40.2036ms
+2026-05-19 09:36:14.531 +03:00 [INF] Executed endpoint 'GameStore.Api.Controllers.GamesController.GetById (GameStore.Api)'
+2026-05-19 09:36:14.532 +03:00 [INF] HTTP GET /api/games/91479d3e-94a9-4655-9529-b5e4e5e424a6 responded 200 in 73.0615 ms
+2026-05-19 09:36:14.534 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5062/api/games/91479d3e-94a9-4655-9529-b5e4e5e424a6 - 200 null application/json; charset=utf-8 77.4013ms
+2026-05-19 09:36:16.658 +03:00 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5062/api/games?page=1&pageSize=6&search=&genreId= - null null
+2026-05-19 09:36:16.661 +03:00 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5062/api/genres - null null
+2026-05-19 09:36:16.667 +03:00 [INF] CORS policy execution successful.
+2026-05-19 09:36:16.670 +03:00 [INF] CORS policy execution successful.
+2026-05-19 09:36:16.671 +03:00 [INF] HTTP OPTIONS /api/games responded 204 in 4.5693 ms
+2026-05-19 09:36:16.672 +03:00 [INF] HTTP OPTIONS /api/genres responded 204 in 1.4186 ms
+2026-05-19 09:36:16.674 +03:00 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5062/api/games?page=1&pageSize=6&search=&genreId= - 204 null null 15.0683ms
+2026-05-19 09:36:16.675 +03:00 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5062/api/genres - 204 null null 14.4523ms
+2026-05-19 09:36:16.676 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5062/api/games?page=1&pageSize=6&search=&genreId= - null null
+2026-05-19 09:36:16.679 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5062/api/genres - null null
+2026-05-19 09:36:16.685 +03:00 [INF] CORS policy execution successful.
+2026-05-19 09:36:16.687 +03:00 [INF] CORS policy execution successful.
+2026-05-19 09:36:16.688 +03:00 [INF] Failed to validate the token.
+Microsoft.IdentityModel.Tokens.SecurityTokenExpiredException: IDX10223: Lifetime validation failed. The token is expired. ValidTo (UTC): '19/05/2026 06:24:50 ص', Current time (UTC): '19/05/2026 06:36:16 ص'.
+   at Microsoft.IdentityModel.Tokens.Validators.ValidateLifetime(Nullable`1 notBefore, Nullable`1 expires, SecurityToken securityToken, TokenValidationParameters validationParameters)
+   at Microsoft.IdentityModel.JsonWebTokens.JsonWebTokenHandler.ValidateTokenPayloadAsync(JsonWebToken jsonWebToken, TokenValidationParameters validationParameters, BaseConfiguration configuration)
+   at Microsoft.IdentityModel.JsonWebTokens.JsonWebTokenHandler.ValidateJWSAsync(JsonWebToken jsonWebToken, TokenValidationParameters validationParameters, BaseConfiguration configuration)
+2026-05-19 09:36:16.688 +03:00 [INF] Failed to validate the token.
+Microsoft.IdentityModel.Tokens.SecurityTokenExpiredException: IDX10223: Lifetime validation failed. The token is expired. ValidTo (UTC): '19/05/2026 06:24:50 ص', Current time (UTC): '19/05/2026 06:36:16 ص'.
+   at Microsoft.IdentityModel.Tokens.Validators.ValidateLifetime(Nullable`1 notBefore, Nullable`1 expires, SecurityToken securityToken, TokenValidationParameters validationParameters)
+   at Microsoft.IdentityModel.JsonWebTokens.JsonWebTokenHandler.ValidateTokenPayloadAsync(JsonWebToken jsonWebToken, TokenValidationParameters validationParameters, BaseConfiguration configuration)
+   at Microsoft.IdentityModel.JsonWebTokens.JsonWebTokenHandler.ValidateJWSAsync(JsonWebToken jsonWebToken, TokenValidationParameters validationParameters, BaseConfiguration configuration)
+2026-05-19 09:36:16.689 +03:00 [WRN] JWT authentication failed for GET /api/games
+Microsoft.IdentityModel.Tokens.SecurityTokenExpiredException: IDX10223: Lifetime validation failed. The token is expired. ValidTo (UTC): '19/05/2026 06:24:50 ص', Current time (UTC): '19/05/2026 06:36:16 ص'.
+   at Microsoft.IdentityModel.Tokens.Validators.ValidateLifetime(Nullable`1 notBefore, Nullable`1 expires, SecurityToken securityToken, TokenValidationParameters validationParameters)
+   at Microsoft.IdentityModel.JsonWebTokens.JsonWebTokenHandler.ValidateTokenPayloadAsync(JsonWebToken jsonWebToken, TokenValidationParameters validationParameters, BaseConfiguration configuration)
+   at Microsoft.IdentityModel.JsonWebTokens.JsonWebTokenHandler.ValidateJWSAsync(JsonWebToken jsonWebToken, TokenValidationParameters validationParameters, BaseConfiguration configuration)
+2026-05-19 09:36:16.691 +03:00 [WRN] JWT authentication failed for GET /api/genres
+Microsoft.IdentityModel.Tokens.SecurityTokenExpiredException: IDX10223: Lifetime validation failed. The token is expired. ValidTo (UTC): '19/05/2026 06:24:50 ص', Current time (UTC): '19/05/2026 06:36:16 ص'.
+   at Microsoft.IdentityModel.Tokens.Validators.ValidateLifetime(Nullable`1 notBefore, Nullable`1 expires, SecurityToken securityToken, TokenValidationParameters validationParameters)
+   at Microsoft.IdentityModel.JsonWebTokens.JsonWebTokenHandler.ValidateTokenPayloadAsync(JsonWebToken jsonWebToken, TokenValidationParameters validationParameters, BaseConfiguration configuration)
+   at Microsoft.IdentityModel.JsonWebTokens.JsonWebTokenHandler.ValidateJWSAsync(JsonWebToken jsonWebToken, TokenValidationParameters validationParameters, BaseConfiguration configuration)
+2026-05-19 09:36:16.692 +03:00 [INF] Bearer was not authenticated. Failure message: IDX10223: Lifetime validation failed. The token is expired. ValidTo (UTC): '19/05/2026 06:24:50 ص', Current time (UTC): '19/05/2026 06:36:16 ص'.
+2026-05-19 09:36:16.696 +03:00 [INF] Bearer was not authenticated. Failure message: IDX10223: Lifetime validation failed. The token is expired. ValidTo (UTC): '19/05/2026 06:24:50 ص', Current time (UTC): '19/05/2026 06:36:16 ص'.
+2026-05-19 09:36:16.697 +03:00 [INF] Executing endpoint 'GameStore.Api.Controllers.GamesController.GetAll (GameStore.Api)'
+2026-05-19 09:36:16.698 +03:00 [INF] Executing endpoint 'GameStore.Api.Controllers.GenresController.GetAll (GameStore.Api)'
+2026-05-19 09:36:16.699 +03:00 [INF] Route matched with {action = "GetAll", controller = "Games"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[GameStore.Api.DTOs.Common.PagedResultDto`1[GameStore.Api.DTOs.Games.GameResponseDto]]] GetAll(GameStore.Api.DTOs.Games.GameQueryParametersDto) on controller GameStore.Api.Controllers.GamesController (GameStore.Api).
+2026-05-19 09:36:16.699 +03:00 [INF] Route matched with {action = "GetAll", controller = "Genres"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[System.Collections.Generic.List`1[GameStore.Api.DTOs.Genres.GenreResponseDto]]] GetAll() on controller GameStore.Api.Controllers.GenresController (GameStore.Api).
+2026-05-19 09:36:16.705 +03:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [dbo].[Games] AS [g]
+2026-05-19 09:36:16.709 +03:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [g].[Id], [g].[Name]
+FROM [dbo].[Genres] AS [g]
+ORDER BY [g].[Name]
+2026-05-19 09:36:16.713 +03:00 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[GameStore.Api.DTOs.Genres.GenreResponseDto, GameStore.Api, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-05-19 09:36:16.715 +03:00 [INF] Executed DbCommand (8ms) [Parameters=[@__p_0='?' (DbType = Int32), @__p_1='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [t].[Id], [t].[CoverImageUrl], [t].[CreatedAtUtc], [t].[CreatedBy], [t].[Description], [t].[GenreId], [t].[Price], [t].[ReleaseDateUtc], [t].[Title], [t].[UpdatedAtUtc], [t].[UpdatedBy], [g0].[Id], [g0].[CreatedAtUtc], [g0].[CreatedBy], [g0].[Name], [g0].[UpdatedAtUtc], [g0].[UpdatedBy]
+FROM (
+    SELECT [g].[Id], [g].[CoverImageUrl], [g].[CreatedAtUtc], [g].[CreatedBy], [g].[Description], [g].[GenreId], [g].[Price], [g].[ReleaseDateUtc], [g].[Title], [g].[UpdatedAtUtc], [g].[UpdatedBy]
+    FROM [dbo].[Games] AS [g]
+    ORDER BY [g].[Title]
+    OFFSET @__p_0 ROWS FETCH NEXT @__p_1 ROWS ONLY
+) AS [t]
+INNER JOIN [dbo].[Genres] AS [g0] ON [t].[GenreId] = [g0].[Id]
+ORDER BY [t].[Title]
+2026-05-19 09:36:16.715 +03:00 [INF] Executed action GameStore.Api.Controllers.GenresController.GetAll (GameStore.Api) in 12.2055ms
+2026-05-19 09:36:16.718 +03:00 [INF] Executed endpoint 'GameStore.Api.Controllers.GenresController.GetAll (GameStore.Api)'
+2026-05-19 09:36:16.719 +03:00 [INF] HTTP GET /api/genres responded 200 in 32.5119 ms
+2026-05-19 09:36:16.724 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5062/api/genres - 200 null application/json; charset=utf-8 45.8451ms
+2026-05-19 09:36:17.354 +03:00 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5062/api/games/5016b086-ac28-440e-b736-f6df052ccb24 - null null
+2026-05-19 09:36:17.358 +03:00 [INF] CORS policy execution successful.
+2026-05-19 09:36:17.359 +03:00 [INF] HTTP OPTIONS /api/games/5016b086-ac28-440e-b736-f6df052ccb24 responded 204 in 1.3476 ms
+2026-05-19 09:36:17.361 +03:00 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5062/api/games/5016b086-ac28-440e-b736-f6df052ccb24 - 204 null null 7.7528ms
+2026-05-19 09:36:17.364 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5062/api/games/5016b086-ac28-440e-b736-f6df052ccb24 - null null
+2026-05-19 09:36:17.369 +03:00 [INF] CORS policy execution successful.
+2026-05-19 09:36:17.370 +03:00 [INF] Failed to validate the token.
+Microsoft.IdentityModel.Tokens.SecurityTokenExpiredException: IDX10223: Lifetime validation failed. The token is expired. ValidTo (UTC): '19/05/2026 06:24:50 ص', Current time (UTC): '19/05/2026 06:36:17 ص'.
+   at Microsoft.IdentityModel.Tokens.Validators.ValidateLifetime(Nullable`1 notBefore, Nullable`1 expires, SecurityToken securityToken, TokenValidationParameters validationParameters)
+   at Microsoft.IdentityModel.JsonWebTokens.JsonWebTokenHandler.ValidateTokenPayloadAsync(JsonWebToken jsonWebToken, TokenValidationParameters validationParameters, BaseConfiguration configuration)
+   at Microsoft.IdentityModel.JsonWebTokens.JsonWebTokenHandler.ValidateJWSAsync(JsonWebToken jsonWebToken, TokenValidationParameters validationParameters, BaseConfiguration configuration)
+2026-05-19 09:36:17.371 +03:00 [WRN] JWT authentication failed for GET /api/games/5016b086-ac28-440e-b736-f6df052ccb24
+Microsoft.IdentityModel.Tokens.SecurityTokenExpiredException: IDX10223: Lifetime validation failed. The token is expired. ValidTo (UTC): '19/05/2026 06:24:50 ص', Current time (UTC): '19/05/2026 06:36:17 ص'.
+   at Microsoft.IdentityModel.Tokens.Validators.ValidateLifetime(Nullable`1 notBefore, Nullable`1 expires, SecurityToken securityToken, TokenValidationParameters validationParameters)
+   at Microsoft.IdentityModel.JsonWebTokens.JsonWebTokenHandler.ValidateTokenPayloadAsync(JsonWebToken jsonWebToken, TokenValidationParameters validationParameters, BaseConfiguration configuration)
+   at Microsoft.IdentityModel.JsonWebTokens.JsonWebTokenHandler.ValidateJWSAsync(JsonWebToken jsonWebToken, TokenValidationParameters validationParameters, BaseConfiguration configuration)
+2026-05-19 09:36:17.373 +03:00 [INF] Bearer was not authenticated. Failure message: IDX10223: Lifetime validation failed. The token is expired. ValidTo (UTC): '19/05/2026 06:24:50 ص', Current time (UTC): '19/05/2026 06:36:17 ص'.
+2026-05-19 09:36:17.374 +03:00 [INF] Executing endpoint 'GameStore.Api.Controllers.GamesController.GetById (GameStore.Api)'
+2026-05-19 09:36:17.376 +03:00 [INF] Route matched with {action = "GetById", controller = "Games"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[GameStore.Api.DTOs.Games.GameResponseDto]] GetById(System.Guid) on controller GameStore.Api.Controllers.GamesController (GameStore.Api).
+2026-05-19 09:36:17.392 +03:00 [INF] Executed DbCommand (13ms) [Parameters=[@__id_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [g].[Id], [g].[CoverImageUrl], [g].[CreatedAtUtc], [g].[CreatedBy], [g].[Description], [g].[GenreId], [g].[Price], [g].[ReleaseDateUtc], [g].[Title], [g].[UpdatedAtUtc], [g].[UpdatedBy], [g0].[Id], [g0].[CreatedAtUtc], [g0].[CreatedBy], [g0].[Name], [g0].[UpdatedAtUtc], [g0].[UpdatedBy]
+FROM [dbo].[Games] AS [g]
+INNER JOIN [dbo].[Genres] AS [g0] ON [g].[GenreId] = [g0].[Id]
+WHERE [g].[Id] = @__id_0
+2026-05-19 09:36:17.423 +03:00 [INF] Executing OkObjectResult, writing value of type 'GameStore.Api.DTOs.Games.GameResponseDto'.
+2026-05-19 09:36:17.425 +03:00 [INF] Executed action GameStore.Api.Controllers.GamesController.GetById (GameStore.Api) in 47.745ms
+2026-05-19 09:36:17.427 +03:00 [INF] Executed endpoint 'GameStore.Api.Controllers.GamesController.GetById (GameStore.Api)'
+2026-05-19 09:36:17.428 +03:00 [INF] HTTP GET /api/games/5016b086-ac28-440e-b736-f6df052ccb24 responded 200 in 59.3178 ms
+2026-05-19 09:36:17.430 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5062/api/games/5016b086-ac28-440e-b736-f6df052ccb24 - 200 null application/json; charset=utf-8 65.3396ms
+2026-05-19 09:36:18.844 +03:00 [INF] Executing OkObjectResult, writing value of type 'GameStore.Api.DTOs.Common.PagedResultDto`1[[GameStore.Api.DTOs.Games.GameResponseDto, GameStore.Api, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-05-19 09:36:18.852 +03:00 [INF] Executed action GameStore.Api.Controllers.GamesController.GetAll (GameStore.Api) in 2151.0016ms
+2026-05-19 09:36:18.854 +03:00 [INF] Executed endpoint 'GameStore.Api.Controllers.GamesController.GetAll (GameStore.Api)'
+2026-05-19 09:36:18.855 +03:00 [INF] HTTP GET /api/games responded 200 in 2170.0591 ms
+2026-05-19 09:36:18.857 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5062/api/games?page=1&pageSize=6&search=&genreId= - 200 null application/json; charset=utf-8 2180.5949ms
+2026-05-19 09:36:19.652 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5062/api/games/5016b086-ac28-440e-b736-f6df052ccb24 - null null
+2026-05-19 09:36:19.655 +03:00 [INF] Request starting HTTP/1.1 POST http://localhost:5062/api/auth/refresh - null 0
+2026-05-19 09:36:19.656 +03:00 [INF] CORS policy execution successful.
+2026-05-19 09:36:19.658 +03:00 [INF] CORS policy execution successful.
+2026-05-19 09:36:19.659 +03:00 [INF] Executing endpoint 'GameStore.Api.Controllers.GamesController.GetById (GameStore.Api)'
+2026-05-19 09:36:19.660 +03:00 [INF] Executing endpoint 'GameStore.Api.Controllers.AuthController.Refresh (GameStore.Api)'
+2026-05-19 09:36:19.662 +03:00 [INF] Route matched with {action = "GetById", controller = "Games"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[GameStore.Api.DTOs.Games.GameResponseDto]] GetById(System.Guid) on controller GameStore.Api.Controllers.GamesController (GameStore.Api).
+2026-05-19 09:36:19.664 +03:00 [INF] Route matched with {action = "Refresh", controller = "Auth"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Refresh() on controller GameStore.Api.Controllers.AuthController (GameStore.Api).
+2026-05-19 09:36:19.671 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[@__id_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [g].[Id], [g].[CoverImageUrl], [g].[CreatedAtUtc], [g].[CreatedBy], [g].[Description], [g].[GenreId], [g].[Price], [g].[ReleaseDateUtc], [g].[Title], [g].[UpdatedAtUtc], [g].[UpdatedBy], [g0].[Id], [g0].[CreatedAtUtc], [g0].[CreatedBy], [g0].[Name], [g0].[UpdatedAtUtc], [g0].[UpdatedBy]
+FROM [dbo].[Games] AS [g]
+INNER JOIN [dbo].[Genres] AS [g0] ON [g].[GenreId] = [g0].[Id]
+WHERE [g].[Id] = @__id_0
+2026-05-19 09:36:19.688 +03:00 [INF] Executing OkObjectResult, writing value of type 'GameStore.Api.DTOs.Games.GameResponseDto'.
+2026-05-19 09:36:19.688 +03:00 [INF] Executed DbCommand (18ms) [Parameters=[@__refreshToken_0='?' (Size = 500)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [r].[Id], [r].[CreatedAtUtc], [r].[CreatedBy], [r].[ExpiresAtUtc], [r].[IsRevoked], [r].[RevokedAtUtc], [r].[Token], [r].[UpdatedAtUtc], [r].[UpdatedBy], [r].[UserId], [a].[Id], [a].[AccessFailedCount], [a].[ConcurrencyStamp], [a].[CreatedAtUtc], [a].[Email], [a].[EmailConfirmed], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [dbo].[RefreshTokens] AS [r]
+INNER JOIN [dbo].[AspNetUsers] AS [a] ON [r].[UserId] = [a].[Id]
+WHERE [r].[Token] = @__refreshToken_0
+2026-05-19 09:36:19.690 +03:00 [INF] Executed action GameStore.Api.Controllers.GamesController.GetById (GameStore.Api) in 23.1506ms
+2026-05-19 09:36:19.693 +03:00 [INF] Executed endpoint 'GameStore.Api.Controllers.GamesController.GetById (GameStore.Api)'
+2026-05-19 09:36:19.692 +03:00 [INF] Executing UnauthorizedObjectResult, writing value of type '<>f__AnonymousType1`1[[System.String, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2026-05-19 09:36:19.696 +03:00 [INF] HTTP GET /api/games/5016b086-ac28-440e-b736-f6df052ccb24 responded 200 in 39.9278 ms
+2026-05-19 09:36:19.698 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5062/api/games/5016b086-ac28-440e-b736-f6df052ccb24 - 200 null application/json; charset=utf-8 46.6644ms
+2026-05-19 09:36:19.706 +03:00 [INF] Executed action GameStore.Api.Controllers.AuthController.Refresh (GameStore.Api) in 36.5333ms
+2026-05-19 09:36:19.708 +03:00 [INF] Executed endpoint 'GameStore.Api.Controllers.AuthController.Refresh (GameStore.Api)'
+2026-05-19 09:36:19.709 +03:00 [INF] HTTP POST /api/auth/refresh responded 401 in 50.6346 ms
+2026-05-19 09:36:19.712 +03:00 [INF] Request finished HTTP/1.1 POST http://localhost:5062/api/auth/refresh - 401 null application/json; charset=utf-8 57.7482ms
+2026-05-19 09:36:21.005 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5062/api/genres - null null
+2026-05-19 09:36:21.007 +03:00 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5062/api/games?page=1&pageSize=10&search=&genreId= - null null
+2026-05-19 09:36:21.009 +03:00 [INF] CORS policy execution successful.
+2026-05-19 09:36:21.016 +03:00 [INF] CORS policy execution successful.
+2026-05-19 09:36:21.017 +03:00 [INF] Failed to validate the token.
+Microsoft.IdentityModel.Tokens.SecurityTokenExpiredException: IDX10223: Lifetime validation failed. The token is expired. ValidTo (UTC): '19/05/2026 06:11:59 ص', Current time (UTC): '19/05/2026 06:36:21 ص'.
+   at Microsoft.IdentityModel.Tokens.Validators.ValidateLifetime(Nullable`1 notBefore, Nullable`1 expires, SecurityToken securityToken, TokenValidationParameters validationParameters)
+   at Microsoft.IdentityModel.JsonWebTokens.JsonWebTokenHandler.ValidateTokenPayloadAsync(JsonWebToken jsonWebToken, TokenValidationParameters validationParameters, BaseConfiguration configuration)
+   at Microsoft.IdentityModel.JsonWebTokens.JsonWebTokenHandler.ValidateJWSAsync(JsonWebToken jsonWebToken, TokenValidationParameters validationParameters, BaseConfiguration configuration)
+2026-05-19 09:36:21.018 +03:00 [INF] HTTP OPTIONS /api/games responded 204 in 1.5894 ms
+2026-05-19 09:36:21.021 +03:00 [WRN] JWT authentication failed for GET /api/genres
+Microsoft.IdentityModel.Tokens.SecurityTokenExpiredException: IDX10223: Lifetime validation failed. The token is expired. ValidTo (UTC): '19/05/2026 06:11:59 ص', Current time (UTC): '19/05/2026 06:36:21 ص'.
+   at Microsoft.IdentityModel.Tokens.Validators.ValidateLifetime(Nullable`1 notBefore, Nullable`1 expires, SecurityToken securityToken, TokenValidationParameters validationParameters)
+   at Microsoft.IdentityModel.JsonWebTokens.JsonWebTokenHandler.ValidateTokenPayloadAsync(JsonWebToken jsonWebToken, TokenValidationParameters validationParameters, BaseConfiguration configuration)
+   at Microsoft.IdentityModel.JsonWebTokens.JsonWebTokenHandler.ValidateJWSAsync(JsonWebToken jsonWebToken, TokenValidationParameters validationParameters, BaseConfiguration configuration)
+2026-05-19 09:36:21.029 +03:00 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5062/api/games?page=1&pageSize=10&search=&genreId= - 204 null null 21.1457ms
+2026-05-19 09:36:21.031 +03:00 [INF] Bearer was not authenticated. Failure message: IDX10223: Lifetime validation failed. The token is expired. ValidTo (UTC): '19/05/2026 06:11:59 ص', Current time (UTC): '19/05/2026 06:36:21 ص'.
+2026-05-19 09:36:21.032 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5062/api/games?page=1&pageSize=10&search=&genreId= - null null
+2026-05-19 09:36:21.035 +03:00 [INF] Executing endpoint 'GameStore.Api.Controllers.GenresController.GetAll (GameStore.Api)'
+2026-05-19 09:36:21.038 +03:00 [INF] CORS policy execution successful.
+2026-05-19 09:36:21.039 +03:00 [INF] Route matched with {action = "GetAll", controller = "Genres"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[System.Collections.Generic.List`1[GameStore.Api.DTOs.Genres.GenreResponseDto]]] GetAll() on controller GameStore.Api.Controllers.GenresController (GameStore.Api).
+2026-05-19 09:36:21.041 +03:00 [INF] Failed to validate the token.
+Microsoft.IdentityModel.Tokens.SecurityTokenExpiredException: IDX10223: Lifetime validation failed. The token is expired. ValidTo (UTC): '19/05/2026 06:11:59 ص', Current time (UTC): '19/05/2026 06:36:21 ص'.
+   at Microsoft.IdentityModel.Tokens.Validators.ValidateLifetime(Nullable`1 notBefore, Nullable`1 expires, SecurityToken securityToken, TokenValidationParameters validationParameters)
+   at Microsoft.IdentityModel.JsonWebTokens.JsonWebTokenHandler.ValidateTokenPayloadAsync(JsonWebToken jsonWebToken, TokenValidationParameters validationParameters, BaseConfiguration configuration)
+   at Microsoft.IdentityModel.JsonWebTokens.JsonWebTokenHandler.ValidateJWSAsync(JsonWebToken jsonWebToken, TokenValidationParameters validationParameters, BaseConfiguration configuration)
+2026-05-19 09:36:21.044 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [g].[Id], [g].[Name]
+FROM [dbo].[Genres] AS [g]
+ORDER BY [g].[Name]
+2026-05-19 09:36:21.045 +03:00 [WRN] JWT authentication failed for GET /api/games
+Microsoft.IdentityModel.Tokens.SecurityTokenExpiredException: IDX10223: Lifetime validation failed. The token is expired. ValidTo (UTC): '19/05/2026 06:11:59 ص', Current time (UTC): '19/05/2026 06:36:21 ص'.
+   at Microsoft.IdentityModel.Tokens.Validators.ValidateLifetime(Nullable`1 notBefore, Nullable`1 expires, SecurityToken securityToken, TokenValidationParameters validationParameters)
+   at Microsoft.IdentityModel.JsonWebTokens.JsonWebTokenHandler.ValidateTokenPayloadAsync(JsonWebToken jsonWebToken, TokenValidationParameters validationParameters, BaseConfiguration configuration)
+   at Microsoft.IdentityModel.JsonWebTokens.JsonWebTokenHandler.ValidateJWSAsync(JsonWebToken jsonWebToken, TokenValidationParameters validationParameters, BaseConfiguration configuration)
+2026-05-19 09:36:21.046 +03:00 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[GameStore.Api.DTOs.Genres.GenreResponseDto, GameStore.Api, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-05-19 09:36:21.048 +03:00 [INF] Bearer was not authenticated. Failure message: IDX10223: Lifetime validation failed. The token is expired. ValidTo (UTC): '19/05/2026 06:11:59 ص', Current time (UTC): '19/05/2026 06:36:21 ص'.
+2026-05-19 09:36:21.049 +03:00 [INF] Executed action GameStore.Api.Controllers.GenresController.GetAll (GameStore.Api) in 6.7453ms
+2026-05-19 09:36:21.049 +03:00 [INF] Executing endpoint 'GameStore.Api.Controllers.GamesController.GetAll (GameStore.Api)'
+2026-05-19 09:36:21.051 +03:00 [INF] Executed endpoint 'GameStore.Api.Controllers.GenresController.GetAll (GameStore.Api)'
+2026-05-19 09:36:21.053 +03:00 [INF] Route matched with {action = "GetAll", controller = "Games"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[GameStore.Api.DTOs.Common.PagedResultDto`1[GameStore.Api.DTOs.Games.GameResponseDto]]] GetAll(GameStore.Api.DTOs.Games.GameQueryParametersDto) on controller GameStore.Api.Controllers.GamesController (GameStore.Api).
+2026-05-19 09:36:21.053 +03:00 [INF] HTTP GET /api/genres responded 200 in 44.4693 ms
+2026-05-19 09:36:21.058 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5062/api/genres - 200 null application/json; charset=utf-8 52.8272ms
+2026-05-19 09:36:21.060 +03:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [dbo].[Games] AS [g]
+2026-05-19 09:36:21.068 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[@__p_0='?' (DbType = Int32), @__p_1='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [t].[Id], [t].[CoverImageUrl], [t].[CreatedAtUtc], [t].[CreatedBy], [t].[Description], [t].[GenreId], [t].[Price], [t].[ReleaseDateUtc], [t].[Title], [t].[UpdatedAtUtc], [t].[UpdatedBy], [g0].[Id], [g0].[CreatedAtUtc], [g0].[CreatedBy], [g0].[Name], [g0].[UpdatedAtUtc], [g0].[UpdatedBy]
+FROM (
+    SELECT [g].[Id], [g].[CoverImageUrl], [g].[CreatedAtUtc], [g].[CreatedBy], [g].[Description], [g].[GenreId], [g].[Price], [g].[ReleaseDateUtc], [g].[Title], [g].[UpdatedAtUtc], [g].[UpdatedBy]
+    FROM [dbo].[Games] AS [g]
+    ORDER BY [g].[Title]
+    OFFSET @__p_0 ROWS FETCH NEXT @__p_1 ROWS ONLY
+) AS [t]
+INNER JOIN [dbo].[Genres] AS [g0] ON [t].[GenreId] = [g0].[Id]
+ORDER BY [t].[Title]
+2026-05-19 09:36:23.213 +03:00 [INF] Executing OkObjectResult, writing value of type 'GameStore.Api.DTOs.Common.PagedResultDto`1[[GameStore.Api.DTOs.Games.GameResponseDto, GameStore.Api, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-05-19 09:36:23.221 +03:00 [INF] Executed action GameStore.Api.Controllers.GamesController.GetAll (GameStore.Api) in 2165.3577ms
+2026-05-19 09:36:23.224 +03:00 [INF] Executed endpoint 'GameStore.Api.Controllers.GamesController.GetAll (GameStore.Api)'
+2026-05-19 09:36:23.225 +03:00 [INF] HTTP GET /api/games responded 200 in 2186.9065 ms
+2026-05-19 09:36:23.227 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5062/api/games?page=1&pageSize=10&search=&genreId= - 200 null application/json; charset=utf-8 2195.4603ms
+2026-05-19 09:51:29.948 +03:00 [INF] Application is shutting down...
+2026-05-19 09:51:48.854 +03:00 [INF] Executed DbCommand (26ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1
+2026-05-19 09:51:48.939 +03:00 [INF] Executed DbCommand (20ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT OBJECT_ID(N'[__EFMigrationsHistory]');
+2026-05-19 09:51:48.944 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1
+2026-05-19 09:51:48.948 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT OBJECT_ID(N'[__EFMigrationsHistory]');
+2026-05-19 09:51:48.964 +03:00 [INF] Executed DbCommand (3ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [MigrationId], [ProductVersion]
+FROM [__EFMigrationsHistory]
+ORDER BY [MigrationId];
+2026-05-19 09:51:48.980 +03:00 [INF] No migrations were applied. The database is already up to date.
+2026-05-19 09:51:48.992 +03:00 [INF] User profile is available. Using 'C:\Users\alaae\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2026-05-19 09:51:49.215 +03:00 [INF] Executed DbCommand (24ms) [Parameters=[@__normalizedName_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[ConcurrencyStamp], [a].[Name], [a].[NormalizedName]
+FROM [dbo].[AspNetRoles] AS [a]
+WHERE [a].[NormalizedName] = @__normalizedName_0
+2026-05-19 09:51:49.254 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[@__normalizedName_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[ConcurrencyStamp], [a].[Name], [a].[NormalizedName]
+FROM [dbo].[AspNetRoles] AS [a]
+WHERE [a].[NormalizedName] = @__normalizedName_0
+2026-05-19 09:51:49.299 +03:00 [INF] Executed DbCommand (5ms) [Parameters=[@__normalizedEmail_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(2) [a].[Id], [a].[AccessFailedCount], [a].[ConcurrencyStamp], [a].[CreatedAtUtc], [a].[Email], [a].[EmailConfirmed], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [dbo].[AspNetUsers] AS [a]
+WHERE [a].[NormalizedEmail] = @__normalizedEmail_0
+2026-05-19 09:51:49.350 +03:00 [INF] Executed DbCommand (3ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [dbo].[Genres] AS [g]) THEN CAST(1 AS bit)
+    ELSE CAST(0 AS bit)
+END
+2026-05-19 09:51:49.409 +03:00 [INF] Now listening on: http://localhost:5062
+2026-05-19 09:51:49.412 +03:00 [INF] Application started. Press Ctrl+C to shut down.
+2026-05-19 09:51:49.413 +03:00 [INF] Hosting environment: Development
+2026-05-19 09:51:49.414 +03:00 [INF] Content root path: D:\New folder\GameStore\backend\GameStore.Api
+2026-05-19 09:51:51.968 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5062/api/health - null null
+2026-05-19 09:51:52.002 +03:00 [WRN] Failed to determine the https port for redirect.
+2026-05-19 09:51:52.009 +03:00 [INF] Executing endpoint 'GameStore.Api.Controllers.HealthController.Get (GameStore.Api)'
+2026-05-19 09:51:52.020 +03:00 [INF] Route matched with {action = "Get", controller = "Health"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Get() on controller GameStore.Api.Controllers.HealthController (GameStore.Api).
+2026-05-19 09:51:52.026 +03:00 [INF] Executing OkObjectResult, writing value of type '<>f__AnonymousType3`2[[System.String, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.DateTime, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2026-05-19 09:51:52.130 +03:00 [INF] Executed action GameStore.Api.Controllers.HealthController.Get (GameStore.Api) in 105.339ms
+2026-05-19 09:51:52.132 +03:00 [INF] Executed endpoint 'GameStore.Api.Controllers.HealthController.Get (GameStore.Api)'
+2026-05-19 09:51:52.135 +03:00 [INF] HTTP GET /api/health responded 200 in 132.7465 ms
+2026-05-19 09:51:52.138 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5062/api/health - 200 null application/json; charset=utf-8 171.4672ms
+2026-05-19 09:53:43.812 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5062/api/games?page=1&pageSize=5&search=&genreId= - null null
+2026-05-19 09:53:43.820 +03:00 [INF] CORS policy execution successful.
+2026-05-19 09:53:43.838 +03:00 [INF] Failed to validate the token.
+Microsoft.IdentityModel.Tokens.SecurityTokenMalformedException: IDX14100: JWT is not well formed, there are no dots (.).
+The token needs to be in JWS or JWE Compact Serialization Format. (JWS): 'EncodedHeader.EndcodedPayload.EncodedSignature'. (JWE): 'EncodedProtectedHeader.EncodedEncryptedKey.EncodedInitializationVector.EncodedCiphertext.EncodedAuthenticationTag'.
+ ---> Microsoft.IdentityModel.Tokens.SecurityTokenMalformedException: IDX14100: JWT is not well formed, there are no dots (.).
+The token needs to be in JWS or JWE Compact Serialization Format. (JWS): 'EncodedHeader.EndcodedPayload.EncodedSignature'. (JWE): 'EncodedProtectedHeader.EncodedEncryptedKey.EncodedInitializationVector.EncodedCiphertext.EncodedAuthenticationTag'.
+   at Microsoft.IdentityModel.JsonWebTokens.JsonWebToken.ReadToken(String encodedJson)
+   at Microsoft.IdentityModel.JsonWebTokens.JsonWebToken..ctor(String jwtEncodedString)
+   at Microsoft.IdentityModel.JsonWebTokens.JsonWebTokenHandler.ReadToken(String token, TokenValidationParameters validationParameters)
+   --- End of inner exception stack trace ---
+2026-05-19 09:53:43.855 +03:00 [WRN] JWT authentication failed for GET /api/games
+Microsoft.IdentityModel.Tokens.SecurityTokenMalformedException: IDX14100: JWT is not well formed, there are no dots (.).
+The token needs to be in JWS or JWE Compact Serialization Format. (JWS): 'EncodedHeader.EndcodedPayload.EncodedSignature'. (JWE): 'EncodedProtectedHeader.EncodedEncryptedKey.EncodedInitializationVector.EncodedCiphertext.EncodedAuthenticationTag'.
+ ---> Microsoft.IdentityModel.Tokens.SecurityTokenMalformedException: IDX14100: JWT is not well formed, there are no dots (.).
+The token needs to be in JWS or JWE Compact Serialization Format. (JWS): 'EncodedHeader.EndcodedPayload.EncodedSignature'. (JWE): 'EncodedProtectedHeader.EncodedEncryptedKey.EncodedInitializationVector.EncodedCiphertext.EncodedAuthenticationTag'.
+   at Microsoft.IdentityModel.JsonWebTokens.JsonWebToken.ReadToken(String encodedJson)
+   at Microsoft.IdentityModel.JsonWebTokens.JsonWebToken..ctor(String jwtEncodedString)
+   at Microsoft.IdentityModel.JsonWebTokens.JsonWebTokenHandler.ReadToken(String token, TokenValidationParameters validationParameters)
+   --- End of inner exception stack trace ---
+2026-05-19 09:53:43.858 +03:00 [INF] Bearer was not authenticated. Failure message: IDX14100: JWT is not well formed, there are no dots (.).
+The token needs to be in JWS or JWE Compact Serialization Format. (JWS): 'EncodedHeader.EndcodedPayload.EncodedSignature'. (JWE): 'EncodedProtectedHeader.EncodedEncryptedKey.EncodedInitializationVector.EncodedCiphertext.EncodedAuthenticationTag'.
+2026-05-19 09:53:43.860 +03:00 [INF] Executing endpoint 'GameStore.Api.Controllers.GamesController.GetAll (GameStore.Api)'
+2026-05-19 09:53:43.880 +03:00 [INF] Route matched with {action = "GetAll", controller = "Games"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[GameStore.Api.DTOs.Common.PagedResultDto`1[GameStore.Api.DTOs.Games.GameResponseDto]]] GetAll(GameStore.Api.DTOs.Games.GameQueryParametersDto) on controller GameStore.Api.Controllers.GamesController (GameStore.Api).
+2026-05-19 09:53:43.990 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5062/api/games?page=1&pageSize=5&search=&genreId= - null null
+2026-05-19 09:53:44.010 +03:00 [INF] CORS policy execution successful.
+2026-05-19 09:53:44.015 +03:00 [INF] Failed to validate the token.
+Microsoft.IdentityModel.Tokens.SecurityTokenMalformedException: IDX14100: JWT is not well formed, there are no dots (.).
+The token needs to be in JWS or JWE Compact Serialization Format. (JWS): 'EncodedHeader.EndcodedPayload.EncodedSignature'. (JWE): 'EncodedProtectedHeader.EncodedEncryptedKey.EncodedInitializationVector.EncodedCiphertext.EncodedAuthenticationTag'.
+ ---> Microsoft.IdentityModel.Tokens.SecurityTokenMalformedException: IDX14100: JWT is not well formed, there are no dots (.).
+The token needs to be in JWS or JWE Compact Serialization Format. (JWS): 'EncodedHeader.EndcodedPayload.EncodedSignature'. (JWE): 'EncodedProtectedHeader.EncodedEncryptedKey.EncodedInitializationVector.EncodedCiphertext.EncodedAuthenticationTag'.
+   at Microsoft.IdentityModel.JsonWebTokens.JsonWebToken.ReadToken(String encodedJson)
+   at Microsoft.IdentityModel.JsonWebTokens.JsonWebToken..ctor(String jwtEncodedString)
+   at Microsoft.IdentityModel.JsonWebTokens.JsonWebTokenHandler.ReadToken(String token, TokenValidationParameters validationParameters)
+   --- End of inner exception stack trace ---
+2026-05-19 09:53:44.017 +03:00 [WRN] JWT authentication failed for GET /api/games
+Microsoft.IdentityModel.Tokens.SecurityTokenMalformedException: IDX14100: JWT is not well formed, there are no dots (.).
+The token needs to be in JWS or JWE Compact Serialization Format. (JWS): 'EncodedHeader.EndcodedPayload.EncodedSignature'. (JWE): 'EncodedProtectedHeader.EncodedEncryptedKey.EncodedInitializationVector.EncodedCiphertext.EncodedAuthenticationTag'.
+ ---> Microsoft.IdentityModel.Tokens.SecurityTokenMalformedException: IDX14100: JWT is not well formed, there are no dots (.).
+The token needs to be in JWS or JWE Compact Serialization Format. (JWS): 'EncodedHeader.EndcodedPayload.EncodedSignature'. (JWE): 'EncodedProtectedHeader.EncodedEncryptedKey.EncodedInitializationVector.EncodedCiphertext.EncodedAuthenticationTag'.
+   at Microsoft.IdentityModel.JsonWebTokens.JsonWebToken.ReadToken(String encodedJson)
+   at Microsoft.IdentityModel.JsonWebTokens.JsonWebToken..ctor(String jwtEncodedString)
+   at Microsoft.IdentityModel.JsonWebTokens.JsonWebTokenHandler.ReadToken(String token, TokenValidationParameters validationParameters)
+   --- End of inner exception stack trace ---
+2026-05-19 09:53:44.022 +03:00 [INF] Bearer was not authenticated. Failure message: IDX14100: JWT is not well formed, there are no dots (.).
+The token needs to be in JWS or JWE Compact Serialization Format. (JWS): 'EncodedHeader.EndcodedPayload.EncodedSignature'. (JWE): 'EncodedProtectedHeader.EncodedEncryptedKey.EncodedInitializationVector.EncodedCiphertext.EncodedAuthenticationTag'.
+2026-05-19 09:53:44.079 +03:00 [INF] Executed DbCommand (4ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [dbo].[Games] AS [g]
+2026-05-19 09:53:44.096 +03:00 [INF] Executing endpoint 'GameStore.Api.Controllers.GamesController.GetAll (GameStore.Api)'
+2026-05-19 09:53:44.098 +03:00 [INF] Route matched with {action = "GetAll", controller = "Games"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[GameStore.Api.DTOs.Common.PagedResultDto`1[GameStore.Api.DTOs.Games.GameResponseDto]]] GetAll(GameStore.Api.DTOs.Games.GameQueryParametersDto) on controller GameStore.Api.Controllers.GamesController (GameStore.Api).
+2026-05-19 09:53:44.153 +03:00 [INF] Executed DbCommand (8ms) [Parameters=[@__p_0='?' (DbType = Int32), @__p_1='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [t].[Id], [t].[CoverImageUrl], [t].[CreatedAtUtc], [t].[CreatedBy], [t].[Description], [t].[GenreId], [t].[Price], [t].[ReleaseDateUtc], [t].[Title], [t].[UpdatedAtUtc], [t].[UpdatedBy], [g0].[Id], [g0].[CreatedAtUtc], [g0].[CreatedBy], [g0].[Name], [g0].[UpdatedAtUtc], [g0].[UpdatedBy]
+FROM (
+    SELECT [g].[Id], [g].[CoverImageUrl], [g].[CreatedAtUtc], [g].[CreatedBy], [g].[Description], [g].[GenreId], [g].[Price], [g].[ReleaseDateUtc], [g].[Title], [g].[UpdatedAtUtc], [g].[UpdatedBy]
+    FROM [dbo].[Games] AS [g]
+    ORDER BY [g].[Title]
+    OFFSET @__p_0 ROWS FETCH NEXT @__p_1 ROWS ONLY
+) AS [t]
+INNER JOIN [dbo].[Genres] AS [g0] ON [t].[GenreId] = [g0].[Id]
+ORDER BY [t].[Title]
+2026-05-19 09:53:44.173 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [dbo].[Games] AS [g]
+2026-05-19 09:53:44.177 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[@__p_0='?' (DbType = Int32), @__p_1='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [t].[Id], [t].[CoverImageUrl], [t].[CreatedAtUtc], [t].[CreatedBy], [t].[Description], [t].[GenreId], [t].[Price], [t].[ReleaseDateUtc], [t].[Title], [t].[UpdatedAtUtc], [t].[UpdatedBy], [g0].[Id], [g0].[CreatedAtUtc], [g0].[CreatedBy], [g0].[Name], [g0].[UpdatedAtUtc], [g0].[UpdatedBy]
+FROM (
+    SELECT [g].[Id], [g].[CoverImageUrl], [g].[CreatedAtUtc], [g].[CreatedBy], [g].[Description], [g].[GenreId], [g].[Price], [g].[ReleaseDateUtc], [g].[Title], [g].[UpdatedAtUtc], [g].[UpdatedBy]
+    FROM [dbo].[Games] AS [g]
+    ORDER BY [g].[Title]
+    OFFSET @__p_0 ROWS FETCH NEXT @__p_1 ROWS ONLY
+) AS [t]
+INNER JOIN [dbo].[Genres] AS [g0] ON [t].[GenreId] = [g0].[Id]
+ORDER BY [t].[Title]
+2026-05-19 09:53:46.475 +03:00 [INF] Executing OkObjectResult, writing value of type 'GameStore.Api.DTOs.Common.PagedResultDto`1[[GameStore.Api.DTOs.Games.GameResponseDto, GameStore.Api, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-05-19 09:53:46.525 +03:00 [INF] Executing OkObjectResult, writing value of type 'GameStore.Api.DTOs.Common.PagedResultDto`1[[GameStore.Api.DTOs.Games.GameResponseDto, GameStore.Api, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-05-19 09:53:46.536 +03:00 [INF] Executed action GameStore.Api.Controllers.GamesController.GetAll (GameStore.Api) in 2435.8736ms
+2026-05-19 09:53:46.536 +03:00 [INF] Executed action GameStore.Api.Controllers.GamesController.GetAll (GameStore.Api) in 2652.419ms
+2026-05-19 09:53:46.542 +03:00 [INF] Executed endpoint 'GameStore.Api.Controllers.GamesController.GetAll (GameStore.Api)'
+2026-05-19 09:53:46.543 +03:00 [INF] Executed endpoint 'GameStore.Api.Controllers.GamesController.GetAll (GameStore.Api)'
+2026-05-19 09:53:46.546 +03:00 [INF] HTTP GET /api/games responded 200 in 2536.1007 ms
+2026-05-19 09:53:46.546 +03:00 [INF] HTTP GET /api/games responded 200 in 2726.6458 ms
+2026-05-19 09:53:46.553 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5062/api/games?page=1&pageSize=5&search=&genreId= - 200 null application/json; charset=utf-8 2562.4404ms
+2026-05-19 09:53:46.553 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5062/api/games?page=1&pageSize=5&search=&genreId= - 200 null application/json; charset=utf-8 2741.2322ms
+2026-05-19 09:53:50.119 +03:00 [INF] Request starting HTTP/1.1 POST http://localhost:5062/api/auth/refresh - null 0
+2026-05-19 09:53:50.122 +03:00 [INF] CORS policy execution successful.
+2026-05-19 09:53:50.123 +03:00 [INF] Executing endpoint 'GameStore.Api.Controllers.AuthController.Refresh (GameStore.Api)'
+2026-05-19 09:53:50.129 +03:00 [INF] Route matched with {action = "Refresh", controller = "Auth"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Refresh() on controller GameStore.Api.Controllers.AuthController (GameStore.Api).
+2026-05-19 09:53:50.136 +03:00 [INF] Executing UnauthorizedObjectResult, writing value of type '<>f__AnonymousType1`1[[System.String, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2026-05-19 09:53:50.140 +03:00 [INF] Executed action GameStore.Api.Controllers.AuthController.Refresh (GameStore.Api) in 9.3116ms
+2026-05-19 09:53:50.142 +03:00 [INF] Executed endpoint 'GameStore.Api.Controllers.AuthController.Refresh (GameStore.Api)'
+2026-05-19 09:53:50.145 +03:00 [INF] HTTP POST /api/auth/refresh responded 401 in 22.5823 ms
+2026-05-19 09:53:50.147 +03:00 [INF] Request finished HTTP/1.1 POST http://localhost:5062/api/auth/refresh - 401 null application/json; charset=utf-8 27.6508ms
+2026-05-19 09:55:18.358 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5062/api/games?page=1&pageSize=5&search=&genreId= - null null
+2026-05-19 09:55:18.362 +03:00 [INF] CORS policy execution successful.
+2026-05-19 09:55:18.363 +03:00 [INF] Failed to validate the token.
+Microsoft.IdentityModel.Tokens.SecurityTokenMalformedException: IDX14100: JWT is not well formed, there are no dots (.).
+The token needs to be in JWS or JWE Compact Serialization Format. (JWS): 'EncodedHeader.EndcodedPayload.EncodedSignature'. (JWE): 'EncodedProtectedHeader.EncodedEncryptedKey.EncodedInitializationVector.EncodedCiphertext.EncodedAuthenticationTag'.
+ ---> Microsoft.IdentityModel.Tokens.SecurityTokenMalformedException: IDX14100: JWT is not well formed, there are no dots (.).
+The token needs to be in JWS or JWE Compact Serialization Format. (JWS): 'EncodedHeader.EndcodedPayload.EncodedSignature'. (JWE): 'EncodedProtectedHeader.EncodedEncryptedKey.EncodedInitializationVector.EncodedCiphertext.EncodedAuthenticationTag'.
+   at Microsoft.IdentityModel.JsonWebTokens.JsonWebToken.ReadToken(String encodedJson)
+   at Microsoft.IdentityModel.JsonWebTokens.JsonWebToken..ctor(String jwtEncodedString)
+   at Microsoft.IdentityModel.JsonWebTokens.JsonWebTokenHandler.ReadToken(String token, TokenValidationParameters validationParameters)
+   --- End of inner exception stack trace ---
+2026-05-19 09:55:18.366 +03:00 [WRN] JWT authentication failed for GET /api/games
+Microsoft.IdentityModel.Tokens.SecurityTokenMalformedException: IDX14100: JWT is not well formed, there are no dots (.).
+The token needs to be in JWS or JWE Compact Serialization Format. (JWS): 'EncodedHeader.EndcodedPayload.EncodedSignature'. (JWE): 'EncodedProtectedHeader.EncodedEncryptedKey.EncodedInitializationVector.EncodedCiphertext.EncodedAuthenticationTag'.
+ ---> Microsoft.IdentityModel.Tokens.SecurityTokenMalformedException: IDX14100: JWT is not well formed, there are no dots (.).
+The token needs to be in JWS or JWE Compact Serialization Format. (JWS): 'EncodedHeader.EndcodedPayload.EncodedSignature'. (JWE): 'EncodedProtectedHeader.EncodedEncryptedKey.EncodedInitializationVector.EncodedCiphertext.EncodedAuthenticationTag'.
+   at Microsoft.IdentityModel.JsonWebTokens.JsonWebToken.ReadToken(String encodedJson)
+   at Microsoft.IdentityModel.JsonWebTokens.JsonWebToken..ctor(String jwtEncodedString)
+   at Microsoft.IdentityModel.JsonWebTokens.JsonWebTokenHandler.ReadToken(String token, TokenValidationParameters validationParameters)
+   --- End of inner exception stack trace ---
+2026-05-19 09:55:18.370 +03:00 [INF] Bearer was not authenticated. Failure message: IDX14100: JWT is not well formed, there are no dots (.).
+The token needs to be in JWS or JWE Compact Serialization Format. (JWS): 'EncodedHeader.EndcodedPayload.EncodedSignature'. (JWE): 'EncodedProtectedHeader.EncodedEncryptedKey.EncodedInitializationVector.EncodedCiphertext.EncodedAuthenticationTag'.
+2026-05-19 09:55:18.373 +03:00 [INF] Executing endpoint 'GameStore.Api.Controllers.GamesController.GetAll (GameStore.Api)'
+2026-05-19 09:55:18.375 +03:00 [INF] Route matched with {action = "GetAll", controller = "Games"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[GameStore.Api.DTOs.Common.PagedResultDto`1[GameStore.Api.DTOs.Games.GameResponseDto]]] GetAll(GameStore.Api.DTOs.Games.GameQueryParametersDto) on controller GameStore.Api.Controllers.GamesController (GameStore.Api).
+2026-05-19 09:55:18.386 +03:00 [INF] Executed DbCommand (4ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [dbo].[Games] AS [g]
+2026-05-19 09:55:18.397 +03:00 [INF] Executed DbCommand (8ms) [Parameters=[@__p_0='?' (DbType = Int32), @__p_1='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [t].[Id], [t].[CoverImageUrl], [t].[CreatedAtUtc], [t].[CreatedBy], [t].[Description], [t].[GenreId], [t].[Price], [t].[ReleaseDateUtc], [t].[Title], [t].[UpdatedAtUtc], [t].[UpdatedBy], [g0].[Id], [g0].[CreatedAtUtc], [g0].[CreatedBy], [g0].[Name], [g0].[UpdatedAtUtc], [g0].[UpdatedBy]
+FROM (
+    SELECT [g].[Id], [g].[CoverImageUrl], [g].[CreatedAtUtc], [g].[CreatedBy], [g].[Description], [g].[GenreId], [g].[Price], [g].[ReleaseDateUtc], [g].[Title], [g].[UpdatedAtUtc], [g].[UpdatedBy]
+    FROM [dbo].[Games] AS [g]
+    ORDER BY [g].[Title]
+    OFFSET @__p_0 ROWS FETCH NEXT @__p_1 ROWS ONLY
+) AS [t]
+INNER JOIN [dbo].[Genres] AS [g0] ON [t].[GenreId] = [g0].[Id]
+ORDER BY [t].[Title]
+2026-05-19 09:55:20.215 +03:00 [INF] Executing OkObjectResult, writing value of type 'GameStore.Api.DTOs.Common.PagedResultDto`1[[GameStore.Api.DTOs.Games.GameResponseDto, GameStore.Api, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-05-19 09:55:20.224 +03:00 [INF] Executed action GameStore.Api.Controllers.GamesController.GetAll (GameStore.Api) in 1845.7885ms
+2026-05-19 09:55:20.226 +03:00 [INF] Executed endpoint 'GameStore.Api.Controllers.GamesController.GetAll (GameStore.Api)'
+2026-05-19 09:55:20.227 +03:00 [INF] HTTP GET /api/games responded 200 in 1864.8636 ms
+2026-05-19 09:55:20.229 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5062/api/games?page=1&pageSize=5&search=&genreId= - 200 null application/json; charset=utf-8 1871.1492ms
+2026-05-19 09:55:21.390 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5062/api/games?page=1&pageSize=10&search=&genreId= - null null
+2026-05-19 09:55:21.391 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5062/api/genres - null null
+2026-05-19 09:55:21.393 +03:00 [INF] CORS policy execution successful.
+2026-05-19 09:55:21.395 +03:00 [INF] CORS policy execution successful.
+2026-05-19 09:55:21.395 +03:00 [INF] Failed to validate the token.
+Microsoft.IdentityModel.Tokens.SecurityTokenMalformedException: IDX14100: JWT is not well formed, there are no dots (.).
+The token needs to be in JWS or JWE Compact Serialization Format. (JWS): 'EncodedHeader.EndcodedPayload.EncodedSignature'. (JWE): 'EncodedProtectedHeader.EncodedEncryptedKey.EncodedInitializationVector.EncodedCiphertext.EncodedAuthenticationTag'.
+ ---> Microsoft.IdentityModel.Tokens.SecurityTokenMalformedException: IDX14100: JWT is not well formed, there are no dots (.).
+The token needs to be in JWS or JWE Compact Serialization Format. (JWS): 'EncodedHeader.EndcodedPayload.EncodedSignature'. (JWE): 'EncodedProtectedHeader.EncodedEncryptedKey.EncodedInitializationVector.EncodedCiphertext.EncodedAuthenticationTag'.
+   at Microsoft.IdentityModel.JsonWebTokens.JsonWebToken.ReadToken(String encodedJson)
+   at Microsoft.IdentityModel.JsonWebTokens.JsonWebToken..ctor(String jwtEncodedString)
+   at Microsoft.IdentityModel.JsonWebTokens.JsonWebTokenHandler.ReadToken(String token, TokenValidationParameters validationParameters)
+   --- End of inner exception stack trace ---
+2026-05-19 09:55:21.396 +03:00 [INF] Failed to validate the token.
+Microsoft.IdentityModel.Tokens.SecurityTokenMalformedException: IDX14100: JWT is not well formed, there are no dots (.).
+The token needs to be in JWS or JWE Compact Serialization Format. (JWS): 'EncodedHeader.EndcodedPayload.EncodedSignature'. (JWE): 'EncodedProtectedHeader.EncodedEncryptedKey.EncodedInitializationVector.EncodedCiphertext.EncodedAuthenticationTag'.
+ ---> Microsoft.IdentityModel.Tokens.SecurityTokenMalformedException: IDX14100: JWT is not well formed, there are no dots (.).
+The token needs to be in JWS or JWE Compact Serialization Format. (JWS): 'EncodedHeader.EndcodedPayload.EncodedSignature'. (JWE): 'EncodedProtectedHeader.EncodedEncryptedKey.EncodedInitializationVector.EncodedCiphertext.EncodedAuthenticationTag'.
+   at Microsoft.IdentityModel.JsonWebTokens.JsonWebToken.ReadToken(String encodedJson)
+   at Microsoft.IdentityModel.JsonWebTokens.JsonWebToken..ctor(String jwtEncodedString)
+   at Microsoft.IdentityModel.JsonWebTokens.JsonWebTokenHandler.ReadToken(String token, TokenValidationParameters validationParameters)
+   --- End of inner exception stack trace ---
+2026-05-19 09:55:21.398 +03:00 [WRN] JWT authentication failed for GET /api/games
+Microsoft.IdentityModel.Tokens.SecurityTokenMalformedException: IDX14100: JWT is not well formed, there are no dots (.).
+The token needs to be in JWS or JWE Compact Serialization Format. (JWS): 'EncodedHeader.EndcodedPayload.EncodedSignature'. (JWE): 'EncodedProtectedHeader.EncodedEncryptedKey.EncodedInitializationVector.EncodedCiphertext.EncodedAuthenticationTag'.
+ ---> Microsoft.IdentityModel.Tokens.SecurityTokenMalformedException: IDX14100: JWT is not well formed, there are no dots (.).
+The token needs to be in JWS or JWE Compact Serialization Format. (JWS): 'EncodedHeader.EndcodedPayload.EncodedSignature'. (JWE): 'EncodedProtectedHeader.EncodedEncryptedKey.EncodedInitializationVector.EncodedCiphertext.EncodedAuthenticationTag'.
+   at Microsoft.IdentityModel.JsonWebTokens.JsonWebToken.ReadToken(String encodedJson)
+   at Microsoft.IdentityModel.JsonWebTokens.JsonWebToken..ctor(String jwtEncodedString)
+   at Microsoft.IdentityModel.JsonWebTokens.JsonWebTokenHandler.ReadToken(String token, TokenValidationParameters validationParameters)
+   --- End of inner exception stack trace ---
+2026-05-19 09:55:21.399 +03:00 [WRN] JWT authentication failed for GET /api/genres
+Microsoft.IdentityModel.Tokens.SecurityTokenMalformedException: IDX14100: JWT is not well formed, there are no dots (.).
+The token needs to be in JWS or JWE Compact Serialization Format. (JWS): 'EncodedHeader.EndcodedPayload.EncodedSignature'. (JWE): 'EncodedProtectedHeader.EncodedEncryptedKey.EncodedInitializationVector.EncodedCiphertext.EncodedAuthenticationTag'.
+ ---> Microsoft.IdentityModel.Tokens.SecurityTokenMalformedException: IDX14100: JWT is not well formed, there are no dots (.).
+The token needs to be in JWS or JWE Compact Serialization Format. (JWS): 'EncodedHeader.EndcodedPayload.EncodedSignature'. (JWE): 'EncodedProtectedHeader.EncodedEncryptedKey.EncodedInitializationVector.EncodedCiphertext.EncodedAuthenticationTag'.
+   at Microsoft.IdentityModel.JsonWebTokens.JsonWebToken.ReadToken(String encodedJson)
+   at Microsoft.IdentityModel.JsonWebTokens.JsonWebToken..ctor(String jwtEncodedString)
+   at Microsoft.IdentityModel.JsonWebTokens.JsonWebTokenHandler.ReadToken(String token, TokenValidationParameters validationParameters)
+   --- End of inner exception stack trace ---
+2026-05-19 09:55:21.401 +03:00 [INF] Bearer was not authenticated. Failure message: IDX14100: JWT is not well formed, there are no dots (.).
+The token needs to be in JWS or JWE Compact Serialization Format. (JWS): 'EncodedHeader.EndcodedPayload.EncodedSignature'. (JWE): 'EncodedProtectedHeader.EncodedEncryptedKey.EncodedInitializationVector.EncodedCiphertext.EncodedAuthenticationTag'.
+2026-05-19 09:55:21.403 +03:00 [INF] Bearer was not authenticated. Failure message: IDX14100: JWT is not well formed, there are no dots (.).
+The token needs to be in JWS or JWE Compact Serialization Format. (JWS): 'EncodedHeader.EndcodedPayload.EncodedSignature'. (JWE): 'EncodedProtectedHeader.EncodedEncryptedKey.EncodedInitializationVector.EncodedCiphertext.EncodedAuthenticationTag'.
+2026-05-19 09:55:21.404 +03:00 [INF] Executing endpoint 'GameStore.Api.Controllers.GamesController.GetAll (GameStore.Api)'
+2026-05-19 09:55:21.406 +03:00 [INF] Executing endpoint 'GameStore.Api.Controllers.GenresController.GetAll (GameStore.Api)'
+2026-05-19 09:55:21.407 +03:00 [INF] Route matched with {action = "GetAll", controller = "Games"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[GameStore.Api.DTOs.Common.PagedResultDto`1[GameStore.Api.DTOs.Games.GameResponseDto]]] GetAll(GameStore.Api.DTOs.Games.GameQueryParametersDto) on controller GameStore.Api.Controllers.GamesController (GameStore.Api).
+2026-05-19 09:55:21.412 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [dbo].[Games] AS [g]
+2026-05-19 09:55:21.413 +03:00 [INF] Route matched with {action = "GetAll", controller = "Genres"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[System.Collections.Generic.List`1[GameStore.Api.DTOs.Genres.GenreResponseDto]]] GetAll() on controller GameStore.Api.Controllers.GenresController (GameStore.Api).
+2026-05-19 09:55:21.416 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[@__p_0='?' (DbType = Int32), @__p_1='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [t].[Id], [t].[CoverImageUrl], [t].[CreatedAtUtc], [t].[CreatedBy], [t].[Description], [t].[GenreId], [t].[Price], [t].[ReleaseDateUtc], [t].[Title], [t].[UpdatedAtUtc], [t].[UpdatedBy], [g0].[Id], [g0].[CreatedAtUtc], [g0].[CreatedBy], [g0].[Name], [g0].[UpdatedAtUtc], [g0].[UpdatedBy]
+FROM (
+    SELECT [g].[Id], [g].[CoverImageUrl], [g].[CreatedAtUtc], [g].[CreatedBy], [g].[Description], [g].[GenreId], [g].[Price], [g].[ReleaseDateUtc], [g].[Title], [g].[UpdatedAtUtc], [g].[UpdatedBy]
+    FROM [dbo].[Games] AS [g]
+    ORDER BY [g].[Title]
+    OFFSET @__p_0 ROWS FETCH NEXT @__p_1 ROWS ONLY
+) AS [t]
+INNER JOIN [dbo].[Genres] AS [g0] ON [t].[GenreId] = [g0].[Id]
+ORDER BY [t].[Title]
+2026-05-19 09:55:21.440 +03:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [g].[Id], [g].[Name]
+FROM [dbo].[Genres] AS [g]
+ORDER BY [g].[Name]
+2026-05-19 09:55:21.443 +03:00 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[GameStore.Api.DTOs.Genres.GenreResponseDto, GameStore.Api, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-05-19 09:55:21.445 +03:00 [INF] Executed action GameStore.Api.Controllers.GenresController.GetAll (GameStore.Api) in 30.263ms
+2026-05-19 09:55:21.447 +03:00 [INF] Executed endpoint 'GameStore.Api.Controllers.GenresController.GetAll (GameStore.Api)'
+2026-05-19 09:55:21.448 +03:00 [INF] HTTP GET /api/genres responded 200 in 53.2364 ms
+2026-05-19 09:55:21.450 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5062/api/genres - 200 null application/json; charset=utf-8 59.1386ms
+2026-05-19 09:55:23.160 +03:00 [INF] Executing OkObjectResult, writing value of type 'GameStore.Api.DTOs.Common.PagedResultDto`1[[GameStore.Api.DTOs.Games.GameResponseDto, GameStore.Api, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-05-19 09:55:23.166 +03:00 [INF] Executed action GameStore.Api.Controllers.GamesController.GetAll (GameStore.Api) in 1756.2103ms
+2026-05-19 09:55:23.167 +03:00 [INF] Executed endpoint 'GameStore.Api.Controllers.GamesController.GetAll (GameStore.Api)'
+2026-05-19 09:55:23.168 +03:00 [INF] HTTP GET /api/games responded 200 in 1775.0389 ms
+2026-05-19 09:55:23.170 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5062/api/games?page=1&pageSize=10&search=&genreId= - 200 null application/json; charset=utf-8 1779.8078ms
