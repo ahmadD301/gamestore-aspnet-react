@@ -88,10 +88,10 @@ jobs:
 
       - name: Start Backend API
         run: |
-          dotnet run \
+          nohup dotnet run \
             --project backend/GameStore.Api/GameStore.Api.csproj \
             --no-build \
-            --urls=http://localhost:5062 &
+            --urls=http://localhost:5062 > backend.log 2>&1 &
         env:
           ASPNETCORE_ENVIRONMENT: Testing
 
@@ -106,7 +106,15 @@ jobs:
             echo "Attempt $i/30 — retrying in 2s..."
             sleep 2
           done
-          echo "Backend did not start in time."
+          echo "Backend did not start in time. Dumping backend.log for debugging:" 
+          echo "---- backend.log ----"
+          if [ -f backend.log ]; then
+            sed -n '1,200p' backend.log || true
+            echo "..."
+            sed -n '201,400p' backend.log || true
+          else
+            echo "backend.log not found"
+          fi
           exit 1
 
       - name: Run Vitest
