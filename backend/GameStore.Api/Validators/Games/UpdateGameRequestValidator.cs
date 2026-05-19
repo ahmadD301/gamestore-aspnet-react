@@ -19,6 +19,9 @@ public sealed class UpdateGameRequestValidator
         RuleFor(x => x.Price)
             .GreaterThanOrEqualTo(0);
 
+        RuleFor(x => x.CoverImageUrl)
+            .MaximumLength(2000000);
+
         RuleFor(x => x.GenreId)
             .NotEmpty();
     }

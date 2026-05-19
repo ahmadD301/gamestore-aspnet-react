@@ -581,6 +581,13 @@ button:disabled {
   aspect-ratio: 16 / 9;
   background: linear-gradient(135deg, rgba(99, 102, 241, 0.3), rgba(139, 92, 246, 0.3));
   position: relative;
+  overflow: hidden;
+}
+
+.game-card-media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
 .media-shine {
@@ -726,6 +733,13 @@ button:disabled {
   display: flex;
   align-items: center;
   justify-content: center;
+  overflow: hidden;
+}
+
+.details-media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
 .details-media-placeholder {
@@ -1152,6 +1166,12 @@ button:disabled {
   align-items: center;
   justify-content: center;
   border: 1px dashed var(--color-border);
+}
+
+.image-preview img {
+  max-height: 220px;
+  object-fit: cover;
+  border-radius: 0.5rem;
 }
 
 .form-actions {

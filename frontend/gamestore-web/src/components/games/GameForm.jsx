@@ -11,6 +11,7 @@ export default function GameForm({
     title: "",
     description: "",
     price: "",
+    coverImageUrl: "",
     releaseDate: "",
     genreId: "",
   };
@@ -30,12 +31,16 @@ export default function GameForm({
     useState("");
 
   useEffect(() => {
+    if (formData.coverImageUrl) {
+      setImagePreview(formData.coverImageUrl);
+    }
+
     return () => {
-      if (imagePreview) {
+      if (imagePreview?.startsWith("blob:")) {
         URL.revokeObjectURL(imagePreview);
       }
     };
-  }, [imagePreview]);
+  }, [formData.coverImageUrl, imagePreview]);
 
   function validate() {
     const newErrors = {};
@@ -85,14 +90,16 @@ export default function GameForm({
 
     onSubmit(
       {
-      title: formData.title,
-      description:
-        formData.description,
-      price:
-        Number(formData.price),
-      releaseDateUtc:
-        formData.releaseDate || null,
-      genreId: formData.genreId,
+        title: formData.title,
+        description:
+          formData.description,
+        price:
+          Number(formData.price),
+        coverImageUrl:
+          formData.coverImageUrl,
+        releaseDateUtc:
+          formData.releaseDate || null,
+        genreId: formData.genreId,
       },
       action
     );
@@ -113,14 +120,20 @@ export default function GameForm({
 
     if (!file) {
       setImagePreview("");
+      updateField("coverImageUrl", "");
       return;
     }
 
-    if (imagePreview) {
-      URL.revokeObjectURL(imagePreview);
-    }
-
-    setImagePreview(URL.createObjectURL(file));
+    const reader = new FileReader();
+    reader.onload = () => {
+      const result =
+        typeof reader.result === "string"
+          ? reader.result
+          : "";
+      updateField("coverImageUrl", result);
+      setImagePreview(result);
+    };
+    reader.readAsDataURL(file);
   }
 
   return (
@@ -274,7 +287,20 @@ export default function GameForm({
         </div>
 
         <div className="form-field full">
-          <label htmlFor="image">Cover Image</label>
+          <label htmlFor="coverImageUrl">Cover Image URL</label>
+          <input
+            id="coverImageUrl"
+            type="url"
+            placeholder="https://example.com/cover.png"
+            value={formData.coverImageUrl}
+            onChange={(e) =>
+              updateField("coverImageUrl", e.target.value)
+            }
+          />
+        </div>
+
+        <div className="form-field full">
+          <label htmlFor="image">Or upload image</label>
           <div className="image-upload">
             <div className="image-preview">
               {imagePreview ? (

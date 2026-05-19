@@ -1,0 +1,515 @@
+2026-05-18 17:10:43.763 +03:00 [INF] Executed DbCommand (14ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1
+2026-05-18 17:10:43.821 +03:00 [INF] Executed DbCommand (11ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT OBJECT_ID(N'[__EFMigrationsHistory]');
+2026-05-18 17:10:43.825 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1
+2026-05-18 17:10:43.828 +03:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT OBJECT_ID(N'[__EFMigrationsHistory]');
+2026-05-18 17:10:43.841 +03:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [MigrationId], [ProductVersion]
+FROM [__EFMigrationsHistory]
+ORDER BY [MigrationId];
+2026-05-18 17:10:43.890 +03:00 [INF] No migrations were applied. The database is already up to date.
+2026-05-18 17:12:52.155 +03:00 [INF] Executed DbCommand (13ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1
+2026-05-18 17:12:52.218 +03:00 [INF] Executed DbCommand (12ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT OBJECT_ID(N'[__EFMigrationsHistory]');
+2026-05-18 17:12:52.223 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1
+2026-05-18 17:12:52.227 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT OBJECT_ID(N'[__EFMigrationsHistory]');
+2026-05-18 17:12:52.241 +03:00 [INF] Executed DbCommand (3ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [MigrationId], [ProductVersion]
+FROM [__EFMigrationsHistory]
+ORDER BY [MigrationId];
+2026-05-18 17:12:52.256 +03:00 [INF] No migrations were applied. The database is already up to date.
+2026-05-18 17:13:43.050 +03:00 [INF] Executed DbCommand (13ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1
+2026-05-18 17:13:43.110 +03:00 [INF] Executed DbCommand (12ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT OBJECT_ID(N'[__EFMigrationsHistory]');
+2026-05-18 17:13:43.114 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1
+2026-05-18 17:13:43.118 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT OBJECT_ID(N'[__EFMigrationsHistory]');
+2026-05-18 17:13:43.135 +03:00 [INF] Executed DbCommand (3ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [MigrationId], [ProductVersion]
+FROM [__EFMigrationsHistory]
+ORDER BY [MigrationId];
+2026-05-18 17:13:43.148 +03:00 [INF] No migrations were applied. The database is already up to date.
+2026-05-18 17:19:17.572 +03:00 [INF] Executed DbCommand (13ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1
+2026-05-18 17:19:17.628 +03:00 [INF] Executed DbCommand (10ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT OBJECT_ID(N'[__EFMigrationsHistory]');
+2026-05-18 17:19:17.633 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1
+2026-05-18 17:19:17.636 +03:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT OBJECT_ID(N'[__EFMigrationsHistory]');
+2026-05-18 17:19:17.650 +03:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [MigrationId], [ProductVersion]
+FROM [__EFMigrationsHistory]
+ORDER BY [MigrationId];
+2026-05-18 17:19:17.669 +03:00 [INF] Applying migration '20260518141728_updateGameTable'.
+2026-05-18 17:19:17.750 +03:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO [__EFMigrationsHistory] ([MigrationId], [ProductVersion])
+VALUES (N'20260518141728_updateGameTable', N'8.0.8');
+2026-05-18 17:20:10.479 +03:00 [INF] Executed DbCommand (22ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1
+2026-05-18 17:20:10.551 +03:00 [INF] Executed DbCommand (19ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT OBJECT_ID(N'[__EFMigrationsHistory]');
+2026-05-18 17:20:10.555 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1
+2026-05-18 17:20:10.558 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT OBJECT_ID(N'[__EFMigrationsHistory]');
+2026-05-18 17:20:10.572 +03:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [MigrationId], [ProductVersion]
+FROM [__EFMigrationsHistory]
+ORDER BY [MigrationId];
+2026-05-18 17:20:10.588 +03:00 [INF] No migrations were applied. The database is already up to date.
+2026-05-18 17:20:10.601 +03:00 [INF] User profile is available. Using 'C:\Users\alaae\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2026-05-18 17:20:10.852 +03:00 [INF] Executed DbCommand (13ms) [Parameters=[@__normalizedName_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[ConcurrencyStamp], [a].[Name], [a].[NormalizedName]
+FROM [dbo].[AspNetRoles] AS [a]
+WHERE [a].[NormalizedName] = @__normalizedName_0
+2026-05-18 17:20:10.901 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[@__normalizedName_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[ConcurrencyStamp], [a].[Name], [a].[NormalizedName]
+FROM [dbo].[AspNetRoles] AS [a]
+WHERE [a].[NormalizedName] = @__normalizedName_0
+2026-05-18 17:20:10.926 +03:00 [INF] Executed DbCommand (4ms) [Parameters=[@__normalizedEmail_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(2) [a].[Id], [a].[AccessFailedCount], [a].[ConcurrencyStamp], [a].[CreatedAtUtc], [a].[Email], [a].[EmailConfirmed], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [dbo].[AspNetUsers] AS [a]
+WHERE [a].[NormalizedEmail] = @__normalizedEmail_0
+2026-05-18 17:20:10.977 +03:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [dbo].[Genres] AS [g]) THEN CAST(1 AS bit)
+    ELSE CAST(0 AS bit)
+END
+2026-05-18 17:20:11.034 +03:00 [INF] Now listening on: http://localhost:5062
+2026-05-18 17:20:11.038 +03:00 [INF] Application started. Press Ctrl+C to shut down.
+2026-05-18 17:20:11.039 +03:00 [INF] Hosting environment: Development
+2026-05-18 17:20:11.039 +03:00 [INF] Content root path: D:\New folder\GameStore\backend\GameStore.Api
+2026-05-18 17:20:13.131 +03:00 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5062/api/auth/login - null null
+2026-05-18 17:20:13.175 +03:00 [WRN] Failed to determine the https port for redirect.
+2026-05-18 17:20:13.178 +03:00 [INF] CORS policy execution successful.
+2026-05-18 17:20:13.184 +03:00 [INF] HTTP OPTIONS /api/auth/login responded 204 in 7.5325 ms
+2026-05-18 17:20:13.191 +03:00 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5062/api/auth/login - 204 null null 61.4422ms
+2026-05-18 17:20:13.200 +03:00 [INF] Request starting HTTP/1.1 POST http://localhost:5062/api/auth/login - application/json 54
+2026-05-18 17:20:13.206 +03:00 [INF] CORS policy execution successful.
+2026-05-18 17:20:13.218 +03:00 [INF] Executing endpoint 'GameStore.Api.Controllers.AuthController.Login (GameStore.Api)'
+2026-05-18 17:20:13.252 +03:00 [INF] Route matched with {action = "Login", controller = "Auth"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Login(GameStore.Api.DTOs.Auth.LoginRequestDto) on controller GameStore.Api.Controllers.AuthController (GameStore.Api).
+2026-05-18 17:20:13.463 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[@__normalizedEmail_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(2) [a].[Id], [a].[AccessFailedCount], [a].[ConcurrencyStamp], [a].[CreatedAtUtc], [a].[Email], [a].[EmailConfirmed], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [dbo].[AspNetUsers] AS [a]
+WHERE [a].[NormalizedEmail] = @__normalizedEmail_0
+2026-05-18 17:20:13.473 +03:00 [INF] Attempting to login user: admin@gamestore.com
+2026-05-18 17:20:13.743 +03:00 [INF] Executed DbCommand (7ms) [Parameters=[@__userId_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT [a0].[Name]
+FROM [dbo].[AspNetUserRoles] AS [a]
+INNER JOIN [dbo].[AspNetRoles] AS [a0] ON [a].[RoleId] = [a0].[Id]
+WHERE [a].[UserId] = @__userId_0
+2026-05-18 17:20:13.960 +03:00 [INF] Executed DbCommand (16ms) [Parameters=[@p0='?' (DbType = Guid), @p1='?' (DbType = DateTime2), @p2='?' (Size = 4000), @p3='?' (DbType = DateTime2), @p4='?' (DbType = Boolean), @p5='?' (DbType = DateTime2), @p6='?' (Size = 500), @p7='?' (DbType = DateTime2), @p8='?' (Size = 4000), @p9='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SET IMPLICIT_TRANSACTIONS OFF;
+SET NOCOUNT ON;
+INSERT INTO [dbo].[RefreshTokens] ([Id], [CreatedAtUtc], [CreatedBy], [ExpiresAtUtc], [IsRevoked], [RevokedAtUtc], [Token], [UpdatedAtUtc], [UpdatedBy], [UserId])
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6, @p7, @p8, @p9);
+2026-05-18 17:20:13.977 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[@__userId_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT [a0].[Name]
+FROM [dbo].[AspNetUserRoles] AS [a]
+INNER JOIN [dbo].[AspNetRoles] AS [a0] ON [a].[RoleId] = [a0].[Id]
+WHERE [a].[UserId] = @__userId_0
+2026-05-18 17:20:13.982 +03:00 [INF] User logged in successfully: admin@gamestore.com
+2026-05-18 17:20:13.996 +03:00 [INF] Executing OkObjectResult, writing value of type 'GameStore.Api.DTOs.Auth.AuthResponseDto'.
+2026-05-18 17:20:14.030 +03:00 [INF] Executed action GameStore.Api.Controllers.AuthController.Login (GameStore.Api) in 770.0353ms
+2026-05-18 17:20:14.032 +03:00 [INF] Executed endpoint 'GameStore.Api.Controllers.AuthController.Login (GameStore.Api)'
+2026-05-18 17:20:14.035 +03:00 [INF] HTTP POST /api/auth/login responded 200 in 829.0562 ms
+2026-05-18 17:20:14.043 +03:00 [INF] Request finished HTTP/1.1 POST http://localhost:5062/api/auth/login - 200 null application/json; charset=utf-8 843.3327ms
+2026-05-18 17:20:14.074 +03:00 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5062/api/games/91479d3e-94a9-4655-9529-b5e4e5e424a6 - null null
+2026-05-18 17:20:14.076 +03:00 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5062/api/genres - null null
+2026-05-18 17:20:14.087 +03:00 [INF] CORS policy execution successful.
+2026-05-18 17:20:14.089 +03:00 [INF] CORS policy execution successful.
+2026-05-18 17:20:14.090 +03:00 [INF] HTTP OPTIONS /api/games/91479d3e-94a9-4655-9529-b5e4e5e424a6 responded 204 in 3.7949 ms
+2026-05-18 17:20:14.091 +03:00 [INF] HTTP OPTIONS /api/genres responded 204 in 1.7980 ms
+2026-05-18 17:20:14.094 +03:00 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5062/api/games/91479d3e-94a9-4655-9529-b5e4e5e424a6 - 204 null null 19.0594ms
+2026-05-18 17:20:14.096 +03:00 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5062/api/genres - 204 null null 19.4546ms
+2026-05-18 17:20:14.098 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5062/api/games/91479d3e-94a9-4655-9529-b5e4e5e424a6 - null null
+2026-05-18 17:20:14.102 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5062/api/genres - null null
+2026-05-18 17:20:14.114 +03:00 [INF] CORS policy execution successful.
+2026-05-18 17:20:14.114 +03:00 [INF] CORS policy execution successful.
+2026-05-18 17:20:14.169 +03:00 [INF] Executing endpoint 'GameStore.Api.Controllers.GenresController.GetAll (GameStore.Api)'
+2026-05-18 17:20:14.169 +03:00 [INF] Executing endpoint 'GameStore.Api.Controllers.GamesController.GetById (GameStore.Api)'
+2026-05-18 17:20:14.179 +03:00 [INF] Route matched with {action = "GetAll", controller = "Genres"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[System.Collections.Generic.List`1[GameStore.Api.DTOs.Genres.GenreResponseDto]]] GetAll() on controller GameStore.Api.Controllers.GenresController (GameStore.Api).
+2026-05-18 17:20:14.180 +03:00 [INF] Route matched with {action = "GetById", controller = "Games"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[GameStore.Api.DTOs.Games.GameResponseDto]] GetById(System.Guid) on controller GameStore.Api.Controllers.GamesController (GameStore.Api).
+2026-05-18 17:20:14.314 +03:00 [INF] Executed DbCommand (3ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [g].[Id], [g].[Name]
+FROM [dbo].[Genres] AS [g]
+ORDER BY [g].[Name]
+2026-05-18 17:20:14.322 +03:00 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[GameStore.Api.DTOs.Genres.GenreResponseDto, GameStore.Api, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-05-18 17:20:14.336 +03:00 [INF] Executed action GameStore.Api.Controllers.GenresController.GetAll (GameStore.Api) in 153.0673ms
+2026-05-18 17:20:14.339 +03:00 [INF] Executed endpoint 'GameStore.Api.Controllers.GenresController.GetAll (GameStore.Api)'
+2026-05-18 17:20:14.341 +03:00 [INF] HTTP GET /api/genres responded 200 in 227.0438 ms
+2026-05-18 17:20:14.347 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5062/api/genres - 200 null application/json; charset=utf-8 244.1481ms
+2026-05-18 17:20:14.365 +03:00 [INF] Executed DbCommand (6ms) [Parameters=[@__id_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [g].[Id], [g].[CoverImageUrl], [g].[CreatedAtUtc], [g].[CreatedBy], [g].[Description], [g].[GenreId], [g].[Price], [g].[ReleaseDateUtc], [g].[Title], [g].[UpdatedAtUtc], [g].[UpdatedBy], [g0].[Id], [g0].[CreatedAtUtc], [g0].[CreatedBy], [g0].[Name], [g0].[UpdatedAtUtc], [g0].[UpdatedBy]
+FROM [dbo].[Games] AS [g]
+INNER JOIN [dbo].[Genres] AS [g0] ON [g].[GenreId] = [g0].[Id]
+WHERE [g].[Id] = @__id_0
+2026-05-18 17:20:14.374 +03:00 [INF] Executing OkObjectResult, writing value of type 'GameStore.Api.DTOs.Games.GameResponseDto'.
+2026-05-18 17:20:14.394 +03:00 [INF] Executed action GameStore.Api.Controllers.GamesController.GetById (GameStore.Api) in 207.187ms
+2026-05-18 17:20:14.397 +03:00 [INF] Executed endpoint 'GameStore.Api.Controllers.GamesController.GetById (GameStore.Api)'
+2026-05-18 17:20:14.398 +03:00 [INF] HTTP GET /api/games/91479d3e-94a9-4655-9529-b5e4e5e424a6 responded 200 in 284.1185 ms
+2026-05-18 17:20:14.401 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5062/api/games/91479d3e-94a9-4655-9529-b5e4e5e424a6 - 200 null application/json; charset=utf-8 303.4161ms
+2026-05-18 17:20:17.136 +03:00 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5062/api/games?page=1&pageSize=5&search=&genreId= - null null
+2026-05-18 17:20:17.139 +03:00 [INF] CORS policy execution successful.
+2026-05-18 17:20:17.140 +03:00 [INF] HTTP OPTIONS /api/games responded 204 in 1.0907 ms
+2026-05-18 17:20:17.142 +03:00 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5062/api/games?page=1&pageSize=5&search=&genreId= - 204 null null 6.4763ms
+2026-05-18 17:20:17.146 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5062/api/games?page=1&pageSize=5&search=&genreId= - null null
+2026-05-18 17:20:17.150 +03:00 [INF] CORS policy execution successful.
+2026-05-18 17:20:17.152 +03:00 [INF] Executing endpoint 'GameStore.Api.Controllers.GamesController.GetAll (GameStore.Api)'
+2026-05-18 17:20:17.163 +03:00 [INF] Route matched with {action = "GetAll", controller = "Games"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[GameStore.Api.DTOs.Common.PagedResultDto`1[GameStore.Api.DTOs.Games.GameResponseDto]]] GetAll(GameStore.Api.DTOs.Games.GameQueryParametersDto) on controller GameStore.Api.Controllers.GamesController (GameStore.Api).
+2026-05-18 17:20:17.201 +03:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [dbo].[Games] AS [g]
+2026-05-18 17:20:17.225 +03:00 [INF] Executed DbCommand (4ms) [Parameters=[@__p_0='?' (DbType = Int32), @__p_1='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [t].[Id], [t].[CoverImageUrl], [t].[CreatedAtUtc], [t].[CreatedBy], [t].[Description], [t].[GenreId], [t].[Price], [t].[ReleaseDateUtc], [t].[Title], [t].[UpdatedAtUtc], [t].[UpdatedBy], [g0].[Id], [g0].[CreatedAtUtc], [g0].[CreatedBy], [g0].[Name], [g0].[UpdatedAtUtc], [g0].[UpdatedBy]
+FROM (
+    SELECT [g].[Id], [g].[CoverImageUrl], [g].[CreatedAtUtc], [g].[CreatedBy], [g].[Description], [g].[GenreId], [g].[Price], [g].[ReleaseDateUtc], [g].[Title], [g].[UpdatedAtUtc], [g].[UpdatedBy]
+    FROM [dbo].[Games] AS [g]
+    ORDER BY [g].[Title]
+    OFFSET @__p_0 ROWS FETCH NEXT @__p_1 ROWS ONLY
+) AS [t]
+INNER JOIN [dbo].[Genres] AS [g0] ON [t].[GenreId] = [g0].[Id]
+ORDER BY [t].[Title]
+2026-05-18 17:20:17.229 +03:00 [INF] Executing OkObjectResult, writing value of type 'GameStore.Api.DTOs.Common.PagedResultDto`1[[GameStore.Api.DTOs.Games.GameResponseDto, GameStore.Api, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-05-18 17:20:17.237 +03:00 [INF] Executed action GameStore.Api.Controllers.GamesController.GetAll (GameStore.Api) in 72.4532ms
+2026-05-18 17:20:17.239 +03:00 [INF] Executed endpoint 'GameStore.Api.Controllers.GamesController.GetAll (GameStore.Api)'
+2026-05-18 17:20:17.241 +03:00 [INF] HTTP GET /api/games responded 200 in 90.5169 ms
+2026-05-18 17:20:17.243 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5062/api/games?page=1&pageSize=5&search=&genreId= - 200 null application/json; charset=utf-8 96.9998ms
+2026-05-18 17:20:19.039 +03:00 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5062/api/games?page=1&pageSize=10&search=&genreId= - null null
+2026-05-18 17:20:19.042 +03:00 [INF] CORS policy execution successful.
+2026-05-18 17:20:19.043 +03:00 [INF] HTTP OPTIONS /api/games responded 204 in 1.1116 ms
+2026-05-18 17:20:19.045 +03:00 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5062/api/games?page=1&pageSize=10&search=&genreId= - 204 null null 6.0585ms
+2026-05-18 17:20:19.050 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5062/api/games?page=1&pageSize=10&search=&genreId= - null null
+2026-05-18 17:20:19.055 +03:00 [INF] CORS policy execution successful.
+2026-05-18 17:20:19.057 +03:00 [INF] Executing endpoint 'GameStore.Api.Controllers.GamesController.GetAll (GameStore.Api)'
+2026-05-18 17:20:19.058 +03:00 [INF] Route matched with {action = "GetAll", controller = "Games"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[GameStore.Api.DTOs.Common.PagedResultDto`1[GameStore.Api.DTOs.Games.GameResponseDto]]] GetAll(GameStore.Api.DTOs.Games.GameQueryParametersDto) on controller GameStore.Api.Controllers.GamesController (GameStore.Api).
+2026-05-18 17:20:19.063 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [dbo].[Games] AS [g]
+2026-05-18 17:20:19.067 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[@__p_0='?' (DbType = Int32), @__p_1='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [t].[Id], [t].[CoverImageUrl], [t].[CreatedAtUtc], [t].[CreatedBy], [t].[Description], [t].[GenreId], [t].[Price], [t].[ReleaseDateUtc], [t].[Title], [t].[UpdatedAtUtc], [t].[UpdatedBy], [g0].[Id], [g0].[CreatedAtUtc], [g0].[CreatedBy], [g0].[Name], [g0].[UpdatedAtUtc], [g0].[UpdatedBy]
+FROM (
+    SELECT [g].[Id], [g].[CoverImageUrl], [g].[CreatedAtUtc], [g].[CreatedBy], [g].[Description], [g].[GenreId], [g].[Price], [g].[ReleaseDateUtc], [g].[Title], [g].[UpdatedAtUtc], [g].[UpdatedBy]
+    FROM [dbo].[Games] AS [g]
+    ORDER BY [g].[Title]
+    OFFSET @__p_0 ROWS FETCH NEXT @__p_1 ROWS ONLY
+) AS [t]
+INNER JOIN [dbo].[Genres] AS [g0] ON [t].[GenreId] = [g0].[Id]
+ORDER BY [t].[Title]
+2026-05-18 17:20:19.070 +03:00 [INF] Executing OkObjectResult, writing value of type 'GameStore.Api.DTOs.Common.PagedResultDto`1[[GameStore.Api.DTOs.Games.GameResponseDto, GameStore.Api, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-05-18 17:20:19.071 +03:00 [INF] Executed action GameStore.Api.Controllers.GamesController.GetAll (GameStore.Api) in 10.9479ms
+2026-05-18 17:20:19.073 +03:00 [INF] Executed endpoint 'GameStore.Api.Controllers.GamesController.GetAll (GameStore.Api)'
+2026-05-18 17:20:19.074 +03:00 [INF] HTTP GET /api/games responded 200 in 18.7280 ms
+2026-05-18 17:20:19.076 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5062/api/games?page=1&pageSize=10&search=&genreId= - 200 null application/json; charset=utf-8 25.3543ms
+2026-05-18 17:20:22.045 +03:00 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5062/api/games/5016b086-ac28-440e-b736-f6df052ccb24 - null null
+2026-05-18 17:20:22.049 +03:00 [INF] CORS policy execution successful.
+2026-05-18 17:20:22.050 +03:00 [INF] HTTP OPTIONS /api/games/5016b086-ac28-440e-b736-f6df052ccb24 responded 204 in 1.3754 ms
+2026-05-18 17:20:22.053 +03:00 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5062/api/games/5016b086-ac28-440e-b736-f6df052ccb24 - 204 null null 7.8853ms
+2026-05-18 17:20:22.057 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5062/api/games/5016b086-ac28-440e-b736-f6df052ccb24 - null null
+2026-05-18 17:20:22.063 +03:00 [INF] CORS policy execution successful.
+2026-05-18 17:20:22.064 +03:00 [INF] Executing endpoint 'GameStore.Api.Controllers.GamesController.GetById (GameStore.Api)'
+2026-05-18 17:20:22.065 +03:00 [INF] Route matched with {action = "GetById", controller = "Games"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[GameStore.Api.DTOs.Games.GameResponseDto]] GetById(System.Guid) on controller GameStore.Api.Controllers.GamesController (GameStore.Api).
+2026-05-18 17:20:22.069 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[@__id_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [g].[Id], [g].[CoverImageUrl], [g].[CreatedAtUtc], [g].[CreatedBy], [g].[Description], [g].[GenreId], [g].[Price], [g].[ReleaseDateUtc], [g].[Title], [g].[UpdatedAtUtc], [g].[UpdatedBy], [g0].[Id], [g0].[CreatedAtUtc], [g0].[CreatedBy], [g0].[Name], [g0].[UpdatedAtUtc], [g0].[UpdatedBy]
+FROM [dbo].[Games] AS [g]
+INNER JOIN [dbo].[Genres] AS [g0] ON [g].[GenreId] = [g0].[Id]
+WHERE [g].[Id] = @__id_0
+2026-05-18 17:20:22.072 +03:00 [INF] Executing OkObjectResult, writing value of type 'GameStore.Api.DTOs.Games.GameResponseDto'.
+2026-05-18 17:20:22.073 +03:00 [INF] Executed action GameStore.Api.Controllers.GamesController.GetById (GameStore.Api) in 6.3029ms
+2026-05-18 17:20:22.074 +03:00 [INF] Executed endpoint 'GameStore.Api.Controllers.GamesController.GetById (GameStore.Api)'
+2026-05-18 17:20:22.076 +03:00 [INF] HTTP GET /api/games/5016b086-ac28-440e-b736-f6df052ccb24 responded 200 in 13.7635 ms
+2026-05-18 17:20:22.079 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5062/api/games/5016b086-ac28-440e-b736-f6df052ccb24 - 200 null application/json; charset=utf-8 21.4415ms
+2026-05-18 17:20:26.405 +03:00 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5062/api/games/5016b086-ac28-440e-b736-f6df052ccb24 - null null
+2026-05-18 17:20:26.408 +03:00 [INF] CORS policy execution successful.
+2026-05-18 17:20:26.410 +03:00 [INF] HTTP OPTIONS /api/games/5016b086-ac28-440e-b736-f6df052ccb24 responded 204 in 1.5644 ms
+2026-05-18 17:20:26.412 +03:00 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5062/api/games/5016b086-ac28-440e-b736-f6df052ccb24 - 204 null null 7.2501ms
+2026-05-18 17:20:26.419 +03:00 [INF] Request starting HTTP/1.1 PUT http://localhost:5062/api/games/5016b086-ac28-440e-b736-f6df052ccb24 - application/json 80768
+2026-05-18 17:20:26.422 +03:00 [INF] CORS policy execution successful.
+2026-05-18 17:20:26.426 +03:00 [INF] Executing endpoint 'GameStore.Api.Controllers.GamesController.Update (GameStore.Api)'
+2026-05-18 17:20:26.430 +03:00 [INF] Route matched with {action = "Update", controller = "Games"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Update(System.Guid, GameStore.Api.DTOs.Games.UpdateGameRequestDto) on controller GameStore.Api.Controllers.GamesController (GameStore.Api).
+2026-05-18 17:20:26.464 +03:00 [INF] Executed DbCommand (3ms) [Parameters=[@__id_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [g].[Id], [g].[CoverImageUrl], [g].[CreatedAtUtc], [g].[CreatedBy], [g].[Description], [g].[GenreId], [g].[Price], [g].[ReleaseDateUtc], [g].[Title], [g].[UpdatedAtUtc], [g].[UpdatedBy]
+FROM [dbo].[Games] AS [g]
+WHERE [g].[Id] = @__id_0
+2026-05-18 17:20:26.493 +03:00 [INF] Executed DbCommand (2ms) [Parameters=[@__request_GenreId_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [dbo].[Genres] AS [g]
+        WHERE [g].[Id] = @__request_GenreId_0) THEN CAST(1 AS bit)
+    ELSE CAST(0 AS bit)
+END
+2026-05-18 17:20:26.525 +03:00 [INF] Executed DbCommand (14ms) [Parameters=[@p3='?' (DbType = Guid), @p0='?' (Size = -1), @p1='?' (DbType = DateTime2), @p2='?' (DbType = DateTime2)], CommandType='"Text"', CommandTimeout='30']
+SET IMPLICIT_TRANSACTIONS OFF;
+SET NOCOUNT ON;
+UPDATE [dbo].[Games] SET [CoverImageUrl] = @p0, [ReleaseDateUtc] = @p1, [UpdatedAtUtc] = @p2
+OUTPUT 1
+WHERE [Id] = @p3;
+2026-05-18 17:20:26.557 +03:00 [ERR] An exception occurred in the database while saving changes for context type 'GameStore.Data.Contexts.ApplicationDbContext'.
+Microsoft.EntityFrameworkCore.DbUpdateException: An error occurred while saving the entity changes. See the inner exception for details.
+ ---> Microsoft.Data.SqlClient.SqlException (0x80131904): String or binary data would be truncated in table 'GameStoreDb.dbo.Games', column 'CoverImageUrl'. Truncated value: 'data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAMCAgMCAgMDAwMEAwMEBQgFBQQEBQoHBwYIDAoMDAsKC'.
+   at Microsoft.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at Microsoft.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at Microsoft.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at Microsoft.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at Microsoft.Data.SqlClient.SqlDataReader.TryHasMoreRows(Boolean& moreRows)
+   at Microsoft.Data.SqlClient.SqlDataReader.TryReadInternal(Boolean setTimeout, Boolean& more)
+   at Microsoft.Data.SqlClient.SqlDataReader.ReadAsyncExecute(Task task, Object state)
+   at Microsoft.Data.SqlClient.SqlDataReader.InvokeAsyncCall[T](SqlDataReaderBaseAsyncCallContext`1 context)
+--- End of stack trace from previous location ---
+   at Microsoft.EntityFrameworkCore.Update.AffectedCountModificationCommandBatch.ConsumeResultSetWithRowsAffectedOnlyAsync(Int32 commandIndex, RelationalDataReader reader, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.AffectedCountModificationCommandBatch.ConsumeAsync(RelationalDataReader reader, CancellationToken cancellationToken)
+ClientConnectionId:1d941de4-1e8e-4e57-9e2e-2f79d8596f99
+Error Number:2628,State:1,Class:16
+   --- End of inner exception stack trace ---
+   at Microsoft.EntityFrameworkCore.Update.AffectedCountModificationCommandBatch.ConsumeAsync(RelationalDataReader reader, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.SqlServer.Update.Internal.SqlServerModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChangesAsync(IList`1 entriesToSave, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChangesAsync(StateManager stateManager, Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.DbContext.SaveChangesAsync(Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+Microsoft.EntityFrameworkCore.DbUpdateException: An error occurred while saving the entity changes. See the inner exception for details.
+ ---> Microsoft.Data.SqlClient.SqlException (0x80131904): String or binary data would be truncated in table 'GameStoreDb.dbo.Games', column 'CoverImageUrl'. Truncated value: 'data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAMCAgMCAgMDAwMEAwMEBQgFBQQEBQoHBwYIDAoMDAsKC'.
+   at Microsoft.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at Microsoft.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at Microsoft.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at Microsoft.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at Microsoft.Data.SqlClient.SqlDataReader.TryHasMoreRows(Boolean& moreRows)
+   at Microsoft.Data.SqlClient.SqlDataReader.TryReadInternal(Boolean setTimeout, Boolean& more)
+   at Microsoft.Data.SqlClient.SqlDataReader.ReadAsyncExecute(Task task, Object state)
+   at Microsoft.Data.SqlClient.SqlDataReader.InvokeAsyncCall[T](SqlDataReaderBaseAsyncCallContext`1 context)
+--- End of stack trace from previous location ---
+   at Microsoft.EntityFrameworkCore.Update.AffectedCountModificationCommandBatch.ConsumeResultSetWithRowsAffectedOnlyAsync(Int32 commandIndex, RelationalDataReader reader, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.AffectedCountModificationCommandBatch.ConsumeAsync(RelationalDataReader reader, CancellationToken cancellationToken)
+ClientConnectionId:1d941de4-1e8e-4e57-9e2e-2f79d8596f99
+Error Number:2628,State:1,Class:16
+   --- End of inner exception stack trace ---
+   at Microsoft.EntityFrameworkCore.Update.AffectedCountModificationCommandBatch.ConsumeAsync(RelationalDataReader reader, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.SqlServer.Update.Internal.SqlServerModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChangesAsync(IList`1 entriesToSave, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChangesAsync(StateManager stateManager, Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.DbContext.SaveChangesAsync(Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+2026-05-18 17:20:26.568 +03:00 [INF] Executed action GameStore.Api.Controllers.GamesController.Update (GameStore.Api) in 135.8928ms
+2026-05-18 17:20:26.570 +03:00 [INF] Executed endpoint 'GameStore.Api.Controllers.GamesController.Update (GameStore.Api)'
+2026-05-18 17:20:26.571 +03:00 [ERR] HTTP PUT /api/games/5016b086-ac28-440e-b736-f6df052ccb24 responded 500 in 148.9440 ms
+Microsoft.EntityFrameworkCore.DbUpdateException: An error occurred while saving the entity changes. See the inner exception for details.
+ ---> Microsoft.Data.SqlClient.SqlException (0x80131904): String or binary data would be truncated in table 'GameStoreDb.dbo.Games', column 'CoverImageUrl'. Truncated value: 'data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAMCAgMCAgMDAwMEAwMEBQgFBQQEBQoHBwYIDAoMDAsKC'.
+   at Microsoft.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at Microsoft.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at Microsoft.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at Microsoft.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at Microsoft.Data.SqlClient.SqlDataReader.TryHasMoreRows(Boolean& moreRows)
+   at Microsoft.Data.SqlClient.SqlDataReader.TryReadInternal(Boolean setTimeout, Boolean& more)
+   at Microsoft.Data.SqlClient.SqlDataReader.ReadAsyncExecute(Task task, Object state)
+   at Microsoft.Data.SqlClient.SqlDataReader.InvokeAsyncCall[T](SqlDataReaderBaseAsyncCallContext`1 context)
+--- End of stack trace from previous location ---
+   at Microsoft.EntityFrameworkCore.Update.AffectedCountModificationCommandBatch.ConsumeResultSetWithRowsAffectedOnlyAsync(Int32 commandIndex, RelationalDataReader reader, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.AffectedCountModificationCommandBatch.ConsumeAsync(RelationalDataReader reader, CancellationToken cancellationToken)
+ClientConnectionId:1d941de4-1e8e-4e57-9e2e-2f79d8596f99
+Error Number:2628,State:1,Class:16
+   --- End of inner exception stack trace ---
+   at Microsoft.EntityFrameworkCore.Update.AffectedCountModificationCommandBatch.ConsumeAsync(RelationalDataReader reader, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.SqlServer.Update.Internal.SqlServerModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChangesAsync(IList`1 entriesToSave, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChangesAsync(StateManager stateManager, Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.DbContext.SaveChangesAsync(Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.DbContext.SaveChangesAsync(Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+   at GameStore.Api.Controllers.GamesController.Update(Guid id, UpdateGameRequestDto request) in D:\New folder\GameStore\backend\GameStore.Api\Controllers\GamesController.cs:line 198
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.TaskOfIActionResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeInnerFilterAsync>g__Awaited|13_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|7_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at GameStore.Api.Middleware.SecurityHeadersMiddleware.InvokeAsync(HttpContext context) in D:\New folder\GameStore\backend\GameStore.Api\Middleware\SecurityHeadersMiddleware.cs:line 45
+   at Serilog.AspNetCore.RequestLoggingMiddleware.Invoke(HttpContext httpContext)
+2026-05-18 17:20:26.598 +03:00 [ERR] Unhandled exception occurred
+Microsoft.EntityFrameworkCore.DbUpdateException: An error occurred while saving the entity changes. See the inner exception for details.
+ ---> Microsoft.Data.SqlClient.SqlException (0x80131904): String or binary data would be truncated in table 'GameStoreDb.dbo.Games', column 'CoverImageUrl'. Truncated value: 'data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAMCAgMCAgMDAwMEAwMEBQgFBQQEBQoHBwYIDAoMDAsKC'.
+   at Microsoft.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at Microsoft.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at Microsoft.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at Microsoft.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at Microsoft.Data.SqlClient.SqlDataReader.TryHasMoreRows(Boolean& moreRows)
+   at Microsoft.Data.SqlClient.SqlDataReader.TryReadInternal(Boolean setTimeout, Boolean& more)
+   at Microsoft.Data.SqlClient.SqlDataReader.ReadAsyncExecute(Task task, Object state)
+   at Microsoft.Data.SqlClient.SqlDataReader.InvokeAsyncCall[T](SqlDataReaderBaseAsyncCallContext`1 context)
+--- End of stack trace from previous location ---
+   at Microsoft.EntityFrameworkCore.Update.AffectedCountModificationCommandBatch.ConsumeResultSetWithRowsAffectedOnlyAsync(Int32 commandIndex, RelationalDataReader reader, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.AffectedCountModificationCommandBatch.ConsumeAsync(RelationalDataReader reader, CancellationToken cancellationToken)
+ClientConnectionId:1d941de4-1e8e-4e57-9e2e-2f79d8596f99
+Error Number:2628,State:1,Class:16
+   --- End of inner exception stack trace ---
+   at Microsoft.EntityFrameworkCore.Update.AffectedCountModificationCommandBatch.ConsumeAsync(RelationalDataReader reader, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.SqlServer.Update.Internal.SqlServerModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChangesAsync(IList`1 entriesToSave, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChangesAsync(StateManager stateManager, Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.DbContext.SaveChangesAsync(Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.DbContext.SaveChangesAsync(Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+   at GameStore.Api.Controllers.GamesController.Update(Guid id, UpdateGameRequestDto request) in D:\New folder\GameStore\backend\GameStore.Api\Controllers\GamesController.cs:line 198
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.TaskOfIActionResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeInnerFilterAsync>g__Awaited|13_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|7_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at GameStore.Api.Middleware.SecurityHeadersMiddleware.InvokeAsync(HttpContext context) in D:\New folder\GameStore\backend\GameStore.Api\Middleware\SecurityHeadersMiddleware.cs:line 45
+   at Serilog.AspNetCore.RequestLoggingMiddleware.Invoke(HttpContext httpContext)
+   at GameStore.Api.Middleware.CorrelationIdMiddleware.InvokeAsync(HttpContext context) in D:\New folder\GameStore\backend\GameStore.Api\Middleware\CorrelationIdMiddleware.cs:line 36
+   at Hellang.Middleware.ProblemDetails.ProblemDetailsMiddleware.Invoke(HttpContext context)
+2026-05-18 17:20:26.646 +03:00 [ERR] An unhandled exception has occurred while executing the request.
+Microsoft.EntityFrameworkCore.DbUpdateException: An error occurred while saving the entity changes. See the inner exception for details.
+ ---> Microsoft.Data.SqlClient.SqlException (0x80131904): String or binary data would be truncated in table 'GameStoreDb.dbo.Games', column 'CoverImageUrl'. Truncated value: 'data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAMCAgMCAgMDAwMEAwMEBQgFBQQEBQoHBwYIDAoMDAsKC'.
+   at Microsoft.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at Microsoft.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at Microsoft.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at Microsoft.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at Microsoft.Data.SqlClient.SqlDataReader.TryHasMoreRows(Boolean& moreRows)
+   at Microsoft.Data.SqlClient.SqlDataReader.TryReadInternal(Boolean setTimeout, Boolean& more)
+   at Microsoft.Data.SqlClient.SqlDataReader.ReadAsyncExecute(Task task, Object state)
+   at Microsoft.Data.SqlClient.SqlDataReader.InvokeAsyncCall[T](SqlDataReaderBaseAsyncCallContext`1 context)
+--- End of stack trace from previous location ---
+   at Microsoft.EntityFrameworkCore.Update.AffectedCountModificationCommandBatch.ConsumeResultSetWithRowsAffectedOnlyAsync(Int32 commandIndex, RelationalDataReader reader, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.AffectedCountModificationCommandBatch.ConsumeAsync(RelationalDataReader reader, CancellationToken cancellationToken)
+ClientConnectionId:1d941de4-1e8e-4e57-9e2e-2f79d8596f99
+Error Number:2628,State:1,Class:16
+   --- End of inner exception stack trace ---
+   at Microsoft.EntityFrameworkCore.Update.AffectedCountModificationCommandBatch.ConsumeAsync(RelationalDataReader reader, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.SqlServer.Update.Internal.SqlServerModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChangesAsync(IList`1 entriesToSave, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChangesAsync(StateManager stateManager, Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.DbContext.SaveChangesAsync(Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.DbContext.SaveChangesAsync(Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+   at GameStore.Api.Controllers.GamesController.Update(Guid id, UpdateGameRequestDto request) in D:\New folder\GameStore\backend\GameStore.Api\Controllers\GamesController.cs:line 198
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.TaskOfIActionResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeInnerFilterAsync>g__Awaited|13_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|7_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at GameStore.Api.Middleware.SecurityHeadersMiddleware.InvokeAsync(HttpContext context) in D:\New folder\GameStore\backend\GameStore.Api\Middleware\SecurityHeadersMiddleware.cs:line 45
+   at Serilog.AspNetCore.RequestLoggingMiddleware.Invoke(HttpContext httpContext)
+   at GameStore.Api.Middleware.CorrelationIdMiddleware.InvokeAsync(HttpContext context) in D:\New folder\GameStore\backend\GameStore.Api\Middleware\CorrelationIdMiddleware.cs:line 36
+   at Hellang.Middleware.ProblemDetails.ProblemDetailsMiddleware.Invoke(HttpContext context)
+2026-05-18 17:20:26.671 +03:00 [INF] Executing ObjectResult, writing value of type 'Hellang.Middleware.ProblemDetails.StatusCodeProblemDetails'.
+2026-05-18 17:20:26.732 +03:00 [INF] Request finished HTTP/1.1 PUT http://localhost:5062/api/games/5016b086-ac28-440e-b736-f6df052ccb24 - 500 null application/problem+json; charset=utf-8 312.5715ms
+2026-05-18 17:22:33.167 +03:00 [INF] Request starting HTTP/1.1 POST http://localhost:5062/api/auth/refresh - null 0
+2026-05-18 17:22:33.171 +03:00 [INF] CORS policy execution successful.
+2026-05-18 17:22:33.172 +03:00 [INF] Executing endpoint 'GameStore.Api.Controllers.AuthController.Refresh (GameStore.Api)'
+2026-05-18 17:22:33.178 +03:00 [INF] Route matched with {action = "Refresh", controller = "Auth"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Refresh() on controller GameStore.Api.Controllers.AuthController (GameStore.Api).
+2026-05-18 17:22:33.241 +03:00 [INF] Executed DbCommand (22ms) [Parameters=[@__refreshToken_0='?' (Size = 500)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [r].[Id], [r].[CreatedAtUtc], [r].[CreatedBy], [r].[ExpiresAtUtc], [r].[IsRevoked], [r].[RevokedAtUtc], [r].[Token], [r].[UpdatedAtUtc], [r].[UpdatedBy], [r].[UserId], [a].[Id], [a].[AccessFailedCount], [a].[ConcurrencyStamp], [a].[CreatedAtUtc], [a].[Email], [a].[EmailConfirmed], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [dbo].[RefreshTokens] AS [r]
+INNER JOIN [dbo].[AspNetUsers] AS [a] ON [r].[UserId] = [a].[Id]
+WHERE [r].[Token] = @__refreshToken_0
+2026-05-18 17:22:33.258 +03:00 [INF] Executed DbCommand (6ms) [Parameters=[@p2='?' (DbType = Guid), @p0='?' (DbType = Boolean), @p1='?' (DbType = DateTime2)], CommandType='"Text"', CommandTimeout='30']
+SET IMPLICIT_TRANSACTIONS OFF;
+SET NOCOUNT ON;
+UPDATE [dbo].[RefreshTokens] SET [IsRevoked] = @p0, [RevokedAtUtc] = @p1
+OUTPUT 1
+WHERE [Id] = @p2;
+2026-05-18 17:22:33.270 +03:00 [INF] Executed DbCommand (5ms) [Parameters=[@__userId_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT [a0].[Name]
+FROM [dbo].[AspNetUserRoles] AS [a]
+INNER JOIN [dbo].[AspNetRoles] AS [a0] ON [a].[RoleId] = [a0].[Id]
+WHERE [a].[UserId] = @__userId_0
+2026-05-18 17:22:33.280 +03:00 [INF] Executed DbCommand (4ms) [Parameters=[@p0='?' (DbType = Guid), @p1='?' (DbType = DateTime2), @p2='?' (Size = 4000), @p3='?' (DbType = DateTime2), @p4='?' (DbType = Boolean), @p5='?' (DbType = DateTime2), @p6='?' (Size = 500), @p7='?' (DbType = DateTime2), @p8='?' (Size = 4000), @p9='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SET IMPLICIT_TRANSACTIONS OFF;
+SET NOCOUNT ON;
+INSERT INTO [dbo].[RefreshTokens] ([Id], [CreatedAtUtc], [CreatedBy], [ExpiresAtUtc], [IsRevoked], [RevokedAtUtc], [Token], [UpdatedAtUtc], [UpdatedBy], [UserId])
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6, @p7, @p8, @p9);
+2026-05-18 17:22:33.285 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[@__userId_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT [a0].[Name]
+FROM [dbo].[AspNetUserRoles] AS [a]
+INNER JOIN [dbo].[AspNetRoles] AS [a0] ON [a].[RoleId] = [a0].[Id]
+WHERE [a].[UserId] = @__userId_0
+2026-05-18 17:22:33.289 +03:00 [INF] Executing OkObjectResult, writing value of type 'GameStore.Api.DTOs.Auth.AuthResponseDto'.
+2026-05-18 17:22:33.291 +03:00 [INF] Executed action GameStore.Api.Controllers.AuthController.Refresh (GameStore.Api) in 110.3315ms
+2026-05-18 17:22:33.293 +03:00 [INF] Executed endpoint 'GameStore.Api.Controllers.AuthController.Refresh (GameStore.Api)'
+2026-05-18 17:22:33.296 +03:00 [INF] HTTP POST /api/auth/refresh responded 200 in 125.2473 ms
+2026-05-18 17:22:33.299 +03:00 [INF] Request finished HTTP/1.1 POST http://localhost:5062/api/auth/refresh - 200 null application/json; charset=utf-8 132.4167ms
+2026-05-18 17:22:33.361 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5062/api/games/5016b086-ac28-440e-b736-f6df052ccb24 - null null
+2026-05-18 17:22:33.366 +03:00 [INF] CORS policy execution successful.
+2026-05-18 17:22:33.367 +03:00 [INF] Executing endpoint 'GameStore.Api.Controllers.GamesController.GetById (GameStore.Api)'
+2026-05-18 17:22:33.369 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5062/api/genres - null null
+2026-05-18 17:22:33.370 +03:00 [INF] Route matched with {action = "GetById", controller = "Games"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[GameStore.Api.DTOs.Games.GameResponseDto]] GetById(System.Guid) on controller GameStore.Api.Controllers.GamesController (GameStore.Api).
+2026-05-18 17:22:33.375 +03:00 [INF] CORS policy execution successful.
+2026-05-18 17:22:33.380 +03:00 [INF] Executing endpoint 'GameStore.Api.Controllers.GenresController.GetAll (GameStore.Api)'
+2026-05-18 17:22:33.382 +03:00 [INF] Route matched with {action = "GetAll", controller = "Genres"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[System.Collections.Generic.List`1[GameStore.Api.DTOs.Genres.GenreResponseDto]]] GetAll() on controller GameStore.Api.Controllers.GenresController (GameStore.Api).
+2026-05-18 17:22:33.386 +03:00 [INF] Executed DbCommand (6ms) [Parameters=[@__id_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [g].[Id], [g].[CoverImageUrl], [g].[CreatedAtUtc], [g].[CreatedBy], [g].[Description], [g].[GenreId], [g].[Price], [g].[ReleaseDateUtc], [g].[Title], [g].[UpdatedAtUtc], [g].[UpdatedBy], [g0].[Id], [g0].[CreatedAtUtc], [g0].[CreatedBy], [g0].[Name], [g0].[UpdatedAtUtc], [g0].[UpdatedBy]
+FROM [dbo].[Games] AS [g]
+INNER JOIN [dbo].[Genres] AS [g0] ON [g].[GenreId] = [g0].[Id]
+WHERE [g].[Id] = @__id_0
+2026-05-18 17:22:33.391 +03:00 [INF] Executing OkObjectResult, writing value of type 'GameStore.Api.DTOs.Games.GameResponseDto'.
+2026-05-18 17:22:33.394 +03:00 [INF] Executed action GameStore.Api.Controllers.GamesController.GetById (GameStore.Api) in 15.5722ms
+2026-05-18 17:22:33.396 +03:00 [INF] Executed DbCommand (3ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [g].[Id], [g].[Name]
+FROM [dbo].[Genres] AS [g]
+ORDER BY [g].[Name]
+2026-05-18 17:22:33.397 +03:00 [INF] Executed endpoint 'GameStore.Api.Controllers.GamesController.GetById (GameStore.Api)'
+2026-05-18 17:22:33.401 +03:00 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[GameStore.Api.DTOs.Genres.GenreResponseDto, GameStore.Api, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-05-18 17:22:33.402 +03:00 [INF] HTTP GET /api/games/5016b086-ac28-440e-b736-f6df052ccb24 responded 200 in 36.6268 ms
+2026-05-18 17:22:33.404 +03:00 [INF] Executed action GameStore.Api.Controllers.GenresController.GetAll (GameStore.Api) in 20.3752ms
+2026-05-18 17:22:33.406 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5062/api/games/5016b086-ac28-440e-b736-f6df052ccb24 - 200 null application/json; charset=utf-8 44.8743ms
+2026-05-18 17:22:33.407 +03:00 [INF] Executed endpoint 'GameStore.Api.Controllers.GenresController.GetAll (GameStore.Api)'
+2026-05-18 17:22:33.413 +03:00 [INF] HTTP GET /api/genres responded 200 in 37.8698 ms
+2026-05-18 17:22:33.415 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5062/api/genres - 200 null application/json; charset=utf-8 46.4472ms

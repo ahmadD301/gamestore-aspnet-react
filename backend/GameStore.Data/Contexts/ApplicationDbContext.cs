@@ -56,7 +56,7 @@ public sealed class ApplicationDbContext
                 .HasColumnType("decimal(18,2)");
 
             entity.Property(g => g.CoverImageUrl)
-                .HasMaxLength(500);
+                .HasColumnType("nvarchar(max)");
 
             entity.HasIndex(g => g.Title);
 

@@ -48,8 +48,12 @@ export default function GameDetailsPage() {
         </Link>
 
         <div className="game-details">
-          <div className="details-media" aria-hidden="true">
-            <div className="details-media-placeholder" />
+          <div className="details-media">
+            {data.coverImageUrl ? (
+              <img src={data.coverImageUrl} alt={data.title} />
+            ) : (
+              <div className="details-media-placeholder" aria-hidden="true" />
+            )}
           </div>
 
           <div className="details-info">

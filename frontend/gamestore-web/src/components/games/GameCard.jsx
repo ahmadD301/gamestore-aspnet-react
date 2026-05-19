@@ -3,8 +3,16 @@ export default function GameCard({
 }) {
   return (
     <article className="game-card">
-      <div className="game-card-media" aria-hidden="true">
-        <div className="media-shine" />
+      <div className="game-card-media">
+        {game.coverImageUrl ? (
+          <img
+            src={game.coverImageUrl}
+            alt={game.title}
+            loading="lazy"
+          />
+        ) : (
+          <div className="media-shine" aria-hidden="true" />
+        )}
       </div>
 
       <div className="game-card-body">

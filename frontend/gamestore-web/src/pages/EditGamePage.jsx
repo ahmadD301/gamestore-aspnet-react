@@ -90,6 +90,8 @@ export default function EditGamePage() {
               description:
                 game.description,
               price: game.price,
+              coverImageUrl:
+                game.coverImageUrl ?? "",
               releaseDate: game.releaseDateUtc
                 ? new Date(
                     game.releaseDateUtc
