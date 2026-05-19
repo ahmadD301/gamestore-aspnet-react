@@ -63,7 +63,6 @@ export default function LoginPage() {
       <div className="container auth-container">
         <div className="auth-card">
           <div className="auth-header">
-            <div className="brand-mark" aria-hidden="true" />
             <h1>Welcome back</h1>
             <p>Sign in to manage your catalog.</p>
           </div>

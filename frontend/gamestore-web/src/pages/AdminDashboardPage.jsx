@@ -4,6 +4,8 @@ from "react-router-dom";
 import { useGames }
 from "../hooks/games/useGames";
 
+import { FolderKanban, BookOpen, Settings } from "lucide-react";
+
 export default function AdminDashboardPage() {
   const { data } = useGames({
     page: 1,
@@ -45,7 +47,7 @@ export default function AdminDashboardPage() {
 
         <div className="dashboard-actions">
           <Link className="action-card" to="/admin/games">
-            <span className="action-icon" aria-hidden="true" />
+            <FolderKanban className="action-icon" aria-hidden="true" />
             <div>
               <h3>Manage Games</h3>
               <p>Update catalog listings and pricing.</p>
@@ -53,7 +55,7 @@ export default function AdminDashboardPage() {
           </Link>
 
           <Link className="action-card" to="/games">
-            <span className="action-icon" aria-hidden="true" />
+            <BookOpen className="action-icon" aria-hidden="true" />
             <div>
               <h3>View Catalog</h3>
               <p>Explore the storefront experience.</p>
@@ -61,7 +63,7 @@ export default function AdminDashboardPage() {
           </Link>
 
           <Link className="action-card" to="/admin">
-            <span className="action-icon" aria-hidden="true" />
+            <Settings className="action-icon" aria-hidden="true" />
             <div>
               <h3>Settings</h3>
               <p>Configure admin preferences.</p>

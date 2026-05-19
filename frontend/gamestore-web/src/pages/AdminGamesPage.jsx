@@ -2,6 +2,7 @@ import { useMemo, useState }
 from "react";
 import { Link }
 from "react-router-dom";
+import { Pencil, Trash } from "lucide-react";
 
 import LoadingSpinner
 from "../components/common/LoadingSpinner";
@@ -269,7 +270,7 @@ export default function AdminGamesPage() {
                       to={`/admin/games/${game.id}/edit`}
                       aria-label={`Edit ${game.title}`}
                     >
-                      <span className="icon edit" aria-hidden="true" />
+                      <Pencil className="icon edit" aria-hidden="true" />
                     </Link>
 
                     <button
@@ -278,7 +279,7 @@ export default function AdminGamesPage() {
                       onClick={() => openDeleteModal([game.id])}
                       aria-label={`Delete ${game.title}`}
                     >
-                      <span className="icon delete" aria-hidden="true" />
+                      <Trash className="icon delete" aria-hidden="true" />
                     </button>
                   </td>
                 </tr>
