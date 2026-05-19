@@ -99,7 +99,7 @@ jobs:
         run: |
           echo "Waiting for backend to be ready..."
           for i in $(seq 1 30); do
-            if curl -sf http://localhost:5062/games; then
+            if curl -sf http://localhost:5062/api/health; then
               echo "Backend is up!"
               exit 0
             fi
