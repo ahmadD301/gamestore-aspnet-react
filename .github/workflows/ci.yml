@@ -4,10 +4,11 @@ on:
   push:
     branches:
       - main
-
+      - develop
   pull_request:
     branches:
       - main
+      - develop
 
 jobs:
   backend:
@@ -24,6 +25,13 @@ jobs:
         uses: actions/setup-dotnet@v4
         with:
           dotnet-version: 8.0.x
+
+      - name: Cache NuGet packages
+        uses: actions/cache@v4
+        with:
+          path: ~/.nuget/packages
+          key: ${{ runner.os }}-nuget-${{ hashFiles('**/packages.lock.json') }}
+          restore-keys: ${{ runner.os }}-nuget-
 
       - name: Restore
         run: dotnet restore
@@ -50,38 +58,63 @@ jobs:
         with:
           dotnet-version: 8.0.x
 
+      - name: Cache NuGet packages
+        uses: actions/cache@v4
+        with:
+          path: ~/.nuget/packages
+          key: ${{ runner.os }}-nuget-${{ hashFiles('**/packages.lock.json') }}
+          restore-keys: ${{ runner.os }}-nuget-
+
+      - name: Cache npm dependencies
+        uses: actions/cache@v4
+        with:
+          path: frontend/gamestore-web/node_modules
+          key: ${{ runner.os }}-npm-${{ hashFiles('frontend/gamestore-web/package-lock.json') }}
+          restore-keys: ${{ runner.os }}-npm-
+
       - name: Install Frontend Dependencies
         working-directory: frontend/gamestore-web
         run: npm ci
 
       - name: Restore Backend
-        run: dotnet restore backend/GameStore.sln
+        run: dotnet restore backend/GameStore.slnx
 
       - name: Build Backend
-        run: dotnet build backend/GameStore.sln --no-restore
+        run: dotnet build backend/GameStore.slnx --no-restore
+
+      - name: Install Playwright Browsers
+        working-directory: frontend/gamestore-web
+        run: npx playwright install --with-deps
 
       - name: Start Backend API
         run: |
-          dotnet run \
+          nohup dotnet run \
             --project backend/GameStore.Api/GameStore.Api.csproj \
             --no-build \
-            --urls=http://localhost:5062 &
+            --urls=http://localhost:5062 > backend.log 2>&1 &
         env:
           ASPNETCORE_ENVIRONMENT: Testing
 
       - name: Wait for Backend
         run: |
+          echo "Waiting for backend to be ready..."
           for i in $(seq 1 30); do
-            if curl -sf http://localhost:5062/swagger; then
-              echo "Backend ready!"
+            if curl -sf http://localhost:5062/api/health; then
+              echo "Backend is up!"
               exit 0
             fi
-
-            echo "Waiting..."
+            echo "Attempt $i/30 — retrying in 2s..."
             sleep 2
           done
-
-          echo "Backend failed to start."
+          echo "Backend did not start in time. Dumping backend.log for debugging:" 
+          echo "---- backend.log ----"
+          if [ -f backend.log ]; then
+            sed -n '1,200p' backend.log || true
+            echo "..."
+            sed -n '201,400p' backend.log || true
+          else
+            echo "backend.log not found"
+          fi
           exit 1
 
       - name: Run Vitest
@@ -89,10 +122,6 @@ jobs:
         run: npm run test -- --run
         env:
           VITE_API_URL: http://localhost:5062
-
-      - name: Install Playwright Browsers
-        working-directory: frontend/gamestore-web
-        run: npx playwright install --with-deps
 
       - name: Run Playwright Tests
         working-directory: frontend/gamestore-web

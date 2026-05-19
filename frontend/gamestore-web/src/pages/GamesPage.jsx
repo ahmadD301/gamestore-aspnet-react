@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import { Link } from "react-router-dom";
 
 import GameCard
@@ -9,9 +9,6 @@ import SearchBar
 
 import GenreFilter
   from "../components/games/GenreFilter";
-
-import LoadingSpinner
-  from "../components/common/LoadingSpinner";
 
 import ErrorBanner
   from "../components/common/ErrorBanner";
@@ -68,8 +65,69 @@ export default function GamesPage() {
     setGenreId(value);
   }
 
+  function handleClearFilters() {
+    setPage(1);
+    setSearch("");
+    setGenreId("");
+  }
+
+  const totalCount =
+    data?.totalItems
+    ?? data?.totalCount
+    ?? data?.items?.length
+    ?? 0;
+
+  const skeletonItems = useMemo(
+    () => Array.from({ length: 6 }),
+    []
+  );
+
   if (isLoading) {
-    return <LoadingSpinner />;
+    return (
+      <div className="page games-page">
+        <div className="catalog-header sticky">
+          <div className="container">
+            <div className="catalog-title">
+              <h1>Game Catalog</h1>
+              <p className="catalog-meta">Loading games...</p>
+            </div>
+
+            <div className="catalog-filters">
+              <SearchBar
+                value={search}
+                onChange={handleSearchChange}
+                onClear={() => handleSearchChange("")}
+                isLoading
+              />
+
+              <GenreFilter
+                genres={[]}
+                value={genreId}
+                onChange={handleGenreChange}
+                isLoading
+              />
+            </div>
+          </div>
+        </div>
+
+        <div className="container">
+          <div className="games-grid">
+            {skeletonItems.map((_, index) => (
+              <div
+                key={`skeleton-${index}`}
+                className="game-card skeleton"
+                aria-hidden="true"
+              >
+                <div className="game-card-media" />
+                <div className="skeleton-line" />
+                <div className="skeleton-line short" />
+                <div className="skeleton-line" />
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    );
   }
 
   if (isError) {
@@ -85,84 +143,98 @@ export default function GamesPage() {
   }
 
   return (
-    <div className="games-page">
-      <div className="catalog-header">
-        <h1>Game Catalog</h1>
+    <div className="page games-page">
+      <div className="catalog-header sticky">
+        <div className="container">
+          <div className="catalog-title">
+            <h1>Game Catalog</h1>
+            <p className="catalog-meta">
+              {totalCount} results
+            </p>
+          </div>
 
-        <div className="catalog-filters">
-          <SearchBar
-            value={search}
-            onChange={
-              handleSearchChange
-            }
-          />
+          <div className="catalog-filters">
+            <SearchBar
+              value={search}
+              onChange={handleSearchChange}
+              onClear={() => handleSearchChange("")}
+            />
 
-          <GenreFilter
-            genres={genres}
-            value={genreId}
-            onChange={
-              handleGenreChange
-            }
-          />
+            <GenreFilter
+              genres={genres}
+              value={genreId}
+              onChange={handleGenreChange}
+            />
+          </div>
         </div>
       </div>
 
-      {!data?.items?.length ? (
-        <EmptyState
-          title="No Games Found"
-          description={
-            "Try adjusting filters."
-          }
-        />
-      ) : (
-        <>
-          <div className="games-grid">
-            {data.items.map((game) => (
-              <Link
-                key={game.id}
-                to={`/games/${game.id}`}
-                className="game-link"
+      <div className="container">
+        {!data?.items?.length ? (
+          <EmptyState
+            title="No Games Found"
+            description={
+              "Try adjusting your search or filters."
+            }
+            actionLabel="Clear Filters"
+            onAction={handleClearFilters}
+          />
+        ) : (
+          <>
+            <div className="games-grid">
+              {data.items.map((game) => (
+                <Link
+                  key={game.id}
+                  to={`/games/${game.id}`}
+                  className="game-link"
+                >
+                  <GameCard game={game} />
+                </Link>
+              ))}
+            </div>
+
+            <div className="pagination">
+              <button
+                className="button secondary"
+                disabled={page <= 1}
+                aria-disabled={page <= 1}
+                onClick={() =>
+                  setPage(
+                    (prev) => prev - 1
+                  )
+                }
               >
-                <GameCard game={game} />
-              </Link>
-            ))}
-          </div>
+                Previous
+              </button>
 
-          <div className="pagination">
-            <button
-              disabled={page <= 1}
-              onClick={() =>
-                setPage(
-                  (prev) => prev - 1
-                )
-              }
-            >
-              Previous
-            </button>
+              <span>
+                Page {data.page}
+                {" "}
+                of
+                {" "}
+                {data.totalPages}
+              </span>
 
-            <span>
-              Page {data.page}
-              {" "}
-              of
-              {" "}
-              {data.totalPages}
-            </span>
-
-            <button
-              disabled={
-                page >= data.totalPages
-              }
-              onClick={() =>
-                setPage(
-                  (prev) => prev + 1
-                )
-              }
-            >
-              Next
-            </button>
-          </div>
-        </>
-      )}
+              <button
+                className="button secondary"
+                disabled={
+                  page >= data.totalPages
+                }
+                aria-disabled={
+                  page >= data.totalPages
+                }
+                onClick={() =>
+                  setPage(
+                    (prev) => prev + 1
+                  )
+                }
+              >
+                Next
+              </button>
+            </div>
+          </>
+        )}
+      </div>
     </div>
   );
 }

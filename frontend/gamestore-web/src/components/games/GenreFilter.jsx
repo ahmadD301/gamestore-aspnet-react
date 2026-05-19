@@ -2,6 +2,7 @@ export default function GenreFilter({
   genres,
   value,
   onChange,
+  isLoading,
 }) {
   return (
     <div className="genre-filter">
@@ -18,6 +19,7 @@ export default function GenreFilter({
         onChange={(event) =>
           onChange(event.target.value)
         }
+        disabled={isLoading}
       >
         <option value="">
           All Genres
@@ -32,6 +34,8 @@ export default function GenreFilter({
           </option>
         ))}
       </select>
+
+      <span className="select-icon" aria-hidden="true" />
     </div>
   );
 }

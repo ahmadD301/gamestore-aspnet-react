@@ -14,6 +14,7 @@ public static class GameMappings
             Title = game.Title,
             Description = game.Description,
             Price = game.Price,
+            CoverImageUrl = game.CoverImageUrl,
             ReleaseDateUtc = game.ReleaseDateUtc,
             Genre = game.Genre.Name,
             CreatedAtUtc = game.CreatedAtUtc,

@@ -132,6 +132,7 @@ public class GamesController : ControllerBase
             Title = request.Title,
             Description = request.Description,
             Price = request.Price,
+            CoverImageUrl = request.CoverImageUrl,
             ReleaseDateUtc = request.ReleaseDateUtc,
             GenreId = request.GenreId,
             CreatedAtUtc = DateTime.UtcNow,
@@ -188,6 +189,7 @@ public class GamesController : ControllerBase
         game.Title = request.Title;
         game.Description = request.Description;
         game.Price = request.Price;
+        game.CoverImageUrl = request.CoverImageUrl;
         game.ReleaseDateUtc = request.ReleaseDateUtc;
         game.GenreId = request.GenreId;
         game.UpdatedAtUtc = DateTime.UtcNow;

@@ -9,6 +9,9 @@ public sealed class CreateGameRequestDto
 
     public decimal Price { get; set; }
 
+    public string CoverImageUrl { get; set; }
+        = string.Empty;
+
     public DateTime ReleaseDateUtc { get; set; }
 
     public Guid GenreId { get; set; }
