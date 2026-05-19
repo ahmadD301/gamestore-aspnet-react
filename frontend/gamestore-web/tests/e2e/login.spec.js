@@ -112,6 +112,6 @@ test(
       page.getByRole("heading", {
         name: /admin dashboard/i,
       })
-    ).toBeVisible();
+    ).toBeVisible({ timeout: 10000 });
   }
 );

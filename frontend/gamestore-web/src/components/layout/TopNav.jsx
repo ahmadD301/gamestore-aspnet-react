@@ -1,8 +1,12 @@
 import { useState } from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
+import { Gamepad2 } from "lucide-react";
+import { useAuth } from "../../auth/AuthContext";
 
 export default function TopNav() {
   const [isOpen, setIsOpen] = useState(false);
+  const { accessToken, isLoading, logout } = useAuth();
+  const navigate = useNavigate();
 
   function toggleMenu() {
     setIsOpen((prev) => !prev);
@@ -12,11 +16,17 @@ export default function TopNav() {
     setIsOpen(false);
   }
 
+  async function handleLogout() {
+    await logout();
+    closeMenu();
+    navigate("/login");
+  }
+
   return (
     <header className="top-nav">
       <div className="container nav-inner">
         <NavLink to="/" className="brand" onClick={closeMenu}>
-          <span className="brand-mark" aria-hidden="true" />
+          <Gamepad2 className="brand-mark" aria-hidden="true" />
           <span className="brand-text">GameStore</span>
         </NavLink>
 
@@ -69,15 +79,27 @@ export default function TopNav() {
             Admin
           </NavLink>
 
-          <NavLink
-            to="/login"
-            className={({ isActive }) =>
-              `nav-link ${isActive ? "active" : ""}`
-            }
-            onClick={closeMenu}
-          >
-            Login
-          </NavLink>
+          {!isLoading && !accessToken && (
+            <NavLink
+              to="/login"
+              className={({ isActive }) =>
+                `nav-link ${isActive ? "active" : ""}`
+              }
+              onClick={closeMenu}
+            >
+              Login
+            </NavLink>
+          )}
+
+          {!isLoading && accessToken && (
+            <button
+              type="button"
+              className="nav-link"
+              onClick={handleLogout}
+            >
+              Logout
+            </button>
+          )}
         </nav>
       </div>
     </header>
