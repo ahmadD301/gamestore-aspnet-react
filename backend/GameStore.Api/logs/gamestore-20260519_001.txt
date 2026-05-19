@@ -2986,3 +2986,125 @@ ORDER BY [g].[Name]
 2026-05-19 12:03:59.090 +03:00 [INF] Executed endpoint 'GameStore.Api.Controllers.GamesController.GetAll (GameStore.Api)'
 2026-05-19 12:03:59.091 +03:00 [INF] HTTP GET /api/games responded 200 in 1999.7457 ms
 2026-05-19 12:03:59.092 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5062/api/games?page=1&pageSize=6&search=&genreId= - 200 null application/json; charset=utf-8 2004.127ms
+2026-05-19 12:08:52.437 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5062/api/games?page=1&pageSize=5&search=&genreId= - null null
+2026-05-19 12:08:52.486 +03:00 [INF] CORS policy execution successful.
+2026-05-19 12:08:52.488 +03:00 [INF] Failed to validate the token.
+Microsoft.IdentityModel.Tokens.SecurityTokenMalformedException: IDX14100: JWT is not well formed, there are no dots (.).
+The token needs to be in JWS or JWE Compact Serialization Format. (JWS): 'EncodedHeader.EndcodedPayload.EncodedSignature'. (JWE): 'EncodedProtectedHeader.EncodedEncryptedKey.EncodedInitializationVector.EncodedCiphertext.EncodedAuthenticationTag'.
+ ---> Microsoft.IdentityModel.Tokens.SecurityTokenMalformedException: IDX14100: JWT is not well formed, there are no dots (.).
+The token needs to be in JWS or JWE Compact Serialization Format. (JWS): 'EncodedHeader.EndcodedPayload.EncodedSignature'. (JWE): 'EncodedProtectedHeader.EncodedEncryptedKey.EncodedInitializationVector.EncodedCiphertext.EncodedAuthenticationTag'.
+   at Microsoft.IdentityModel.JsonWebTokens.JsonWebToken.ReadToken(String encodedJson)
+   at Microsoft.IdentityModel.JsonWebTokens.JsonWebToken..ctor(String jwtEncodedString)
+   at Microsoft.IdentityModel.JsonWebTokens.JsonWebTokenHandler.ReadToken(String token, TokenValidationParameters validationParameters)
+   --- End of inner exception stack trace ---
+2026-05-19 12:08:52.516 +03:00 [WRN] JWT authentication failed for GET /api/games
+Microsoft.IdentityModel.Tokens.SecurityTokenMalformedException: IDX14100: JWT is not well formed, there are no dots (.).
+The token needs to be in JWS or JWE Compact Serialization Format. (JWS): 'EncodedHeader.EndcodedPayload.EncodedSignature'. (JWE): 'EncodedProtectedHeader.EncodedEncryptedKey.EncodedInitializationVector.EncodedCiphertext.EncodedAuthenticationTag'.
+ ---> Microsoft.IdentityModel.Tokens.SecurityTokenMalformedException: IDX14100: JWT is not well formed, there are no dots (.).
+The token needs to be in JWS or JWE Compact Serialization Format. (JWS): 'EncodedHeader.EndcodedPayload.EncodedSignature'. (JWE): 'EncodedProtectedHeader.EncodedEncryptedKey.EncodedInitializationVector.EncodedCiphertext.EncodedAuthenticationTag'.
+   at Microsoft.IdentityModel.JsonWebTokens.JsonWebToken.ReadToken(String encodedJson)
+   at Microsoft.IdentityModel.JsonWebTokens.JsonWebToken..ctor(String jwtEncodedString)
+   at Microsoft.IdentityModel.JsonWebTokens.JsonWebTokenHandler.ReadToken(String token, TokenValidationParameters validationParameters)
+   --- End of inner exception stack trace ---
+2026-05-19 12:08:52.520 +03:00 [INF] Bearer was not authenticated. Failure message: IDX14100: JWT is not well formed, there are no dots (.).
+The token needs to be in JWS or JWE Compact Serialization Format. (JWS): 'EncodedHeader.EndcodedPayload.EncodedSignature'. (JWE): 'EncodedProtectedHeader.EncodedEncryptedKey.EncodedInitializationVector.EncodedCiphertext.EncodedAuthenticationTag'.
+2026-05-19 12:08:52.521 +03:00 [INF] Executing endpoint 'GameStore.Api.Controllers.GamesController.GetAll (GameStore.Api)'
+2026-05-19 12:08:52.522 +03:00 [INF] Route matched with {action = "GetAll", controller = "Games"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[GameStore.Api.DTOs.Common.PagedResultDto`1[GameStore.Api.DTOs.Games.GameResponseDto]]] GetAll(GameStore.Api.DTOs.Games.GameQueryParametersDto) on controller GameStore.Api.Controllers.GamesController (GameStore.Api).
+2026-05-19 12:08:52.535 +03:00 [INF] Executed DbCommand (10ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [dbo].[Games] AS [g]
+2026-05-19 12:08:52.546 +03:00 [INF] Executed DbCommand (8ms) [Parameters=[@__p_0='?' (DbType = Int32), @__p_1='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [t].[Id], [t].[CoverImageUrl], [t].[CreatedAtUtc], [t].[CreatedBy], [t].[Description], [t].[GenreId], [t].[Price], [t].[ReleaseDateUtc], [t].[Title], [t].[UpdatedAtUtc], [t].[UpdatedBy], [g0].[Id], [g0].[CreatedAtUtc], [g0].[CreatedBy], [g0].[Name], [g0].[UpdatedAtUtc], [g0].[UpdatedBy]
+FROM (
+    SELECT [g].[Id], [g].[CoverImageUrl], [g].[CreatedAtUtc], [g].[CreatedBy], [g].[Description], [g].[GenreId], [g].[Price], [g].[ReleaseDateUtc], [g].[Title], [g].[UpdatedAtUtc], [g].[UpdatedBy]
+    FROM [dbo].[Games] AS [g]
+    ORDER BY [g].[Title]
+    OFFSET @__p_0 ROWS FETCH NEXT @__p_1 ROWS ONLY
+) AS [t]
+INNER JOIN [dbo].[Genres] AS [g0] ON [t].[GenreId] = [g0].[Id]
+ORDER BY [t].[Title]
+2026-05-19 12:08:52.846 +03:00 [INF] Request starting HTTP/1.1 POST http://localhost:5062/api/auth/refresh - null 0
+2026-05-19 12:08:52.850 +03:00 [INF] CORS policy execution successful.
+2026-05-19 12:08:52.851 +03:00 [INF] Executing endpoint 'GameStore.Api.Controllers.AuthController.Refresh (GameStore.Api)'
+2026-05-19 12:08:52.853 +03:00 [INF] Route matched with {action = "Refresh", controller = "Auth"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Refresh() on controller GameStore.Api.Controllers.AuthController (GameStore.Api).
+2026-05-19 12:08:52.856 +03:00 [INF] Executing UnauthorizedObjectResult, writing value of type '<>f__AnonymousType1`1[[System.String, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2026-05-19 12:08:52.862 +03:00 [INF] Executed action GameStore.Api.Controllers.AuthController.Refresh (GameStore.Api) in 7.7332ms
+2026-05-19 12:08:52.864 +03:00 [INF] Executed endpoint 'GameStore.Api.Controllers.AuthController.Refresh (GameStore.Api)'
+2026-05-19 12:08:52.866 +03:00 [INF] HTTP POST /api/auth/refresh responded 401 in 15.6316 ms
+2026-05-19 12:08:52.868 +03:00 [INF] Request finished HTTP/1.1 POST http://localhost:5062/api/auth/refresh - 401 null application/json; charset=utf-8 22.2552ms
+2026-05-19 12:08:54.026 +03:00 [INF] Executing OkObjectResult, writing value of type 'GameStore.Api.DTOs.Common.PagedResultDto`1[[GameStore.Api.DTOs.Games.GameResponseDto, GameStore.Api, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-05-19 12:08:54.028 +03:00 [INF] Executed action GameStore.Api.Controllers.GamesController.GetAll (GameStore.Api) in 1504.078ms
+2026-05-19 12:08:54.029 +03:00 [INF] Executed endpoint 'GameStore.Api.Controllers.GamesController.GetAll (GameStore.Api)'
+2026-05-19 12:08:54.029 +03:00 [INF] HTTP GET /api/games responded 200 in 1543.5466 ms
+2026-05-19 12:08:54.031 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5062/api/games?page=1&pageSize=5&search=&genreId= - 499 null application/json; charset=utf-8 1594.1249ms
+2026-05-19 12:09:20.553 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5062/api/games?page=1&pageSize=6&search=&genreId= - null null
+2026-05-19 12:09:20.556 +03:00 [INF] CORS policy execution successful.
+2026-05-19 12:09:20.558 +03:00 [INF] Executing endpoint 'GameStore.Api.Controllers.GamesController.GetAll (GameStore.Api)'
+2026-05-19 12:09:20.562 +03:00 [INF] Route matched with {action = "GetAll", controller = "Games"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[GameStore.Api.DTOs.Common.PagedResultDto`1[GameStore.Api.DTOs.Games.GameResponseDto]]] GetAll(GameStore.Api.DTOs.Games.GameQueryParametersDto) on controller GameStore.Api.Controllers.GamesController (GameStore.Api).
+2026-05-19 12:09:20.570 +03:00 [INF] Executed DbCommand (3ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [dbo].[Games] AS [g]
+2026-05-19 12:09:20.586 +03:00 [INF] Executed DbCommand (14ms) [Parameters=[@__p_0='?' (DbType = Int32), @__p_1='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [t].[Id], [t].[CoverImageUrl], [t].[CreatedAtUtc], [t].[CreatedBy], [t].[Description], [t].[GenreId], [t].[Price], [t].[ReleaseDateUtc], [t].[Title], [t].[UpdatedAtUtc], [t].[UpdatedBy], [g0].[Id], [g0].[CreatedAtUtc], [g0].[CreatedBy], [g0].[Name], [g0].[UpdatedAtUtc], [g0].[UpdatedBy]
+FROM (
+    SELECT [g].[Id], [g].[CoverImageUrl], [g].[CreatedAtUtc], [g].[CreatedBy], [g].[Description], [g].[GenreId], [g].[Price], [g].[ReleaseDateUtc], [g].[Title], [g].[UpdatedAtUtc], [g].[UpdatedBy]
+    FROM [dbo].[Games] AS [g]
+    ORDER BY [g].[Title]
+    OFFSET @__p_0 ROWS FETCH NEXT @__p_1 ROWS ONLY
+) AS [t]
+INNER JOIN [dbo].[Genres] AS [g0] ON [t].[GenreId] = [g0].[Id]
+ORDER BY [t].[Title]
+2026-05-19 12:09:21.382 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5062/api/games?page=1&pageSize=6&search=&genreId= - null null
+2026-05-19 12:09:21.397 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5062/api/genres - null null
+2026-05-19 12:09:21.397 +03:00 [INF] Request starting HTTP/1.1 POST http://localhost:5062/api/auth/refresh - null 0
+2026-05-19 12:09:21.410 +03:00 [INF] CORS policy execution successful.
+2026-05-19 12:09:21.412 +03:00 [INF] CORS policy execution successful.
+2026-05-19 12:09:21.420 +03:00 [INF] CORS policy execution successful.
+2026-05-19 12:09:21.421 +03:00 [INF] Executing endpoint 'GameStore.Api.Controllers.GamesController.GetAll (GameStore.Api)'
+2026-05-19 12:09:21.422 +03:00 [INF] Executing endpoint 'GameStore.Api.Controllers.GenresController.GetAll (GameStore.Api)'
+2026-05-19 12:09:21.423 +03:00 [INF] Executing endpoint 'GameStore.Api.Controllers.AuthController.Refresh (GameStore.Api)'
+2026-05-19 12:09:21.423 +03:00 [INF] Route matched with {action = "GetAll", controller = "Games"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[GameStore.Api.DTOs.Common.PagedResultDto`1[GameStore.Api.DTOs.Games.GameResponseDto]]] GetAll(GameStore.Api.DTOs.Games.GameQueryParametersDto) on controller GameStore.Api.Controllers.GamesController (GameStore.Api).
+2026-05-19 12:09:21.424 +03:00 [INF] Route matched with {action = "GetAll", controller = "Genres"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[System.Collections.Generic.List`1[GameStore.Api.DTOs.Genres.GenreResponseDto]]] GetAll() on controller GameStore.Api.Controllers.GenresController (GameStore.Api).
+2026-05-19 12:09:21.426 +03:00 [INF] Route matched with {action = "Refresh", controller = "Auth"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Refresh() on controller GameStore.Api.Controllers.AuthController (GameStore.Api).
+2026-05-19 12:09:21.441 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [dbo].[Games] AS [g]
+2026-05-19 12:09:21.445 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[@__p_0='?' (DbType = Int32), @__p_1='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [t].[Id], [t].[CoverImageUrl], [t].[CreatedAtUtc], [t].[CreatedBy], [t].[Description], [t].[GenreId], [t].[Price], [t].[ReleaseDateUtc], [t].[Title], [t].[UpdatedAtUtc], [t].[UpdatedBy], [g0].[Id], [g0].[CreatedAtUtc], [g0].[CreatedBy], [g0].[Name], [g0].[UpdatedAtUtc], [g0].[UpdatedBy]
+FROM (
+    SELECT [g].[Id], [g].[CoverImageUrl], [g].[CreatedAtUtc], [g].[CreatedBy], [g].[Description], [g].[GenreId], [g].[Price], [g].[ReleaseDateUtc], [g].[Title], [g].[UpdatedAtUtc], [g].[UpdatedBy]
+    FROM [dbo].[Games] AS [g]
+    ORDER BY [g].[Title]
+    OFFSET @__p_0 ROWS FETCH NEXT @__p_1 ROWS ONLY
+) AS [t]
+INNER JOIN [dbo].[Genres] AS [g0] ON [t].[GenreId] = [g0].[Id]
+ORDER BY [t].[Title]
+2026-05-19 12:09:21.451 +03:00 [INF] Executed DbCommand (6ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [g].[Id], [g].[Name]
+FROM [dbo].[Genres] AS [g]
+ORDER BY [g].[Name]
+2026-05-19 12:09:21.457 +03:00 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[GameStore.Api.DTOs.Genres.GenreResponseDto, GameStore.Api, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-05-19 12:09:21.458 +03:00 [INF] Executed action GameStore.Api.Controllers.GenresController.GetAll (GameStore.Api) in 29.0381ms
+2026-05-19 12:09:21.469 +03:00 [INF] Executed endpoint 'GameStore.Api.Controllers.GenresController.GetAll (GameStore.Api)'
+2026-05-19 12:09:21.476 +03:00 [INF] HTTP GET /api/genres responded 200 in 63.3943 ms
+2026-05-19 12:09:21.484 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5062/api/genres - 200 null application/json; charset=utf-8 86.8272ms
+2026-05-19 12:09:21.529 +03:00 [INF] Executed DbCommand (52ms) [Parameters=[@__refreshToken_0='?' (Size = 500)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [r].[Id], [r].[CreatedAtUtc], [r].[CreatedBy], [r].[ExpiresAtUtc], [r].[IsRevoked], [r].[RevokedAtUtc], [r].[Token], [r].[UpdatedAtUtc], [r].[UpdatedBy], [r].[UserId], [a].[Id], [a].[AccessFailedCount], [a].[ConcurrencyStamp], [a].[CreatedAtUtc], [a].[Email], [a].[EmailConfirmed], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [dbo].[RefreshTokens] AS [r]
+INNER JOIN [dbo].[AspNetUsers] AS [a] ON [r].[UserId] = [a].[Id]
+WHERE [r].[Token] = @__refreshToken_0
+2026-05-19 12:09:21.535 +03:00 [INF] Executing UnauthorizedObjectResult, writing value of type '<>f__AnonymousType1`1[[System.String, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2026-05-19 12:09:21.537 +03:00 [INF] Executed action GameStore.Api.Controllers.AuthController.Refresh (GameStore.Api) in 99.2029ms
+2026-05-19 12:09:21.539 +03:00 [INF] Executed endpoint 'GameStore.Api.Controllers.AuthController.Refresh (GameStore.Api)'
+2026-05-19 12:09:21.540 +03:00 [INF] HTTP POST /api/auth/refresh responded 401 in 119.8730 ms
+2026-05-19 12:09:21.542 +03:00 [INF] Request finished HTTP/1.1 POST http://localhost:5062/api/auth/refresh - 401 null application/json; charset=utf-8 144.5928ms
+2026-05-19 12:09:23.189 +03:00 [INF] Executing OkObjectResult, writing value of type 'GameStore.Api.DTOs.Common.PagedResultDto`1[[GameStore.Api.DTOs.Games.GameResponseDto, GameStore.Api, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-05-19 12:09:23.193 +03:00 [INF] Executed action GameStore.Api.Controllers.GamesController.GetAll (GameStore.Api) in 2627.6159ms
+2026-05-19 12:09:23.195 +03:00 [INF] Executed endpoint 'GameStore.Api.Controllers.GamesController.GetAll (GameStore.Api)'
+2026-05-19 12:09:23.200 +03:00 [INF] HTTP GET /api/games responded 200 in 2644.0060 ms
+2026-05-19 12:09:23.202 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5062/api/games?page=1&pageSize=6&search=&genreId= - 499 null application/json; charset=utf-8 2649.0855ms
+2026-05-19 12:09:23.924 +03:00 [INF] Executing OkObjectResult, writing value of type 'GameStore.Api.DTOs.Common.PagedResultDto`1[[GameStore.Api.DTOs.Games.GameResponseDto, GameStore.Api, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-05-19 12:09:23.945 +03:00 [INF] Executed action GameStore.Api.Controllers.GamesController.GetAll (GameStore.Api) in 2518.4457ms
+2026-05-19 12:09:23.948 +03:00 [INF] Executed endpoint 'GameStore.Api.Controllers.GamesController.GetAll (GameStore.Api)'
+2026-05-19 12:09:23.951 +03:00 [INF] HTTP GET /api/games responded 200 in 2541.2192 ms
+2026-05-19 12:09:23.953 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5062/api/games?page=1&pageSize=6&search=&genreId= - 200 null application/json; charset=utf-8 2570.5413ms
