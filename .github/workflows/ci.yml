@@ -77,10 +77,10 @@ jobs:
         run: npm ci
 
       - name: Restore Backend
-        run: dotnet restore backend/GameStore.sln
+        run: dotnet restore backend/GameStore.slnx
 
       - name: Build Backend
-        run: dotnet build backend/GameStore.sln --no-restore
+        run: dotnet build backend/GameStore.slnx --no-restore
 
       - name: Install Playwright Browsers
         working-directory: frontend/gamestore-web
